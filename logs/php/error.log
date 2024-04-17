@@ -1,0 +1,49 @@
+[17-Apr-2024 08:20:39 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 262144 bytes) in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php on line 100
+[17-Apr-2024 08:20:39 UTC] PHP Fatal error:  Allowed memory size of 268435456 bytes exhausted (tried to allocate 262144 bytes) in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-fatal-error-handler.php on line 37
+[17-Apr-2024 13:27:45 UTC] Cron reschedule event error for hook: action_scheduler_run_queue, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":["WP Cron"],"interval":60}
+[17-Apr-2024 15:33:07 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_add_dashboard_widget() in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php:11
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-settings.php(663): include()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-config.php(105): require_once('/home/nomax/Loc...')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-load.php(50): require_once('/home/nomax/Loc...')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin-ajax.php(22): require_once('/home/nomax/Loc...')
+#4 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php on line 11
+[17-Apr-2024 15:33:07 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-recovery-mode-email-service.php on line 367
+[17-Apr-2024 15:33:07 UTC] PHP Warning:  Trying to access array offset on value of type bool in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-recovery-mode-email-service.php on line 368
+[17-Apr-2024 15:33:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_add_dashboard_widget() in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php:11
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-settings.php(663): include()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-config.php(105): require_once('/home/nomax/Loc...')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-load.php(50): require_once('/home/nomax/Loc...')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(34): require_once('/home/nomax/Loc...')
+#4 /home/nomax/Local Sites/bakery/app/public/wp-admin/themes.php(10): require_once('/home/nomax/Loc...')
+#5 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php on line 11
+[17-Apr-2024 15:33:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_add_dashboard_widget() in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php:11
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-settings.php(663): include()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-config.php(105): require_once('/home/nomax/Loc...')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-load.php(50): require_once('/home/nomax/Loc...')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(13): require_once('/home/nomax/Loc...')
+#4 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#5 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php on line 11
+[17-Apr-2024 15:33:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_add_dashboard_widget() in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php:11
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-settings.php(663): include()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-config.php(105): require_once('/home/nomax/Loc...')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-load.php(50): require_once('/home/nomax/Loc...')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(34): require_once('/home/nomax/Loc...')
+#4 /home/nomax/Local Sites/bakery/app/public/wp-admin/themes.php(10): require_once('/home/nomax/Loc...')
+#5 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php on line 11
+[17-Apr-2024 15:33:10 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function wp_add_dashboard_widget() in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php:11
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-settings.php(663): include()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-config.php(105): require_once('/home/nomax/Loc...')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-load.php(50): require_once('/home/nomax/Loc...')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(13): require_once('/home/nomax/Loc...')
+#4 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#5 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/themes/ron/functions.php on line 11
