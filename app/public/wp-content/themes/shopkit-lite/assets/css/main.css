@@ -1,0 +1,217 @@
+:root{
+    --color-primary: #ee434e;
+    --color-secondary: #eb747b;
+}
+
+body,
+p {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+a {
+    text-decoration: underline;
+    color:inherit
+}
+
+a:hover {
+    transition: color 0.2s ease-in-out;
+}
+
+article a,
+a:hover {
+    text-decoration: underline !important;
+}
+
+a:focus {
+    color: #77a464;
+}
+
+button:focus,
+.toggled button.menu-toggle span.mhide:focus {
+    background: var(--color-secondary);
+}
+
+a.button {
+    border-radius: 0 !important;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+    background: var(--color-primary) !important;
+}
+
+a.button:hover {
+    text-decoration: inherit !important;
+    background: var(--color-secondary) !important;
+}
+a:hover,
+a:focus,
+a:active {
+    color: var(--color-secondary);
+}
+a:focus,
+button:focus {
+    outline: 2px solid var(--color-secondary);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Platypi', sans-serif;
+    font-weight: 700;
+    letter-spacing: inherit;
+}
+
+h1>a,
+h2>a {
+    color: inherit;
+}
+
+
+.shopkit-main-nav ul li a:hover {
+    background: #ededed;
+    color: #000;
+}
+.container-fluid {
+    max-width: 1580px;
+}
+
+.shopkit-header .site-title {
+    text-transform: inherit;
+    font-family: 'Fira Sans', sans-serif;
+}
+
+p.site-description {
+    font-size: 20px;
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+.xskit-blog-list,
+.widget-area .widget {
+    transition: 0.5s;
+}
+.xskit-blog-list:hover,
+.widget-area .widget:hover {
+    box-shadow: 0px 3px 40px rgba(0, 0, 0, 0.20);
+}
+.woocommerce ul.products li.product,
+.woocommerce-page ul.products li.product{
+    border-radius: 5px;
+}
+.woocommerce ul.products li.product .button {
+    border-radius: 15px !important;
+    padding: 12px 25px;
+}
+
+.woocommerce ul.products li.product .woocommerce-loop-category__title,
+.woocommerce ul.products li.product .woocommerce-loop-product__title,
+.woocommerce ul.products li.product h3 {
+    font-size: 20px;
+}
+.woocommerce ul.products li.product:hover,
+.woocommerce-page ul.products li.product:hover {
+    transform: scale(1.02);
+    box-shadow: inherit;
+}
+aside#secondary {
+    position: sticky;
+    top: 30px;
+}
+
+
+article.sticky .bshop-single-list {
+    background: #e9e9e9;
+    border-radius: 40px 0 40px 0;
+}
+
+nav.navigation.pagination {
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+nav.navigation.pagination span,
+nav.navigation.pagination a {
+    text-decoration: inherit;
+    padding: 7px 10px;
+    margin-right: 5px;
+}
+
+nav.navigation.pagination span,
+nav.navigation.pagination a:hover {
+    background: var(--color-secondary);
+    text-decoration: none !important;
+}
+
+.site-footer,
+.site-main .comment-navigation,
+.site-main .posts-navigation,
+.site-main .post-navigation {
+    background: #fff;
+}
+
+h1.site-title a {
+    text-decoration: none;
+    font-style: italic;
+}
+
+h1.site-title a {
+    text-decoration: none;
+}
+
+.bslite-ameta {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+.ameta-img img {
+    border-radius: 50%;
+    overflow: hidden;
+    margin-right: 10px;
+    border: 2px solid #ededed;
+}
+
+.ameta-name-date span {
+    display: block;
+}
+
+.ameta-name-date {
+    font-size: 80%;
+    line-height: inherit;
+}
+
+.ameta-name-date span:first-child {
+    font-weight: 700;
+    margin-bottom: 1px;
+}
+
+.footer-widget a:hover,
+.footer-widget a:focus,
+.footer-widget a:active {
+    color: #ededed
+}
+
+.footer-widget .widget-title {
+    padding-left: 0;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+@media screen and (max-width: 992px) {
+
+    body,
+    p {
+        font-size: 16px;
+    }
+
+}
