@@ -663,3 +663,279 @@ Stack trace:
 #7 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(239): require_once('/home/nomax/Loc...')
 #8 {main}
   thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-order-functions.php on line 29
+[26-Apr-2024 06:01:56 UTC] PHP Warning:  Undefined property: WP_Ajax_Upgrader_Skin::$api in /home/nomax/Local Sites/bakery/app/public/wp-admin/includes/class-theme-upgrader.php on line 160
+[26-Apr-2024 06:01:58 UTC] PHP Warning:  Undefined array key "action" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/src/Blocks/BlockPatterns.php on line 299
+[26-Apr-2024 06:23:22 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 32
+[26-Apr-2024 06:26:18 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 61
+[26-Apr-2024 06:26:27 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 61
+[26-Apr-2024 09:26:39 UTC] PHP Parse error:  syntax error, unexpected token "else", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[26-Apr-2024 09:26:39 UTC] PHP Parse error:  syntax error, unexpected token "else", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[26-Apr-2024 09:26:39 UTC] PHP Parse error:  syntax error, unexpected token "else", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[26-Apr-2024 09:26:40 UTC] PHP Parse error:  syntax error, unexpected token "else", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[26-Apr-2024 09:26:40 UTC] PHP Parse error:  syntax error, unexpected token "else", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:17 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:15:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:21:40 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:31 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:33 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 10:22:42 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:35:32 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 15
+[26-Apr-2024 11:51:12 UTC] PHP Fatal error:  Uncaught TypeError: strpos(): Argument #1 ($haystack) must be of type string, array given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php:13
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php(13): strpos(Array, '<th class="wooc...')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(326): remove_kaunas_attribute(Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(3616): apply_filters('woocommerce_dis...', Array, Object(WC_Product_Variable))
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): wc_display_product_attributes(Object(WC_Product_Variable))
+#5 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#7 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php(30): do_action('woocommerce_pro...', Object(WC_Product_Variable))
+#8 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#9 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1879): wc_get_template('single-product/...')
+#10 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php(47): woocommerce_product_additional_information_tab('additional_info...', Array)
+#11 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#12 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1632): wc_get_template('single-product/...')
+#13 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): woocommerce_output_product_data_tabs('')
+#14 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#15 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#16 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/content-single-product.php(72): do_action('woocommerce_aft...')
+#17 /home/nomax/Local Sites/bakery/app/public/wp-includes/template.php(812): require('/home/nomax/Loc...')
+#18 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/nomax/Loc...', false)
+#19 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(983): wc_get_template_part('content', 'single-product')
+#20 /home/nomax/Local Sites/bakery/app/public/wp-content/themes/shop-kit/woocommerce.php(76): woocommerce_content()
+#21 /home/nomax/Local Sites/bakery/app/public/wp-includes/template-loader.php(106): include('/home/nomax/Loc...')
+#22 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(19): require_once('/home/nomax/Loc...')
+#23 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#24 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 13
+[26-Apr-2024 11:51:13 UTC] PHP Fatal error:  Uncaught TypeError: strpos(): Argument #1 ($haystack) must be of type string, array given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php:13
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php(13): strpos(Array, '<th class="wooc...')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(326): remove_kaunas_attribute(Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(3616): apply_filters('woocommerce_dis...', Array, Object(WC_Product_Variable))
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): wc_display_product_attributes(Object(WC_Product_Variable))
+#5 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#7 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php(30): do_action('woocommerce_pro...', Object(WC_Product_Variable))
+#8 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#9 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1879): wc_get_template('single-product/...')
+#10 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php(47): woocommerce_product_additional_information_tab('additional_info...', Array)
+#11 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#12 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1632): wc_get_template('single-product/...')
+#13 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): woocommerce_output_product_data_tabs('')
+#14 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#15 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#16 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/content-single-product.php(72): do_action('woocommerce_aft...')
+#17 /home/nomax/Local Sites/bakery/app/public/wp-includes/template.php(812): require('/home/nomax/Loc...')
+#18 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/nomax/Loc...', false)
+#19 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(983): wc_get_template_part('content', 'single-product')
+#20 /home/nomax/Local Sites/bakery/app/public/wp-content/themes/shop-kit/woocommerce.php(76): woocommerce_content()
+#21 /home/nomax/Local Sites/bakery/app/public/wp-includes/template-loader.php(106): include('/home/nomax/Loc...')
+#22 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(19): require_once('/home/nomax/Loc...')
+#23 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#24 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 13
+[26-Apr-2024 11:51:22 UTC] PHP Fatal error:  Uncaught TypeError: strpos(): Argument #1 ($haystack) must be of type string, array given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php:13
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php(13): strpos(Array, '<th class="wooc...')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(326): remove_kaunas_attribute(Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(3616): apply_filters('woocommerce_dis...', Array, Object(WC_Product_Variable))
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): wc_display_product_attributes(Object(WC_Product_Variable))
+#5 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#7 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php(30): do_action('woocommerce_pro...', Object(WC_Product_Variable))
+#8 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#9 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1879): wc_get_template('single-product/...')
+#10 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php(47): woocommerce_product_additional_information_tab('additional_info...', Array)
+#11 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#12 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1632): wc_get_template('single-product/...')
+#13 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): woocommerce_output_product_data_tabs('')
+#14 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#15 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#16 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/content-single-product.php(72): do_action('woocommerce_aft...')
+#17 /home/nomax/Local Sites/bakery/app/public/wp-includes/template.php(812): require('/home/nomax/Loc...')
+#18 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/nomax/Loc...', false)
+#19 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(983): wc_get_template_part('content', 'single-product')
+#20 /home/nomax/Local Sites/bakery/app/public/wp-content/themes/shop-kit/woocommerce.php(76): woocommerce_content()
+#21 /home/nomax/Local Sites/bakery/app/public/wp-includes/template-loader.php(106): include('/home/nomax/Loc...')
+#22 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(19): require_once('/home/nomax/Loc...')
+#23 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#24 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 13
+[26-Apr-2024 11:51:46 UTC] PHP Fatal error:  Uncaught TypeError: strpos(): Argument #1 ($haystack) must be of type string, array given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php:13
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php(13): strpos(Array, '<th class="wooc...')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(326): remove_kaunas_attribute(Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(3616): apply_filters('woocommerce_dis...', Array, Object(WC_Product_Variable))
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): wc_display_product_attributes(Object(WC_Product_Variable))
+#5 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#7 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php(30): do_action('woocommerce_pro...', Object(WC_Product_Variable))
+#8 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#9 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1879): wc_get_template('single-product/...')
+#10 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php(47): woocommerce_product_additional_information_tab('additional_info...', Array)
+#11 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#12 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1632): wc_get_template('single-product/...')
+#13 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): woocommerce_output_product_data_tabs('')
+#14 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#15 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#16 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/content-single-product.php(72): do_action('woocommerce_aft...')
+#17 /home/nomax/Local Sites/bakery/app/public/wp-includes/template.php(812): require('/home/nomax/Loc...')
+#18 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/nomax/Loc...', false)
+#19 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(983): wc_get_template_part('content', 'single-product')
+#20 /home/nomax/Local Sites/bakery/app/public/wp-content/themes/shop-kit/woocommerce.php(76): woocommerce_content()
+#21 /home/nomax/Local Sites/bakery/app/public/wp-includes/template-loader.php(106): include('/home/nomax/Loc...')
+#22 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(19): require_once('/home/nomax/Loc...')
+#23 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#24 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 13
+[26-Apr-2024 11:51:47 UTC] PHP Fatal error:  Uncaught TypeError: strpos(): Argument #1 ($haystack) must be of type string, array given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php:13
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php(13): strpos(Array, '<th class="wooc...')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(326): remove_kaunas_attribute(Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(3616): apply_filters('woocommerce_dis...', Array, Object(WC_Product_Variable))
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): wc_display_product_attributes(Object(WC_Product_Variable))
+#5 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#7 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php(30): do_action('woocommerce_pro...', Object(WC_Product_Variable))
+#8 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#9 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1879): wc_get_template('single-product/...')
+#10 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php(47): woocommerce_product_additional_information_tab('additional_info...', Array)
+#11 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#12 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1632): wc_get_template('single-product/...')
+#13 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): woocommerce_output_product_data_tabs('')
+#14 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#15 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#16 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/content-single-product.php(72): do_action('woocommerce_aft...')
+#17 /home/nomax/Local Sites/bakery/app/public/wp-includes/template.php(812): require('/home/nomax/Loc...')
+#18 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/nomax/Loc...', false)
+#19 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(983): wc_get_template_part('content', 'single-product')
+#20 /home/nomax/Local Sites/bakery/app/public/wp-content/themes/shop-kit/woocommerce.php(76): woocommerce_content()
+#21 /home/nomax/Local Sites/bakery/app/public/wp-includes/template-loader.php(106): include('/home/nomax/Loc...')
+#22 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(19): require_once('/home/nomax/Loc...')
+#23 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#24 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 13
+[26-Apr-2024 11:51:56 UTC] PHP Fatal error:  Uncaught TypeError: strpos(): Argument #1 ($haystack) must be of type string, array given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php:13
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php(13): strpos(Array, '<th class="wooc...')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(326): remove_kaunas_attribute(Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(205): WP_Hook->apply_filters(Array, Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(3616): apply_filters('woocommerce_dis...', Array, Object(WC_Product_Variable))
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): wc_display_product_attributes(Object(WC_Product_Variable))
+#5 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#6 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#7 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/additional-information.php(30): do_action('woocommerce_pro...', Object(WC_Product_Variable))
+#8 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#9 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1879): wc_get_template('single-product/...')
+#10 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/tabs/tabs.php(47): woocommerce_product_additional_information_tab('additional_info...', Array)
+#11 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(345): include('/home/nomax/Loc...')
+#12 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(1632): wc_get_template('single-product/...')
+#13 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): woocommerce_output_product_data_tabs('')
+#14 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#15 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#16 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/content-single-product.php(72): do_action('woocommerce_aft...')
+#17 /home/nomax/Local Sites/bakery/app/public/wp-includes/template.php(812): require('/home/nomax/Loc...')
+#18 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-core-functions.php(284): load_template('/home/nomax/Loc...', false)
+#19 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/includes/wc-template-functions.php(983): wc_get_template_part('content', 'single-product')
+#20 /home/nomax/Local Sites/bakery/app/public/wp-content/themes/shop-kit/woocommerce.php(76): woocommerce_content()
+#21 /home/nomax/Local Sites/bakery/app/public/wp-includes/template-loader.php(106): include('/home/nomax/Loc...')
+#22 /home/nomax/Local Sites/bakery/app/public/wp-blog-header.php(19): require_once('/home/nomax/Loc...')
+#23 /home/nomax/Local Sites/bakery/app/public/index.php(17): require('/home/nomax/Loc...')
+#24 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 13
+[26-Apr-2024 11:52:35 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:52:35 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:52:35 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:52:35 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/product-attributes.php on line 27
+[26-Apr-2024 11:53:19 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:53:19 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:53:19 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:53:19 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/product-attributes.php on line 27
+[26-Apr-2024 11:53:21 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:53:21 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:53:21 UTC] PHP Warning:  Array to string conversion in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 11:53:21 UTC] PHP Warning:  foreach() argument must be of type array|object, string given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/woocommerce/templates/single-product/product-attributes.php on line 27
+[26-Apr-2024 12:07:36 UTC] PHP Warning:  Undefined array key "attribute_name" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 12:07:36 UTC] PHP Warning:  Undefined array key "attribute_name" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 12:07:36 UTC] PHP Warning:  Undefined array key "attribute_name" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/location-choice-popup.php on line 14
+[26-Apr-2024 13:27:19 UTC] PHP Parse error:  syntax error, unexpected token ">" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/city-based-product/city-based-product.php on line 25
+[26-Apr-2024 13:27:19 UTC] PHP Parse error:  syntax error, unexpected token ">" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/city-based-product/city-based-product.php on line 25
+[26-Apr-2024 13:27:20 UTC] PHP Parse error:  syntax error, unexpected token ">" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/city-based-product/city-based-product.php on line 25
+[26-Apr-2024 13:27:20 UTC] PHP Parse error:  syntax error, unexpected token ">" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/city-based-product/city-based-product.php on line 25
+[26-Apr-2024 13:27:20 UTC] PHP Parse error:  syntax error, unexpected token ">" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/city-based-product/city-based-product.php on line 25
+[26-Apr-2024 13:27:21 UTC] PHP Parse error:  syntax error, unexpected token ">" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/city-based-product/city-based-product.php on line 25
+[26-Apr-2024 13:34:33 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:33 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:34 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:34 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:35 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:37 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:39 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:45 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:45 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:34:45 UTC] PHP Warning:  Undefined variable $selected_attribute in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/pop-up/pop-up.php on line 52
+[26-Apr-2024 13:43:26 UTC] AJAX request received to remove Kaunas variation
+[26-Apr-2024 13:43:31 UTC] AJAX request received to remove Kaunas variation
+[26-Apr-2024 13:45:46 UTC] Selected city: kaunas
+[26-Apr-2024 13:47:00 UTC] Selected city: kaunas
