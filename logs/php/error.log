@@ -955,3 +955,23 @@ Stack trace:
 [30-Apr-2024 06:57:37 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
 [30-Apr-2024 07:05:10 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
 [30-Apr-2024 07:05:17 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:50:19 UTC] PHP Parse error:  Unmatched '}' in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/remove-checkout-address.php on line 23
+[02-May-2024 07:50:19 UTC] PHP Parse error:  Unmatched '}' in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/remove-checkout-address.php on line 23
+[02-May-2024 07:50:24 UTC] PHP Parse error:  Unmatched '}' in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/remove-checkout-address.php on line 23
+[02-May-2024 07:50:24 UTC] PHP Parse error:  Unmatched '}' in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/remove-checkout-address.php on line 23
+[02-May-2024 07:50:49 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:50:57 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:57:48 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:58:08 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:58:29 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:58:51 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 07:58:57 UTC] PHP Warning:  Attempt to read property "term_id" on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/hide_category_for_non_privatus_klientas.php on line 35
+[02-May-2024 09:54:32 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 162
+[02-May-2024 09:54:32 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 162
+[02-May-2024 09:54:33 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 162
+[02-May-2024 09:54:33 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 162
+[02-May-2024 09:54:33 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 162
+[02-May-2024 09:54:33 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 162
+[02-May-2024 09:54:58 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 161
+[02-May-2024 09:55:14 UTC] PHP Parse error:  Unclosed '(' on line 160 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php on line 161
+[03-May-2024 09:13:52 UTC] PHP Warning:  file_get_contents(/home/nomax/Local Sites/bakery/app/public/wp-content/plugins/training/order-table.php): Failed to open stream: No such file or directory in /home/nomax/Local Sites/bakery/app/public/wp-includes/functions.php on line 6852
