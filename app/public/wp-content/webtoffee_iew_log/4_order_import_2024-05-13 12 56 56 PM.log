@@ -1,0 +1,11 @@
+05-13-2024 @ 12:56:56 - ---[ New import started at 2024-05-13 12:56:56 ] PHP Memory: 256 MB, WP Memory: 40 MB
+05-13-2024 @ 12:56:56 - Preparing for import.
+05-13-2024 @ 12:56:56 - Row :1 - Parsing item.
+05-13-2024 @ 12:56:56 - Row :1 - Parsing failed. Reason: Order with same ID already exists. ID: 130
+05-13-2024 @ 12:56:56 - Row :2 - Parsing item.
+05-13-2024 @ 12:56:56 - Row :2 - Parsing failed. Reason: Order with same ID already exists. ID: 129
+05-13-2024 @ 12:56:56 - Row :3 - Parsing item.
+05-13-2024 @ 12:56:56 - Row :3 - Parsing failed. Reason: Order with same ID already exists. ID: 128
+05-13-2024 @ 12:56:56 - Row :4 - Parsing item.
+05-13-2024 @ 12:56:56 - Row :4 - Parsing failed. Reason: Order with same ID already exists. ID: 127
+05-13-2024 @ 12:56:56 - ---[ Import ended at 2024-05-13 12:56:56]---

@@ -6,34 +6,42 @@ Version: 1.0
 Author: Bellatoscana
 */
 
-// Add custom column to orders list
-add_filter('manage_woocommerce_page_wc-orders_columns', 'add_custom_order_columns');
+// Add custom columns to WooCommerce orders list
+add_filter('manage_edit-shop_order_columns', 'add_custom_order_columns', 20);
 function add_custom_order_columns($columns)
 {
-    // Remove the existing date column
+    // Remove existing columns if needed
     unset($columns['order_date']);
     unset($columns['billing_address']);
     unset($columns['shipping_address']);
-    unset($columns['order_origin']); // Corrected column key
+    unset($columns['origin']);
+    unset($columns['pisol_time']);
+    unset($columns['pisol_method']);
+    unset($columns['pisol_pickup_location']);
 
 
+    // Add custom columns
+    $columns['order_size'] = __('Dydžiai', 'textdomain');
+    $columns['order_location'] = __('Atsiemimo vieta', 'textdomain');
+    $columns['order_category'] = __('Kategorija', 'textdomain');
+    $columns['custom_order_date'] = __('Užsakyta', 'textdomain');
+    $columns['order_origin'] = __('Klientas', 'textdomain');
+    $columns['pisol_dpd'] = __('Atsiemimo data', 'textdomain');
 
-    // Add the custom columns
-    $columns['order_size'] = __('Size', 'textdomain');
-    $columns['order_location'] = __('Location', 'textdomain');
-    $columns['order_category'] = __('Category', 'textdomain');
-    $columns['custom_order_date'] = __('Date', 'textdomain');
-    $columns['order_origin'] = __('Origin', 'textdomain');
 
     return $columns;
 }
 
-// Populate the "Dydžiai" (Sizes) column
-add_action('manage_woocommerce_page_wc-orders_custom_column', 'populate_size_column', 10, 2);
-
-function populate_size_column($column_name, $order_id)
+// Populate the "Size" column
+add_action('manage_shop_order_posts_custom_column', 'populate_size_column', 10, 1);
+function populate_size_column($column)
 {
-    if ($column_name === 'order_size') {
+    global $post, $woocommerce, $the_order;
+
+    // Get the order ID
+    $order_id = $post->ID;
+
+    if ($column === 'order_size') {
         // Get the order object
         $order = wc_get_order($order_id);
 
@@ -73,12 +81,16 @@ function populate_size_column($column_name, $order_id)
     }
 }
 
-// Populate the "Atsiemimo Vieta" (Location) column
-add_action('manage_woocommerce_page_wc-orders_custom_column', 'populate_location_column', 10, 2);
-
-function populate_location_column($column_name, $order_id)
+// Populate the "Location" column
+add_action('manage_shop_order_posts_custom_column', 'populate_location_column', 10, 1);
+function populate_location_column($column)
 {
-    if ($column_name === 'order_location') {
+    global $post, $woocommerce, $the_order;
+
+    // Get the order ID
+    $order_id = $post->ID;
+
+    if ($column === 'order_location') {
         // Get the order object
         $order = wc_get_order($order_id);
 
@@ -119,11 +131,15 @@ function populate_location_column($column_name, $order_id)
 }
 
 // Populate the "Category" column
-add_action('manage_woocommerce_page_wc-orders_custom_column', 'populate_category_column', 10, 2);
-
-function populate_category_column($column_name, $order_id)
+add_action('manage_shop_order_posts_custom_column', 'populate_category_column', 10, 1);
+function populate_category_column($column)
 {
-    if ($column_name === 'order_category') {
+    global $post, $woocommerce, $the_order;
+
+    // Get the order ID
+    $order_id = $post->ID;
+
+    if ($column === 'order_category') {
         // Get the order object
         $order = wc_get_order($order_id);
 
@@ -165,11 +181,15 @@ function populate_category_column($column_name, $order_id)
 }
 
 // Populate the "Date" column
-add_action('manage_woocommerce_page_wc-orders_custom_column', 'populate_date_column', 10, 2);
-
-function populate_date_column($column_name, $order_id)
+add_action('manage_shop_order_posts_custom_column', 'populate_date_column', 10, 1);
+function populate_date_column($column)
 {
-    if ($column_name === 'custom_order_date') {
+    global $post, $woocommerce, $the_order;
+
+    // Get the order ID
+    $order_id = $post->ID;
+
+    if ($column === 'custom_order_date') {
         // Get the order object
         $order = wc_get_order($order_id);
 
@@ -182,11 +202,15 @@ function populate_date_column($column_name, $order_id)
 }
 
 // Populate the "Origin" column
-add_action('manage_woocommerce_page_wc-orders_custom_column', 'populate_origin_column', 10, 2);
-
-function populate_origin_column($column_name, $order_id)
+add_action('manage_shop_order_posts_custom_column', 'populate_origin_column', 10, 1);
+function populate_origin_column($column)
 {
-    if ($column_name === 'order_origin') {
+    global $post, $woocommerce, $the_order;
+
+    // Get the order ID
+    $order_id = $post->ID;
+
+    if ($column === 'order_origin') {
         // Get the order object
         $order = wc_get_order($order_id);
 
