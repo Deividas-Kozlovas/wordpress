@@ -1,0 +1,1 @@
+System.register(["../apps/settings/index-legacy.14a49b0f.js"],(function(t,e){"use strict";var n,r,u,c,i;return{setters:[function(t){n=t.S,r=t.M,u=t.ao,c=t._,i=t.K}],execute:function(){t("c",(function(t){var e=Symbol("contextKey");return{useProvide:function(t,i){var s=n({});return r(e,s),u((function(){c(s,t,i||{})})),s},useInject:function(){return i(e,t)||{}}}}))}}}));

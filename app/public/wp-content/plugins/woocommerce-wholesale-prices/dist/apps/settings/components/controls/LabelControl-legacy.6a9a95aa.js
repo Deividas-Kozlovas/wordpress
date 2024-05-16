@@ -1,0 +1,1 @@
+System.register(["../../../../common/LabelControl.vue_vue_type_script_setup_true_lang-legacy.5e6e0497.js","../../index-legacy.14a49b0f.js","../../../../common/index-legacy.29e48fe4.js","../../../../common/motion-legacy.bd505853.js"],(function(e,n){"use strict";return{setters:[function(n){n._,e("default",n._)},null,null,null],execute:function(){}}}));

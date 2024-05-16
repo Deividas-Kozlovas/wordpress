@@ -1,101 +1,0 @@
-﻿ID,Tipas,"Prekės kodas",Pavadinimas,Paskelbtas,Rekomenduojamas?,"Matomumas kataloge","Trumpas apibūdinimas",Aprašymas,"Akcijinės kainos galiojimo pradžia","Akcijinės kainos galiojimo pabaiga","Mokesčių statusas","Mokesčių klasė",Turime?,Atsargos,"Mažas likutis","Leidžiami išankstiniai užsakymai?","Parduodama tik po vieną?","Svoris (kg)","Ilgis (cm)","Plotis (cm)","Aukštis (cm)","Leisti pirkėjų atsiliepimus?","Pirkimo pastaba","Akcijinė kaina","Reguliari kaina",Kategorijos,Žymos,"Pristatymo klasė",Paveikslėliai,"Atsisiuntimų limitas","Parsisiuntimo galiojimas dienomis",Tėvinis,"Sugrupuoti produktai","Pakeičiami produktai","Kryžm. produktai","Išorinis internetinis adresas","Mygtuko tekstas",Pozicija,"Požymio 1 pavadinimas","Požymio 1 reikšmė(s)","Požymis 1 matomas","Požymis 1 visuotinis","Požymio 2 pavadinimas","Požymio 2 reikšmė(s)","Požymis 2 matomas","Požymis 2 visuotinis"
-6777,variable,,Napal,1,0,visible,,"Klasika tapęs tortas „Napoleonas”. Sviestiniai trapios tešlos ir karamelizuoti lakštai, pertepti patisserie (kremu, plikytu su vanilės lazdele). Pradžiugins bet kuria proga!\n\nSudėtis:\n\nKapotos tešlos lakštai\nPlikytas kremas\nSluoksniuotos tešlos lakštai\nSkysta karamelė\nTraški karamelė",,,taxable,,1,,,0,0,,,,,1,,,,"Privatus klientas, Privatus klientas > Tortai",,,https://www.bellatoscana.lt/wp-content/uploads/2019/11/a__24_-1.jpg,,,,,,,,,0,Dydžiai,"S, M, L",1,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas, Europos pr. 122\, Cechas\, Kaunas, Baranausko g. 26\, Šilas\, Kaunas, Savanorių pr. 116\, Šilas\, Kuanas, Baltų pr. 18\, Šilas\, Kaunas, Naugarduko g. 70\, Kepyklėlė\, Vilnius, Verkių g. 31A\, Ogmios miestas\, Vilnius, Vytauto g. 98\, Palanga",1,0
-6778,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,12,,,,,,,id:6777,,,,,,1,Dydžiai,S,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6779,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,13,,,,,,,id:6777,,,,,,2,Dydžiai,S,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6780,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,14,,,,,,,id:6777,,,,,,3,Dydžiai,S,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6781,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,15,,,,,,,id:6777,,,,,,4,Dydžiai,S,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6782,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,16,,,,,,,id:6777,,,,,,5,Dydžiai,S,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6783,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,17,,,,,,,id:6777,,,,,,6,Dydžiai,S,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6784,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,18,,,,,,,id:6777,,,,,,7,Dydžiai,S,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6785,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,19,,,,,,,id:6777,,,,,,8,Dydžiai,S,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6786,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,20,,,,,,,id:6777,,,,,,9,Dydžiai,M,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6787,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,21,,,,,,,id:6777,,,,,,10,Dydžiai,M,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6788,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,22,,,,,,,id:6777,,,,,,11,Dydžiai,M,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6789,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,23,,,,,,,id:6777,,,,,,12,Dydžiai,M,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6790,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,24,,,,,,,id:6777,,,,,,13,Dydžiai,M,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6791,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,25,,,,,,,id:6777,,,,,,14,Dydžiai,M,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6792,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,26,,,,,,,id:6777,,,,,,15,Dydžiai,M,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6793,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,27,,,,,,,id:6777,,,,,,16,Dydžiai,M,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6794,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,28,,,,,,,id:6777,,,,,,17,Dydžiai,L,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6795,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,29,,,,,,,id:6777,,,,,,18,Dydžiai,L,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6796,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,30,,,,,,,id:6777,,,,,,19,Dydžiai,L,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6797,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,31,,,,,,,id:6777,,,,,,20,Dydžiai,L,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6798,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,32,,,,,,,id:6777,,,,,,21,Dydžiai,L,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6799,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,33,,,,,,,id:6777,,,,,,22,Dydžiai,L,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6800,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,34,,,,,,,id:6777,,,,,,23,Dydžiai,L,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6801,variation,,Napal,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,45,,,,,,,id:6777,,,,,,24,Dydžiai,L,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6806,variable,,"NEW YORK",1,0,visible,,"Klasika tapęs tortas „Napoleonas”. Sviestiniai trapios tešlos ir karamelizuoti lakštai, pertepti patisserie (kremu, plikytu su vanilės lazdele). Pradžiugins bet kuria proga!\n\nSudėtis:\n\nKapotos tešlos lakštai\nPlikytas kremas\nSluoksniuotos tešlos lakštai\nSkysta karamelė\nTraški karamelė",,,taxable,,1,,,0,0,,,,,1,,,,"Privatus klientas, Privatus klientas > Tortai",,,https://www.bellatoscana.lt/wp-content/uploads/2019/11/a__14_.jpg,,,,,,,,,0,Dydžiai,"S, M, L",1,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas, Europos pr. 122\, Cechas\, Kaunas, Baranausko g. 26\, Šilas\, Kaunas, Savanorių pr. 116\, Šilas\, Kuanas, Baltų pr. 18\, Šilas\, Kaunas, Naugarduko g. 70\, Kepyklėlė\, Vilnius, Verkių g. 31A\, Ogmios miestas\, Vilnius, Vytauto g. 98\, Palanga",1,0
-6807,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,12,,,,,,,id:6806,,,,,,1,Dydžiai,S,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6808,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,13,,,,,,,id:6806,,,,,,2,Dydžiai,S,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6809,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,14,,,,,,,id:6806,,,,,,3,Dydžiai,S,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6810,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,15,,,,,,,id:6806,,,,,,4,Dydžiai,S,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6811,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,16,,,,,,,id:6806,,,,,,5,Dydžiai,S,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6812,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,17,,,,,,,id:6806,,,,,,6,Dydžiai,S,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6813,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,18,,,,,,,id:6806,,,,,,7,Dydžiai,S,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6814,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,19,,,,,,,id:6806,,,,,,8,Dydžiai,S,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6815,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,20,,,,,,,id:6806,,,,,,9,Dydžiai,M,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6816,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,21,,,,,,,id:6806,,,,,,10,Dydžiai,M,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6817,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,22,,,,,,,id:6806,,,,,,11,Dydžiai,M,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6818,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,23,,,,,,,id:6806,,,,,,12,Dydžiai,M,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6819,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,24,,,,,,,id:6806,,,,,,13,Dydžiai,M,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6820,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,25,,,,,,,id:6806,,,,,,14,Dydžiai,M,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6821,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,26,,,,,,,id:6806,,,,,,15,Dydžiai,M,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6822,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,27,,,,,,,id:6806,,,,,,16,Dydžiai,M,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6823,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,28,,,,,,,id:6806,,,,,,17,Dydžiai,L,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6824,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,29,,,,,,,id:6806,,,,,,18,Dydžiai,L,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6825,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,30,,,,,,,id:6806,,,,,,19,Dydžiai,L,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6826,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,31,,,,,,,id:6806,,,,,,20,Dydžiai,L,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6827,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,32,,,,,,,id:6806,,,,,,21,Dydžiai,L,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6828,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,33,,,,,,,id:6806,,,,,,22,Dydžiai,L,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6829,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,34,,,,,,,id:6806,,,,,,23,Dydžiai,L,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6830,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,45,,,,,,,id:6806,,,,,,24,Dydžiai,L,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6831,variable,,ROLADINAS,1,0,visible,,"Klasika tapęs tortas „Napoleonas”. Sviestiniai trapios tešlos ir karamelizuoti lakštai, pertepti patisserie (kremu, plikytu su vanilės lazdele). Pradžiugins bet kuria proga!\n\nSudėtis:\n\nKapotos tešlos lakštai\nPlikytas kremas\nSluoksniuotos tešlos lakštai\nSkysta karamelė\nTraški karamelė",,,taxable,,1,,,0,0,,,,,1,,,,"Privatus klientas > Mini Tortai, Privatus klientas",,,https://www.bellatoscana.lt/wp-content/uploads/2023/03/11bt.jpg,,,,,,,,,0,Dydžiai,"S, M, L",1,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas, Europos pr. 122\, Cechas\, Kaunas, Baranausko g. 26\, Šilas\, Kaunas, Savanorių pr. 116\, Šilas\, Kuanas, Baltų pr. 18\, Šilas\, Kaunas, Naugarduko g. 70\, Kepyklėlė\, Vilnius, Verkių g. 31A\, Ogmios miestas\, Vilnius, Vytauto g. 98\, Palanga",1,0
-6832,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,12,,,,,,,id:6831,,,,,,1,Dydžiai,S,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6833,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,13,,,,,,,id:6831,,,,,,2,Dydžiai,S,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6834,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,14,,,,,,,id:6831,,,,,,3,Dydžiai,S,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6835,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,15,,,,,,,id:6831,,,,,,4,Dydžiai,S,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6836,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,16,,,,,,,id:6831,,,,,,5,Dydžiai,S,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6837,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,17,,,,,,,id:6831,,,,,,6,Dydžiai,S,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6838,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,18,,,,,,,id:6831,,,,,,7,Dydžiai,S,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6839,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,19,,,,,,,id:6831,,,,,,8,Dydžiai,S,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6840,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,20,,,,,,,id:6831,,,,,,9,Dydžiai,M,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6841,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,21,,,,,,,id:6831,,,,,,10,Dydžiai,M,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6842,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,22,,,,,,,id:6831,,,,,,11,Dydžiai,M,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6843,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,23,,,,,,,id:6831,,,,,,12,Dydžiai,M,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6844,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,24,,,,,,,id:6831,,,,,,13,Dydžiai,M,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6845,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,25,,,,,,,id:6831,,,,,,14,Dydžiai,M,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6846,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,26,,,,,,,id:6831,,,,,,15,Dydžiai,M,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6847,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,27,,,,,,,id:6831,,,,,,16,Dydžiai,M,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6848,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,28,,,,,,,id:6831,,,,,,17,Dydžiai,L,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6849,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,29,,,,,,,id:6831,,,,,,18,Dydžiai,L,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6850,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,30,,,,,,,id:6831,,,,,,19,Dydžiai,L,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6851,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,31,,,,,,,id:6831,,,,,,20,Dydžiai,L,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6852,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,32,,,,,,,id:6831,,,,,,21,Dydžiai,L,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6853,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,33,,,,,,,id:6831,,,,,,22,Dydžiai,L,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6854,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,34,,,,,,,id:6831,,,,,,23,Dydžiai,L,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6855,variation,,ROLADINAS,1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,45,,,,,,,id:6831,,,,,,24,Dydžiai,L,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6856,variable,,"NEW YORK",1,0,visible,,"Klasika tapęs tortas „Napoleonas”. Sviestiniai trapios tešlos ir karamelizuoti lakštai, pertepti patisserie (kremu, plikytu su vanilės lazdele). Pradžiugins bet kuria proga!\n\nSudėtis:\n\nKapotos tešlos lakštai\nPlikytas kremas\nSluoksniuotos tešlos lakštai\nSkysta karamelė\nTraški karamelė",,,taxable,,1,,,0,0,,,,,1,,,,"Privatus klientas > Mini Tortai, Privatus klientas",,,https://www.bellatoscana.lt/wp-content/uploads/2023/03/10bt.jpg,,,,,,,,,0,Dydžiai,"S, M, L",1,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas, Europos pr. 122\, Cechas\, Kaunas, Baranausko g. 26\, Šilas\, Kaunas, Savanorių pr. 116\, Šilas\, Kuanas, Baltų pr. 18\, Šilas\, Kaunas, Naugarduko g. 70\, Kepyklėlė\, Vilnius, Verkių g. 31A\, Ogmios miestas\, Vilnius, Vytauto g. 98\, Palanga",1,0
-6857,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,12,,,,,,,id:6856,,,,,,1,Dydžiai,S,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6858,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,13,,,,,,,id:6856,,,,,,2,Dydžiai,S,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6859,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,14,,,,,,,id:6856,,,,,,3,Dydžiai,S,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6860,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,15,,,,,,,id:6856,,,,,,4,Dydžiai,S,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6861,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,16,,,,,,,id:6856,,,,,,5,Dydžiai,S,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6862,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,17,,,,,,,id:6856,,,,,,6,Dydžiai,S,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6863,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,18,,,,,,,id:6856,,,,,,7,Dydžiai,S,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6864,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,19,,,,,,,id:6856,,,,,,8,Dydžiai,S,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6865,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,20,,,,,,,id:6856,,,,,,9,Dydžiai,M,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6866,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,21,,,,,,,id:6856,,,,,,10,Dydžiai,M,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6867,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,22,,,,,,,id:6856,,,,,,11,Dydžiai,M,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6868,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,23,,,,,,,id:6856,,,,,,12,Dydžiai,M,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6869,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,24,,,,,,,id:6856,,,,,,13,Dydžiai,M,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6870,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,25,,,,,,,id:6856,,,,,,14,Dydžiai,M,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6871,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,26,,,,,,,id:6856,,,,,,15,Dydžiai,M,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6872,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,27,,,,,,,id:6856,,,,,,16,Dydžiai,M,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0
-6873,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,28,,,,,,,id:6856,,,,,,17,Dydžiai,L,,0,"Atsiemimo vieta","Svirbygalos g. 2\, Cechas\, Kaunas",,0
-6874,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,29,,,,,,,id:6856,,,,,,18,Dydžiai,L,,0,"Atsiemimo vieta","Europos pr. 122\, Cechas\, Kaunas",,0
-6875,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,30,,,,,,,id:6856,,,,,,19,Dydžiai,L,,0,"Atsiemimo vieta","Baranausko g. 26\, Šilas\, Kaunas",,0
-6876,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,31,,,,,,,id:6856,,,,,,20,Dydžiai,L,,0,"Atsiemimo vieta","Savanorių pr. 116\, Šilas\, Kuanas",,0
-6877,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,32,,,,,,,id:6856,,,,,,21,Dydžiai,L,,0,"Atsiemimo vieta","Baltų pr. 18\, Šilas\, Kaunas",,0
-6878,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,33,,,,,,,id:6856,,,,,,22,Dydžiai,L,,0,"Atsiemimo vieta","Naugarduko g. 70\, Kepyklėlė\, Vilnius",,0
-6879,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,34,,,,,,,id:6856,,,,,,23,Dydžiai,L,,0,"Atsiemimo vieta","Verkių g. 31A\, Ogmios miestas\, Vilnius",,0
-6880,variation,,"NEW YORK",1,0,visible,,,,,taxable,parent,1,,,0,0,,,,,0,,,45,,,,,,,id:6856,,,,,,24,Dydžiai,L,,0,"Atsiemimo vieta","Vytauto g. 98\, Palanga",,0

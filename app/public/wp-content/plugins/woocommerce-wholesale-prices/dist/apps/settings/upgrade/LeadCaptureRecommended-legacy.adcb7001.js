@@ -1,0 +1,1 @@
+System.register(["../../../common/LeadCaptureRecommended.vue_vue_type_style_index_0_lang-legacy.59f156f7.js","../index-legacy.14a49b0f.js"],(function(e,t){"use strict";return{setters:[function(t){t._,e("default",t._)},null],execute:function(){}}}));

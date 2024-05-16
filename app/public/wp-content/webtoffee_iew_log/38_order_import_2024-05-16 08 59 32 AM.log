@@ -1,0 +1,13 @@
+05-16-2024 @ 08:59:32 - ---[ New import started at 2024-05-16 08:59:32 ] PHP Memory: 256 MB, WP Memory: 40 MB
+05-16-2024 @ 08:59:32 - Preparing for import.
+05-16-2024 @ 08:59:32 - Row :1 - Parsing item.
+05-16-2024 @ 08:59:32 - Importing as new order ID:935
+05-16-2024 @ 08:59:32 - Row :1 - Processing item.
+05-16-2024 @ 08:59:32 - Found order object. ID:935
+05-16-2024 @ 08:59:33 - Row :1 - Order imported successfully.
+05-16-2024 @ 08:59:33 - Row :2 - Parsing item.
+05-16-2024 @ 08:59:33 - Importing as new order ID:936
+05-16-2024 @ 08:59:33 - Row :2 - Processing item.
+05-16-2024 @ 08:59:33 - Found order object. ID:936
+05-16-2024 @ 08:59:33 - Row :2 - Order imported successfully.
+05-16-2024 @ 08:59:33 - ---[ Import ended at 2024-05-16 08:59:33]---
