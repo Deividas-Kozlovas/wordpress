@@ -17,8 +17,6 @@ function add_custom_order_columns($columns)
     unset($columns['origin']);
     unset($columns['pisol_time']);
     unset($columns['pisol_method']);
-    unset($columns['pisol_pickup_location']);
-
 
     // Add custom columns
     $columns['order_size'] = __('Dydžiai', 'textdomain');
@@ -26,7 +24,6 @@ function add_custom_order_columns($columns)
     $columns['order_category'] = __('Kategorija', 'textdomain');
     $columns['custom_order_date'] = __('Užsakyta', 'textdomain');
     $columns['order_origin'] = __('Klientas', 'textdomain');
-    $columns['pisol_dpd'] = __('Atsiemimo data', 'textdomain');
 
 
     return $columns;
@@ -59,8 +56,8 @@ function populate_size_column($column_name, $order_id)
                 $attributes = $variation->get_attributes();
 
                 // Add size to the array
-                if (isset($attributes['dydziai'])) {
-                    $sizes[] = $attributes['dydziai'];
+                if (isset($attributes['pa_dydziai'])) {
+                    $sizes[] = strtoupper($attributes['pa_dydziai']);
                 }
             }
         }
@@ -104,8 +101,12 @@ function populate_location_column($column_name, $order_id)
                 $attributes = $variation->get_attributes();
 
                 // Add location to the array
-                if (isset($attributes['atsiemimo-vieta'])) {
-                    $locations[] = $attributes['atsiemimo-vieta'];
+                if (isset($attributes['pa_atsiemimo-vieta'])) {
+                    $location_slug = $attributes['pa_atsiemimo-vieta'];
+                    $location_term = get_term_by('slug', $location_slug, 'pa_atsiemimo-vieta');
+                    if ($location_term) {
+                        $locations[] = $location_term->name;
+                    }
                 }
             }
         }
@@ -121,6 +122,7 @@ function populate_location_column($column_name, $order_id)
         }
     }
 }
+
 
 // Populate the "Category" column
 add_action('manage_woocommerce_page_wc-orders_custom_column', 'populate_category_column', 10, 2);

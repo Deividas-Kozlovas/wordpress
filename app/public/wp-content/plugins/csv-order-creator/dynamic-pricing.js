@@ -35,6 +35,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 totalPriceCell.textContent = quantity > 0 ? totalPrice + ' €' : '0 €';
                 totalQty += quantity;
                 totalCost += parseFloat(totalPrice);
+
+                // Update hidden input fields with selected attributes
+                const sizeInput = document.createElement('input');
+                sizeInput.type = 'hidden';
+                sizeInput.name = 'selected_attributes[' + productId + '][size]';
+                sizeInput.value = selectedSizeSlug;
+                row.appendChild(sizeInput);
+
+                const locationInput = document.createElement('input');
+                locationInput.type = 'hidden';
+                locationInput.name = 'selected_attributes[' + productId + '][location]';
+                locationInput.value = selectedLocationSlug;
+                row.appendChild(locationInput);
             } else {
                 basePriceCell.textContent = 'Unavailable';
                 totalPriceCell.textContent = 'Unavailable';

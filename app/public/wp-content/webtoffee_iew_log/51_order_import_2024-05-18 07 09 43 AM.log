@@ -1,0 +1,5 @@
+05-18-2024 @ 07:09:43 - ---[ New import started at 2024-05-18 07:09:43 ] PHP Memory: 256 MB, WP Memory: 40 MB
+05-18-2024 @ 07:09:43 - Preparing for import.
+05-18-2024 @ 07:09:43 - Row :1 - Parsing item.
+05-18-2024 @ 07:09:43 - Row :1 - Parsing failed. Reason: Order with same ID already exists. ID: 7238
+05-18-2024 @ 07:09:43 - ---[ Import ended at 2024-05-18 07:09:43]---

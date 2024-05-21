@@ -1,9 +1,9 @@
 <?php
 /*
-Plugin Name: Woocomerce Order Table Creator
-Description: Table to add orders to woocomerce
+Plugin Name: CSV Order Table
+Description: Display CSV order data in a table format with selection and quantity options, and export to CSV.
 Version: 1.2
-Author: Bellatoscana
+Author: Your Name
 */
 
 // Add a custom menu item to the admin menu
@@ -74,7 +74,7 @@ function display_order_page_content()
     echo '<input type="text" name="customer_name" placeholder="Name" required>';
     echo '<input type="email" name="customer_email" placeholder="Email" required>';
     echo '<input type="text" name="customer_phone" placeholder="Phone Number" required>';
-    echo '<select id="selected_location" name="selected_location" required>';
+    echo '<select id="selected_location" required>';
     foreach ($all_locations as $location_slug => $location_name) {
         echo '<option value="' . $location_slug . '">' . $location_name . '</option>';
     }
@@ -127,93 +127,64 @@ function display_order_page_content()
     echo '<script src="' . esc_url(plugins_url('dynamic-pricing.js', __FILE__)) . '"></script>';
 }
 
-// Function to find the variation ID based on selected attributes
-function find_matching_variation_id($product, $size, $location)
+function generate_exact_csv_order()
 {
-    // Get the product variations
-    $variations = $product->get_available_variations();
+    $date = new DateTime('2024-05-16 10:08:50');
+    $formatted_date = $date->format('m/d/Y H:i:s'); // Change the format to mm/dd/yyyy hh:mm:ss
 
-    foreach ($variations as $variation) {
-        // Get the variation attributes
-        $attributes = $variation['attributes'];
+    // Make sure form data is sanitized and enclosed in double quotes
+    $customer_email = '"' . sanitize_email($_POST['customer_email']) . '"';
+    $customer_name = '"' . sanitize_text_field($_POST['customer_name']) . '"';
+    $customer_phone = '"' . sanitize_text_field($_POST['customer_phone']) . '"';
+    $selected_location = '"' . sanitize_text_field($_POST['selected_location']) . '"';
 
-        // Check if the variation attributes match the selected attributes
-        if ($attributes['attribute_pa_dydziai'] == $size && $attributes['attribute_pa_atsiemimo-vieta'] == $location) {
-            return $variation['variation_id']; // Return the variation ID if attributes match
-        }
+    // Adjust line items to include the selected location and size
+    $line_item_1 = 'name:Napal|product_id:6777|sku:|quantity:1|total:13.00|sub_total:13.00|meta:pa_dydziai:S|meta:pa_atsiemimo-vieta:"Baltų pr. 18, Šilas, Kaunas"|_variation_id:7256';
+    $line_item_2 = 'name:Napal|product_id:6777|sku:|quantity:2|total:40.00|sub_total:40.00|meta:pa_dydziai:M|meta:pa_atsiemimo-vieta:"Svirbygalos g. 2, Cechas, Kaunas"|_variation_id:6786';
+    $line_item_3 = 'name:ROLADINAS|product_id:6831|sku:|quantity:1|total:12.00|sub_total:12.00|meta:pa_dydziai:S|meta:pa_atsiemimo-vieta:"Svirbygalos g. 2, Cechas, Kaunas"|_variation_id:6832';
+
+    $csv_data = [
+        [
+            "order_id", "order_number", "order_date", "paid_date", "status",
+            "shipping_total", "shipping_tax_total", "fee_total", "fee_tax_total",
+            "tax_total", "cart_discount", "order_discount", "discount_total",
+            "order_total", "order_subtotal", "order_key", "order_currency",
+            "payment_method", "payment_method_title", "transaction_id",
+            "customer_ip_address", "customer_user_agent", "shipping_method",
+            "customer_id", "customer_user", "customer_email", "billing_first_name",
+            "billing_last_name", "billing_company", "billing_email", "billing_phone",
+            "billing_address_1", "billing_address_2", "billing_postcode",
+            "billing_city", "billing_state", "billing_country", "shipping_first_name",
+            "shipping_last_name", "shipping_company", "shipping_phone",
+            "shipping_address_1", "shipping_address_2", "shipping_postcode",
+            "shipping_city", "shipping_state", "shipping_country", "customer_note",
+            "wt_import_key", "tax_items", "shipping_items", "fee_items", "coupon_items",
+            "refund_items", "order_notes", "download_permissions",
+            "meta:_wc_order_attribution_device_type", "meta:_wc_order_attribution_referrer",
+            "meta:_wc_order_attribution_session_count", "meta:_wc_order_attribution_session_entry",
+            "meta:_wc_order_attribution_session_pages", "meta:_wc_order_attribution_session_start_time",
+            "meta:_wc_order_attribution_source_type", "meta:_wc_order_attribution_user_agent",
+            "meta:_wc_order_attribution_utm_source", "line_item_1", "line_item_2", "line_item_3"
+        ],
+        [
+            "7238", "7238", $formatted_date, "", "processing", "0", "0.00", "0.00", "0.00",
+            "0.00", "0.00", "0.00", "0.00", "65.00", "65.00", "wc_order_wMHdjhLeiNNbK", "EUR", "cod",
+            "Apmokėjimąs grynais atsiimant", "", $_SERVER['REMOTE_ADDR'], $_SERVER['HTTP_USER_AGENT'],
+            "", "3", "3", $customer_email, $customer_name, "", "", $customer_email,
+            $customer_phone, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+            "7238", "", "", "", "", "", "content:Apmokėjimas atliekamas pristatant. Užsakymo statusas pakeistas iš Neapmokėtas į Vykdomas.|date:2024-05-16 10:08:50|customer:|added_by:system",
+            "1", "Desktop", "", "1", "https://www.bellatoscana.lt/", "10", "2024-05-16 10:04:30", "typein",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36", "(direct)",
+            $line_item_1, $line_item_2, $line_item_3
+        ]
+    ];
+
+    $file_path = WP_CONTENT_DIR . '/uploads/order_export.csv'; // Adjust the path as necessary
+    $fh = fopen($file_path, 'w');
+    foreach ($csv_data as $row) {
+        fputcsv($fh, $row);
     }
+    fclose($fh);
 
-    return false; // Return false if no matching variation found
-}
-
-function process_order()
-{
-    $customer_name = sanitize_text_field($_POST['customer_name']);
-    $customer_email = sanitize_email($_POST['customer_email']);
-    $customer_phone = sanitize_text_field($_POST['customer_phone']);
-    $selected_location = sanitize_text_field($_POST['selected_location']);
-
-    // Create a new order
-    $order = wc_create_order();
-
-    // Set customer details
-    $order->set_billing_first_name($customer_name);
-    $order->set_billing_email($customer_email);
-    $order->set_billing_phone($customer_phone);
-
-    // Set shipping address
-    $order->set_shipping_first_name($customer_name); // Assuming shipping address same as billing
-    $order->set_shipping_phone($customer_phone);
-
-    // Initialize order total
-    $order_total = 0;
-
-    // Add line items to the order
-    foreach ($_POST['quantity'] as $product_id => $quantity) {
-        if ($quantity > 0) { // Check if quantity is greater than 0
-            $product = wc_get_product($product_id);
-            $selected_attributes = $_POST['selected_attributes'][$product_id]; // Get selected attributes for the product
-            $size = $selected_attributes['size']; // Get selected size
-            $location = $selected_attributes['location']; // Get selected location
-
-            // Find the variation ID based on the selected attributes
-            $variation_id = find_matching_variation_id($product, $size, $location);
-
-            if ($variation_id) {
-                // Get the variation object
-                $variation = new WC_Product_Variation($variation_id);
-
-                // Get the variation price
-                $variation_price = $variation->get_price();
-
-                // Calculate the total price for the product based on the selected variation's price and quantity
-                $product_total_price = $variation_price * $quantity;
-
-                // Add line item to the order
-                $item = new WC_Order_Item_Product();
-                $item->set_variation_id($variation_id);
-                $item->set_product($product);
-                $item->set_quantity($quantity);
-                $item->set_subtotal($product_total_price);
-                $item->set_total($product_total_price);
-
-                // Add item to the order
-                $order->add_item($item);
-
-                // Update order total
-                $order_total += $product_total_price;
-            }
-        }
-    }
-
-    // Set order total
-    $order->set_total($order_total);
-
-    // Save the order
-    $order->save();
-
-    // Redirect back to the custom order page
-    wp_redirect(admin_url('admin.php?page=add-order'));
-
-    exit;
+    return $file_path;
 }
