@@ -70,20 +70,24 @@ function display_order_page_content()
 
     // Form for product and attributes selection
     echo '<form action="" method="post">';
-    echo '<div>';
-    echo '<input type="text" name="customer_name" placeholder="Name" required>';
+    echo '<div style="display: flex; align-items: center; justify-content: space-between;">'; // Adjusted style for flexbox layout
+    echo '<div>'; // Left side content
+    echo '<input type="text" name="customer_name" placeholder="Vardas/Kompanija" required>';
     echo '<input type="email" name="customer_email" placeholder="Email" required>';
-    echo '<input type="text" name="customer_phone" placeholder="Phone Number" required>';
+    echo '<input type="text" name="customer_phone" placeholder="Telefono nr" required>';
     echo '<select id="selected_location" name="selected_location" required>';
     foreach ($all_locations as $location_slug => $location_name) {
         echo '<option value="' . $location_slug . '">' . $location_name . '</option>';
     }
     echo '</select>';
     echo '</div>';
+    echo '<div>'; // Right side content
+    echo '<input type="text" id="searchInput" name="search" placeholder="Ieškoti produkto" oninput="searchTable()" style="margin-bottom: 10px;">'; // Add search input field
+    echo '</div>';
+    echo '</div>'; // End of flex container
 
-    // Displaying products and their attributes in a table
     echo '<table class="wp-list-table widefat fixed striped" id="product_table">';
-    echo '<thead><tr><th>ID</th><th>Image</th><th>Name</th><th>Price</th><th>Sum</th><th>Category</th><th>Sizes</th><th>Quantity</th></tr></thead>';
+    echo '<thead><tr><th>ID</th><th>Img</th><th>Produktas</th><th>Kaina</th><th>Suma</th><th>Kategorija</th><th>Dydis</th><th>Kiekis</th><th>Prideti</th></tr></thead>';
     echo '<tbody>';
     foreach ($product_data as $product) {
         echo '<tr data-product-id="' . $product->get_id() . '">';
@@ -104,28 +108,37 @@ function display_order_page_content()
         }
         echo '</td>';
         echo '<td><input type="number" name="quantity[' . $product->get_id() . ']" min="0" value="0" style="width: 60px;"></td>';
+        echo '<td><button class="add-product" data-product-id="' . $product->get_id() . '">+</button></td>'; // Plus sign button
         echo '</tr>';
     }
     echo '</tbody>';
     echo '<tfoot>';
     echo '<tr>';
-    echo '<td colspan="6" style="text-align: right;">Total:</td>'; // Adjust colspan as needed to align correctly
+    echo '<td colspan="7" style="text-align: right;">Total:</td>'; // Adjust colspan as needed to align correctly
     echo '<td id="total-quantity">0</td>'; // Cell for total quantity
     echo '<td id="total-price">0 €</td>'; // Cell for total price
     echo '</tr>';
     echo '</tfoot>';
     echo '</table>';
-    echo '<br><button type="submit" name="submit_order" class="button-primary">Submit Order</button>';
+    echo '<br><button type="submit" name="submit_order" class="button-primary">Užsakyti</button>';
     echo '</form>';
     echo '</div>';
 
-    // At the end of your PHP script where you prepare the page content
+    // Enqueue the search JavaScript file
+    wp_enqueue_script('search', plugins_url('search.js', __FILE__), array(), '1.0', true);
+
+    // Enqueue the add-products JavaScript file
+    wp_enqueue_script('add-products', plugins_url('add-product.js', __FILE__), array(), '1.0', true);
+
+    // Output the dynamic-pricing JavaScript file
+    echo '<script src="' . esc_url(plugins_url('dynamic-pricing.js', __FILE__)) . '"></script>';
+
+    // Output the script block at the end of your PHP script where you prepare the page content
     echo '<script type="text/javascript">
     var sizeLocationPrice = ' . json_encode($size_location_price) . ';
     </script>';
-
-    echo '<script src="' . esc_url(plugins_url('dynamic-pricing.js', __FILE__)) . '"></script>';
 }
+
 
 // Function to find the variation ID based on selected attributes
 function find_matching_variation_id($product, $size, $location)
@@ -186,22 +199,27 @@ function process_order()
                 // Get the variation price
                 $variation_price = $variation->get_price();
 
-                // Calculate the total price for the product based on the selected variation's price and quantity
-                $product_total_price = $variation_price * $quantity;
+                // Set the product name separately
+                $product_name = $product->get_name();
 
-                // Add line item to the order
-                $item = new WC_Order_Item_Product();
-                $item->set_variation_id($variation_id);
-                $item->set_product($product);
-                $item->set_quantity($quantity);
-                $item->set_subtotal($product_total_price);
-                $item->set_total($product_total_price);
-
-                // Add item to the order
-                $order->add_item($item);
+                // Add line item to the order with the calculated total price
+                $order->add_product($product, $quantity, [
+                    'variation_id' => $variation_id,
+                    'variation' => [
+                        'attribute_pa_dydziai' => $size,
+                        'attribute_pa_atsiemimo-vieta' => $location
+                    ],
+                    'subtotal' => $variation_price * $quantity, // Set line item subtotal to the calculated total price
+                    'total' => $variation_price * $quantity, // Set line item total to the calculated total price
+                    'name' => $product_name, // Set product name
+                    'meta' => [
+                        'Dydžiai' => $size,
+                        'Atsiemimo vieta' => $location
+                    ]
+                ]);
 
                 // Update order total
-                $order_total += $product_total_price;
+                $order_total += $variation_price * $quantity;
             }
         }
     }

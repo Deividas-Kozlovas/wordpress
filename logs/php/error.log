@@ -2742,3 +2742,175 @@ Stack trace:
 [20-May-2024 08:46:31 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
 [20-May-2024 08:49:42 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
 [20-May-2024 08:52:04 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 05:50:12 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 05:50:16 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 05:50:31 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 05:52:09 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 05:52:23 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 05:55:52 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 06:20:17 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 06:45:44 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "; // Clear the last cell", expecting "," or ";" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 155
+[21-May-2024 06:46:00 UTC] PHP Parse error:  syntax error, unexpected single-quoted string "; // Clear the last cell", expecting "," or ";" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 156
+[21-May-2024 06:47:45 UTC] PHP Parse error:  syntax error, unexpected identifier "add", expecting "," or ";" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 157
+[21-May-2024 06:48:01 UTC] PHP Parse error:  syntax error, unexpected identifier "add", expecting "," or ";" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 157
+[21-May-2024 06:48:16 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string - string in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php:156
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): display_order_page_content('')
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(259): do_action('toplevel_page_a...')
+#4 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 156
+[21-May-2024 07:05:13 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:18:48 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:21:28 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:24:10 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:24:10 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:24:15 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:24:39 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:24:39 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:24:44 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:34:31 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:34:31 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:34:36 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:37:11 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 185
+[21-May-2024 08:37:11 UTC] PHP Fatal error:  Uncaught TypeError: array_merge(): Argument #2 must be of type array, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php:185
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php(185): array_merge(Array, NULL)
+#1 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php(28): process_order()
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): display_order_page_content('')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(259): do_action('toplevel_page_a...')
+#6 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 185
+[21-May-2024 08:38:55 UTC] PHP Warning:  Undefined array key 0 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 192
+[21-May-2024 08:38:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 193
+[21-May-2024 08:38:55 UTC] PHP Warning:  Trying to access array offset on value of type null in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 194
+[21-May-2024 08:38:55 UTC] PHP Fatal error:  Uncaught Error: Call to a member function get_available_variations() on bool in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php:147
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php(197): find_matching_variation_id(false, NULL, NULL)
+#1 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php(28): process_order()
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): display_order_page_content('')
+#3 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#4 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#5 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(259): do_action('toplevel_page_a...')
+#6 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 147
+[21-May-2024 08:40:39 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:41:24 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:41:35 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:41:40 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:42:28 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:43:48 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:43:59 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:49:04 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:49:04 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 08:49:07 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 08:59:16 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:01:47 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:06:23 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:06:38 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:07:10 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:11:53 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:13:48 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:14:20 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:17:29 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:22:02 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:26:56 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:28:10 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:28:10 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:28:13 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:36:39 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:36:39 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:36:42 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:37:09 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:37:09 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:37:12 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:40:09 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:40:09 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:40:12 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:45:11 UTC] PHP Warning:  Undefined array key "added_products" in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:45:11 UTC] PHP Warning:  foreach() argument must be of type array|object, null given in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 228
+[21-May-2024 09:45:15 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:46:14 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:48:47 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:48:56 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:53:43 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:55:32 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:56:09 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:56:41 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 09:57:40 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:00:49 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:01:28 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:01:52 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:02:55 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:22:20 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:22:25 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:23:54 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:24:20 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:39:34 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:40:13 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 10:43:27 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:37:27 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:44:18 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:44:21 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:44:40 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:45:02 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:45:47 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:47:44 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function find_matching_variation_id() in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php:175
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php(28): process_order()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): display_order_page_content('')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(259): do_action('toplevel_page_a...')
+#5 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 175
+[21-May-2024 11:47:54 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function find_matching_variation_id() in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php:175
+Stack trace:
+#0 /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php(28): process_order()
+#1 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(324): display_order_page_content('')
+#2 /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#3 /home/nomax/Local Sites/bakery/app/public/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/nomax/Local Sites/bakery/app/public/wp-admin/admin.php(259): do_action('toplevel_page_a...')
+#5 {main}
+  thrown in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 175
+[21-May-2024 11:48:47 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:50:29 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:51:19 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 11:55:04 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:02:18 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:17:40 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:31:13 UTC] PHP Warning:  Undefined array key 1 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 188
+[21-May-2024 12:31:13 UTC] PHP Warning:  Undefined array key 2 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 188
+[21-May-2024 12:31:18 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:38:02 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:38:09 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:41:00 UTC] PHP Warning:  Undefined array key 1 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 189
+[21-May-2024 12:41:00 UTC] PHP Warning:  Undefined array key 2 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 189
+[21-May-2024 12:41:00 UTC] PHP Warning:  Undefined array key 1 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 189
+[21-May-2024 12:41:00 UTC] PHP Warning:  Undefined array key 2 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 189
+[21-May-2024 12:41:13 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:41:40 UTC] PHP Warning:  Undefined array key 1 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 189
+[21-May-2024 12:41:40 UTC] PHP Warning:  Undefined array key 2 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/csv-order-creator/csv-order-creator.php on line 189
+[21-May-2024 12:41:46 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:42:34 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:43:33 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:43:58 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:44:10 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:52:51 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:56:32 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 12:58:08 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/print-order/print-order.php on line 9
+[21-May-2024 12:58:08 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/print-order/print-order.php on line 9
+[21-May-2024 12:58:09 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/print-order/print-order.php on line 9
+[21-May-2024 12:58:09 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/print-order/print-order.php on line 9
+[21-May-2024 12:58:25 UTC] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/print-order/print-order.php on line 9
+[21-May-2024 12:59:16 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:05:35 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:07:05 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:09:22 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:09:26 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:11:32 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:15:26 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[21-May-2024 13:16:16 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
