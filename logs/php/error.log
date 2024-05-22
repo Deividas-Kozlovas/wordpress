@@ -2968,3 +2968,6 @@ Stack trace:
 [22-May-2024 07:07:54 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
 [22-May-2024 07:09:07 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
 [22-May-2024 07:21:23 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[22-May-2024 07:30:20 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[22-May-2024 07:34:27 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[22-May-2024 07:57:22 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
