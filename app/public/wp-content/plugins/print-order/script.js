@@ -20,12 +20,12 @@ jQuery(document).ready(function($) {
             success: function(response) {
                 if (response.success) {
                     console.log("Response data:", response.data); // Debugging full response data
-                    var newWindow = window.open('', '_blank', 'width=800,height=600');
-                    newWindow.document.write('<html><head><title>Print Orders</title><style>body { font-family: Arial, sans-serif; padding: 20px; } table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } th, td { border: 1px solid #000; padding: 8px; text-align: left; } th { background-color: #f2f2f2; }</style></head><body>');
 
                     let categorizedOrders = {};
-
+                    let orderDates = [];
+                    let newWindowContent = '<html><head><title>Print Orders</title><style>body { font-family: Arial, sans-serif; padding: 20px; } table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } th, td { border: 1px solid #000; padding: 8px; text-align: left; } th { background-color: #f2f2f2; }</style></head><body>';
                     response.data.forEach(function(order) {
+                        orderDates.push(order.date); // Collect order dates
                         order.items.forEach(function(item) {
                             let category = item.category;
 
@@ -42,11 +42,21 @@ jQuery(document).ready(function($) {
                         });
                     });
 
+                    // Sort order dates from earliest to latest
+                    orderDates.sort(function(a, b) {
+                        return new Date(a) - new Date(b);
+                    });
+
+                    // Add earliest and latest dates to the top of the content
+                    let earliestDate = orderDates[0];
+                    let latestDate = orderDates[orderDates.length - 1];
+                    newWindowContent += '<div><strong>Užsakymų datos: </strong>' + earliestDate + ' / ' + latestDate + '</div>';
+
                     for (let category in categorizedOrders) {
-                        newWindow.document.write('<h2>' + category + '</h2>');
-                        newWindow.document.write('<table class="csv-order-table">');
-                        newWindow.document.write('<thead><tr><th>Prekės</th><th>Kiekis</th></tr></thead>');
-                        newWindow.document.write('<tbody>');
+                        newWindowContent += '<h2>' + category + '</h2>';
+                        newWindowContent += '<table class="csv-order-table">';
+                        newWindowContent += '<thead><tr><th>Prekės</th><th>Kiekis</th></tr></thead>';
+                        newWindowContent += '<tbody>';
 
                         let sizeTotals = {};
 
@@ -54,17 +64,18 @@ jQuery(document).ready(function($) {
                             let sizes = categorizedOrders[category][item_name];
                             let sizeQuantity = [];
                             for (let size in sizes) {
-                                sizeQuantity.push(sizes[size] + '-' + size);
-                                if (!sizeTotals[size]) {
-                                    sizeTotals[size] = 0;
+                                let upperSize = size.toUpperCase();
+                                sizeQuantity.push(sizes[size] + '-' + upperSize);
+                                if (!sizeTotals[upperSize]) {
+                                    sizeTotals[upperSize] = 0;
                                 }
-                                sizeTotals[size] += sizes[size];
+                                sizeTotals[upperSize] += sizes[size];
                             }
 
-                            newWindow.document.write('<tr>');
-                            newWindow.document.write('<td>' + item_name + '</td>');
-                            newWindow.document.write('<td>' + sizeQuantity.join(', ') + '</td>');
-                            newWindow.document.write('</tr>');
+                            newWindowContent += '<tr>';
+                            newWindowContent += '<td>' + item_name + '</td>';
+                            newWindowContent += '<td>' + sizeQuantity.join(', ') + '</td>';
+                            newWindowContent += '</tr>';
                         }
 
                         let totalSizeQuantity = [];
@@ -72,19 +83,46 @@ jQuery(document).ready(function($) {
                             totalSizeQuantity.push(sizeTotals[size] + '-' + size.toUpperCase());
                         }
 
-                        newWindow.document.write('<tr>');
-                        newWindow.document.write('<td><strong>Dydžių suma</strong></td>');
-                        newWindow.document.write('<td><strong>' + totalSizeQuantity.join(', ') + '</strong></td>');
-                        newWindow.document.write('</tr>');
+                        newWindowContent += '<tr>';
+                        newWindowContent += '<td><strong>Dydžių suma</strong></td>';
+                        newWindowContent += '<td><strong>' + totalSizeQuantity.join(', ') + '</strong></td>';
+                        newWindowContent += '</tr>';
 
-                        newWindow.document.write('</tbody>');
-                        newWindow.document.write('</table>');
+                        newWindowContent += '</tbody>';
+                        newWindowContent += '</table>';
                     }
 
-                    newWindow.document.write('</body></html>');
-                    newWindow.document.close();
-                    newWindow.focus();
-                    newWindow.print();
+                    // Add order IDs at the bottom of the content
+                    newWindowContent += '<div><strong>Užsakymų IDs: </strong>' + selectedOrderIds.join(', ') + '</div>';
+
+                    newWindowContent += '</body></html>';
+
+                    // Open the new content in a new tab
+                    var newTab = window.open();
+                    newTab.document.write(newWindowContent);
+                    newTab.document.close();
+                    newTab.focus();
+
+                    // Update order statuses
+                    $.ajax({
+                        url: ajax_object.ajax_url,
+                        type: 'POST',
+                        data: {
+                            action: 'update_order_statuses',
+                            order_ids: selectedOrderIds
+                        },
+                        success: function(response) {
+                            if (response.success) {
+                                console.log("Order statuses updated successfully.");
+                                location.reload(); // Reload the page to make the effect visible
+                            } else {
+                                alert('Failed to update order statuses: ' + response.data);
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            alert('AJAX error: ' + error);
+                        }
+                    });
                 } else {
                     alert('Failed to fetch order details: ' + response.data);
                 }

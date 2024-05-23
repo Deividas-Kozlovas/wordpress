@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Print from WooCommerce Orders
-Description: Print selected orders from WooCommerce
-Version: 1.2
+Description: Print selected orders from WooCommerce and change their status to "gaminama".
+Version: 1.3
 Author: Bellatoscana
 */
 
@@ -30,7 +30,7 @@ function enqueue_spauzdinti_button_script($hook_suffix)
 {
     $screen = get_current_screen();
     if ('edit-shop_order' === $screen->id) {
-        wp_enqueue_script('custom-script', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '2.7', true);
+        wp_enqueue_script('custom-script', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '3.5', true);
         wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.2', 'all');
         wp_localize_script('custom-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
     }
@@ -89,3 +89,56 @@ function fetch_order_details()
 
     wp_send_json_success($order_details);
 }
+
+// AJAX handler to update order statuses
+add_action('wp_ajax_update_order_statuses', 'update_order_statuses');
+
+function update_order_statuses()
+{
+    if (!isset($_POST['order_ids']) || !is_array($_POST['order_ids'])) {
+        wp_send_json_error('Invalid order IDs');
+    }
+
+    $order_ids = array_map('intval', $_POST['order_ids']);
+    $new_status = 'wc-gaminama'; // Your custom status slug
+
+    foreach ($order_ids as $order_id) {
+        $order = wc_get_order($order_id);
+        if ($order) {
+            $order->update_status($new_status, 'Order status changed to gaminama by bulk action.');
+        }
+    }
+
+    wp_send_json_success('Order statuses updated successfully.');
+}
+
+// Add custom order status
+function register_custom_order_status()
+{
+    register_post_status('wc-gaminama', array(
+        'label'                     => _x('Gaminama', 'Order status', 'text_domain'),
+        'public'                    => true,
+        'exclude_from_search'       => false,
+        'show_in_admin_all_list'    => true,
+        'show_in_admin_status_list' => true,
+        'label_count'               => _n_noop('Gaminama <span class="count">(%s)</span>', 'Gaminama <span class="count">(%s)</span>', 'text_domain')
+    ));
+}
+add_action('init', 'register_custom_order_status');
+
+// Add custom order status to order status list
+function add_custom_order_status_to_wc_order_statuses($order_statuses)
+{
+    $new_order_statuses = array();
+
+    // Insert new order status after "processing"
+    foreach ($order_statuses as $key => $status) {
+        $new_order_statuses[$key] = $status;
+        if ('wc-processing' === $key) {
+            $new_order_statuses['wc-gaminama'] = _x('Gaminama', 'Order status', 'text_domain');
+        }
+    }
+
+    return $new_order_statuses;
+}
+add_filter('wc_order_statuses', 'add_custom_order_status_to_wc_order_statuses');

@@ -194,6 +194,7 @@ function process_order()
     }
 
     $order->set_total($order_total);
+    $order->update_status('wc-processing', 'Order status changed to vykdomas.');
     $order->save();
     wp_redirect(admin_url('admin.php?page=add-order'));
     exit;

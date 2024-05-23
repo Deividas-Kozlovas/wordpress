@@ -6,6 +6,16 @@ Version: 2.0
 Author: Bellatoscana
 */
 
+// Custom function to check if the current user has any of the specified roles
+function user_has_roles($roles)
+{
+    if (is_user_logged_in()) {
+        $user = wp_get_current_user();
+        return !empty(array_intersect($roles, $user->roles));
+    }
+    return false;
+}
+
 // Redirect users trying to access verslo_partneris subcategories and products
 add_action('template_redirect', 'redirect_verslo_partneris_access');
 
@@ -13,12 +23,16 @@ function redirect_verslo_partneris_access()
 {
     if (is_tax('product_cat') || is_singular('product')) {
         $queried_object = get_queried_object();
-        $parent_category_id = get_term_by('slug', 'verslo_partneris', 'product_cat')->term_id;
+        $parent_category = get_term_by('slug', 'verslo_partneris', 'product_cat');
+        if (!$parent_category) {
+            return;
+        }
+        $parent_category_id = $parent_category->term_id;
 
         if (is_tax('product_cat')) {
             // Check if the accessed category is "Verslo partneris" or its subcategory
             if ($queried_object->parent == $parent_category_id || $queried_object->term_id == $parent_category_id) {
-                if (!is_user_logged_in() || (!in_array('verslo_partneriai', wp_get_current_user()->roles) && !current_user_can('administrator'))) {
+                if (!user_has_roles(['administrator', 'verslo_partneris', 'shop_manager'])) {
                     wp_redirect(home_url()); // Redirect to homepage
                     exit;
                 }
@@ -29,7 +43,7 @@ function redirect_verslo_partneris_access()
             // Check if the product belongs to the "Verslo partneris" category
             $product_categories = wp_get_post_terms(get_queried_object_id(), 'product_cat', array('fields' => 'ids'));
             if (in_array($parent_category_id, $product_categories)) {
-                if (!is_user_logged_in() || (!in_array('verslo_partneriai', wp_get_current_user()->roles) && !current_user_can('administrator'))) {
+                if (!user_has_roles(['administrator', 'verslo_partneris', 'shop_manager'])) {
                     wp_redirect(home_url()); // Redirect to homepage
                     exit;
                 }
@@ -43,28 +57,33 @@ add_action('woocommerce_product_query', 'hide_verslo_partneriai_products');
 
 function hide_verslo_partneriai_products($q)
 {
-    $category_id = get_term_by('slug', 'verslo_partneris', 'product_cat')->term_id;
+    $category = get_term_by('slug', 'verslo_partneris', 'product_cat');
+    if (!$category) {
+        return;
+    }
+    $category_id = $category->term_id;
+
     if (is_user_logged_in()) {
         $user = wp_get_current_user();
-        if (!in_array('verslo_partneriai', $user->roles) && !current_user_can('administrator')) {
-            $q->set('tax_query', array(
-                array(
-                    'taxonomy' => 'product_cat',
-                    'field' => 'term_id',
-                    'terms' => $category_id,
-                    'operator' => 'NOT IN',
-                ),
-            ));
-        }
-    } else {
-        $q->set('tax_query', array(
-            array(
+        if (!user_has_roles(['administrator', 'verslo_partneris', 'shop_manager'])) {
+            $tax_query = $q->get('tax_query') ? $q->get('tax_query') : array();
+            $tax_query[] = array(
                 'taxonomy' => 'product_cat',
                 'field' => 'term_id',
                 'terms' => $category_id,
                 'operator' => 'NOT IN',
-            ),
-        ));
+            );
+            $q->set('tax_query', $tax_query);
+        }
+    } else {
+        $tax_query = $q->get('tax_query') ? $q->get('tax_query') : array();
+        $tax_query[] = array(
+            'taxonomy' => 'product_cat',
+            'field' => 'term_id',
+            'terms' => $category_id,
+            'operator' => 'NOT IN',
+        );
+        $q->set('tax_query', $tax_query);
     }
 }
 
@@ -73,7 +92,7 @@ add_filter('wp_nav_menu_objects', 'remove_verslo_partneris_menu_item', 10, 2);
 
 function remove_verslo_partneris_menu_item($items, $args)
 {
-    if (!is_user_logged_in() || (!in_array('verslo_partneriai', wp_get_current_user()->roles) && !current_user_can('administrator'))) {
+    if (!user_has_roles(['administrator', 'verslo_partneris', 'shop_manager'])) {
         foreach ($items as $key => $item) {
             // Check if it's the menu item "Verslo partneriams"
             if ($item->title == 'Verslo partneriams') {
