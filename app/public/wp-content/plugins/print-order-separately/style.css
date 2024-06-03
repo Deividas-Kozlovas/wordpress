@@ -1,0 +1,11 @@
+@media only screen and (max-width: 768px) {
+    .alignleft.actions {
+        width: 100%;
+        text-align: center;
+    }
+
+    .alignleft.actions #spauzdinti-button {
+        display: inline-block;
+        margin: 10px 0;
+    }
+}

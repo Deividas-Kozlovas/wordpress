@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Print from WooCommerce Orders
-Description: Print selected orders from WooCommerce and change their status to "gaminama".
-Version: 1.3
+Plugin Name: Print from WooCommerce Orders separately
+Description: Print selected orders separately from WooCommerce and change their status to "gaminama".
+Version: 1.0
 Author: Bellatoscana
 */
 
@@ -11,28 +11,26 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-// Hook to add custom button
-add_action('manage_posts_extra_tablenav', 'add_spauzdinti_button', 20, 1);
+add_action('manage_posts_extra_tablenav', 'add_spauzdinti_button_separately', 20, 1);
 
-function add_spauzdinti_button($which)
+function add_spauzdinti_button_separately($which)
 {
     if ('shop_order' === get_current_screen()->post_type && 'top' === $which) {
-        echo '<div class="alignleft actions" style="display:inline-block;">';
-        echo '<button type="button" id="spauzdinti-button" class="button">Spauzdinti</button>';
+        echo '<div class="alignleft actions" style="display:inline-block; margin-left: 10px;">';
+        echo '<button type="button" id="print-button" class="button">Spauzdinti individualiai</button>';
         echo '</div>';
     }
 }
 
-// Enqueue JavaScript and CSS for the button action
-add_action('admin_enqueue_scripts', 'enqueue_spauzdinti_button_script');
+add_action('admin_enqueue_scripts', 'enqueue_spauzdinti_button_script_separately');
 
-function enqueue_spauzdinti_button_script($hook_suffix)
+function enqueue_spauzdinti_button_script_separately($hook_suffix)
 {
     $screen = get_current_screen();
     if ('edit-shop_order' === $screen->id) {
-        wp_enqueue_script('custom-script', plugin_dir_url(__FILE__) . 'script.js', array('jquery'), '3.5', true);
-        wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.2', 'all');
-        wp_localize_script('custom-script', 'ajax_object', array('ajax_url' => admin_url('admin-ajax.php')));
+        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '1.1', true);
+        wp_enqueue_style('custom-style-separately', plugin_dir_url(__FILE__) . 'style.css', array(), '1.0', 'all');
+        wp_localize_script('custom-script-separately', 'ajax_object_separately', array('ajax_url' => admin_url('admin-ajax.php')));
     }
 }
 
@@ -55,6 +53,7 @@ function fetch_order_details()
                 'id' => $order->get_id(),
                 'date' => $order->get_date_created()->date('Y-m-d H:i:s'),
                 'total' => $order->get_total(),
+                'comments' => $order->get_customer_note(), // Fetch the order comments
                 'items' => array()
             );
 
@@ -65,7 +64,7 @@ function fetch_order_details()
                 $category = implode(', ', $category_names);
 
                 // Remove ", Verslo partneris" and ", Pirkėjas" from the category
-                $category = str_replace(array(', Verslo partneris', ', Pirkėjas'), '', $category);
+                $category = str_replace(array(', Verslo partneris', ', Pirkėjas', ', Parduotuvėms', 'Parduotuvėms,'), '', $category);
 
                 $attributes = wc_get_product_variation_attributes($item->get_variation_id());
 

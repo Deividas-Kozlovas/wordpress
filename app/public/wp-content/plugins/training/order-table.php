@@ -180,9 +180,38 @@ function populate_date_column($column_name, $post_id)
         // Get the order date
         $order_date = $order->get_date_created();
 
-        // Display the formatted date
-        echo $order_date ? $order_date->format('M d, H:i') : '-';
+        // Check if the date is available
+        if ($order_date) {
+            // Set the locale to Lithuanian
+            $locale = 'lt_LT';
+            $dateFormatter = new IntlDateFormatter(
+                $locale,
+                IntlDateFormatter::MEDIUM,
+                IntlDateFormatter::NONE,
+                'Europe/Vilnius', // Set the correct timezone if needed
+                IntlDateFormatter::GREGORIAN,
+                'MMM d, yyyy, HH:mm'
+            );
+
+            // Format the date
+            echo $dateFormatter->format($order_date->getTimestamp());
+        } else {
+            echo '-';
+        }
     }
+}
+
+// Role names mapping
+function get_role_names()
+{
+    return [
+        'administrator' => 'Administratorius',
+        'editor' => 'Redaktorius',
+        'author' => 'Autorius',
+        'contributor' => 'Prisidedantis autorius',
+        'subscriber' => 'Prenumeratorius',
+        // Add other roles as needed
+    ];
 }
 
 // Populate the "Klientas" (Origin) column
@@ -194,37 +223,27 @@ function populate_origin_column($column_name, $post_id)
         // Get the order object
         $order = wc_get_order($post_id);
 
-        // Get order items
-        $items = $order->get_items();
+        // Get the user ID from the order
+        $user_id = $order->get_user_id();
 
-        // Initialize an empty array for categories
-        $categories = array();
+        // Get the user object
+        $user = get_userdata($user_id);
 
-        // Loop through order items
-        foreach ($items as $item_id => $item) {
-            // Get product ID
-            $product_id = $item->get_product_id();
+        // Check if user exists
+        if ($user) {
+            // Get the user roles
+            $user_roles = $user->roles;
 
-            // Get the product
-            $product = wc_get_product($product_id);
+            // Get role names mapping
+            $role_names = get_role_names();
 
-            // Get the product categories
-            $product_categories = $product->get_category_ids();
+            // Map role slugs to role names
+            $user_role_names = array_map(function ($role) use ($role_names) {
+                return $role_names[$role] ?? $role;
+            }, $user_roles);
 
-            // If the product has categories, add parent categories to the categories array
-            if (!empty($product_categories)) {
-                foreach ($product_categories as $category_id) {
-                    $category = get_term($category_id, 'product_cat');
-                    if ($category && $category->parent == 0 && !in_array($category->name, $categories)) {
-                        $categories[] = $category->name;
-                    }
-                }
-            }
-        }
-
-        // Output categories separated by commas
-        if (!empty($categories)) {
-            echo implode(', ', $categories);
+            // Display the user roles
+            echo implode(', ', $user_role_names);
         } else {
             echo '-';
         }
