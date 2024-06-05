@@ -16,61 +16,73 @@ add_action('manage_posts_extra_tablenav', 'add_spauzdinti_buttons', 20, 1);
 function add_spauzdinti_buttons($which)
 {
     if ('shop_order' === get_current_screen()->post_type && 'top' === $which) {
-        echo '<div class="alignleft actions" style="display:inline-block;">';
-        echo '<button type="button" id="together-button" class="button">Spauzdinti bendrai</button>';
+        echo '<div class="spauzdinti-buttons" style="display:inline-block;">';
+        echo '<button type="button" id="together-button" class="button spauzdinti-button">Spauzdinti bendrai</button>';
         echo '</div>';
-        echo '<div class="alignleft actions" style="display:inline-block; margin-left: 10px;">';
-        echo '<button type="button" id="separately-button" class="button">Spauzdinti individualiai</button>';
+        echo '<div class="spauzdinti-buttons" style="display:inline-block;">';
+        echo '<button type="button" id="separately-button" class="button spauzdinti-button">Spauzdinti individualiai</button>';
         echo '</div>';
 
         // Add search fields
-        echo '<div class="alignleft actions" style="display:inline-block; margin-left: 20px;">';
+        echo '<div class="alignleft actions search-fields-container" style="display:inline-block;">';
 
         // Date picker field
-        echo '<label for="search-date">Date:</label>';
-        echo '<input type="text" id="search-date" placeholder="Select Date">';
+        echo '<input type="text" id="search-date" class="search-input" placeholder="Data">';
 
         // Category dropdown
-        echo '<label for="search-category">Category:</label>';
-        echo '<select id="search-category">';
-        echo '<option value="">Select Category</option>';
+        echo '<select id="search-category" class="search-input">';
+        echo '<option value="">Produkto kategorija</option>';
         $categories = get_terms(array('taxonomy' => 'product_cat', 'hide_empty' => false));
         $unique_categories = [];
         foreach ($categories as $category) {
             if (!in_array($category->name, $unique_categories)) {
-                echo '<option value="' . $category->name . '">' . $category->name . '</option>';
+                echo '<option value="' . esc_html($category->name) . '">' . esc_html($category->name) . '</option>';
                 $unique_categories[] = $category->name;
             }
         }
         echo '</select>';
 
         // Location dropdown
-        echo '<label for="search-location">Location:</label>';
-        echo '<select id="search-location">';
-        echo '<option value="">Select Location</option>';
-        $locations = get_terms(array('taxonomy' => 'pozymei', 'hide_empty' => false));
-        foreach ($locations as $location) {
-            echo '<option value="' . $location->name . '">' . $location->name . '</option>';
+        echo '<select id="search-location" class="search-input">';
+        echo '<option value="">Atsiemimo vieta</option>';
+        $unique_locations = [];
+        $products = wc_get_products(array(
+            'status' => 'publish',
+            'limit' => -1,
+        ));
+        foreach ($products as $product) {
+            $variations = $product->get_available_variations();
+            foreach ($variations as $variation) {
+                $variation_obj = wc_get_product($variation['variation_id']);
+                $location_slug = $variation['attributes']['attribute_pa_atsiemimo-vieta'] ?? '';
+                if ($location_slug && !in_array($location_slug, $unique_locations)) {
+                    $term = get_term_by('slug', $location_slug, 'pa_atsiemimo-vieta');
+                    if ($term) {
+                        echo '<option value="' . esc_html($term->name) . '">' . esc_html($term->name) . '</option>';
+                        $unique_locations[] = $location_slug;
+                    }
+                }
+            }
         }
         echo '</select>';
 
-        // Origin dropdown
-        echo '<label for="search-origin">Origin:</label>';
-        echo '<select id="search-origin">';
-        echo '<option value="">Select Origin</option>';
-        // Add your origin options here
-        echo '<option value="Parduotuvėms">Parduotuvėms</option>';
-        echo '<option value="Verslo partneris">Verslo partneris</option>';
-        echo '<option value="Pirkėjas">Pirkėjas</option>';
+        // User Role dropdown
+        echo '<select id="search-origin" class="search-input">';
+        echo '<option value="">Užsakovas</option>';
+        global $wp_roles;
+        $role_names = get_role_names();
+        foreach ($wp_roles->roles as $role_key => $role) {
+            $role_name = $role_names[$role_key] ?? $role['name'];
+            echo '<option value="' . esc_html($role_name) . '">' . esc_html($role_name) . '</option>';
+        }
         echo '</select>';
 
-        echo '<button type="button" id="search-button" class="button">Search</button>';
+        echo '<button type="button" id="search-button" class="button search-button">Paieška</button>';
+        // Add clear search button
+        echo '<button type="button" id="clear-button" class="button search-button">Trinti paieška</button>';
         echo '</div>';
     }
 }
-
-
-
 
 // Enqueue JavaScript and CSS for the button actions
 add_action('admin_enqueue_scripts', 'enqueue_spauzdinti_buttons_script');
@@ -84,7 +96,7 @@ function enqueue_spauzdinti_buttons_script($hook_suffix)
 
         wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '1.1', true);
         wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '1.6', true);
-        wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '1.4', true);
+        wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '4.3', true);
 
         wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.0', 'all');
         wp_localize_script('custom-script-together', 'ajax_object_together', array('ajax_url' => admin_url('admin-ajax.php')));
