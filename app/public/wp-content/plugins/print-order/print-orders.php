@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Print from WooCommerce Orders
-Description: Print selected orders from WooCommerce separately or collectively and change their status to "gaminama".
+Plugin Name: Print from WooCommerce Orders with search
+Description: Print selected orders from WooCommerce separately or collectively and change their status to "gaminama", Orders search.
 Version: 1.0
 Author: Bellatoscana
 */
@@ -95,7 +95,7 @@ function enqueue_spauzdinti_buttons_script($hook_suffix)
         wp_enqueue_style('jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
         wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '1.1', true);
-        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '1.6', true);
+        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '2.6', true);
         wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '4.3', true);
 
         wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.0', 'all');
@@ -157,7 +157,6 @@ function fetch_order_details_bendrai()
 
 /// AJAX handler to fetch order details for individual orders
 add_action('wp_ajax_fetch_order_details_separately', 'fetch_order_details_separately');
-
 function fetch_order_details_separately()
 {
     if (!isset($_POST['order_ids']) || !is_array($_POST['order_ids'])) {
@@ -165,7 +164,7 @@ function fetch_order_details_separately()
     }
 
     $order_ids = array_map('intval', $_POST['order_ids']);
-    $order_details = array();
+    $response = array('success' => false, 'data' => array());
 
     foreach ($order_ids as $order_id) {
         $order = wc_get_order($order_id);
@@ -173,42 +172,42 @@ function fetch_order_details_separately()
             $order_data = array(
                 'id' => $order->get_id(),
                 'date' => $order->get_date_created()->date('Y-m-d H:i:s'),
-                'total' => $order->get_total(),
-                'comments' => $order->get_customer_note(), // Fetch the order comments
                 'customer_name' => $order->get_billing_first_name() . ' ' . $order->get_billing_last_name(),
                 'customer_email' => $order->get_billing_email(),
                 'customer_phone' => $order->get_billing_phone(),
+                'comments' => $order->get_customer_note(),
                 'items' => array()
             );
 
             foreach ($order->get_items() as $item_id => $item) {
-                $product_id = $item->get_product_id();
-                $product = wc_get_product($product_id);
-                $category_names = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
-                $category = implode(', ', $category_names);
+                $product = $item->get_product();
+                $size = $item->get_meta('pa_dydziai', true);
+                $location = $item->get_meta('pa_atsiemimo-vieta', true);
 
-                // Remove ", Verslo partneris" and ", Pirkėjas" from the category
-                $category = str_replace(array(', Verslo partneris', ', Pirkėjas', ', Parduotuvėms', 'Parduotuvėms,'), '', $category);
-
-                $attributes = wc_get_product_variation_attributes($item->get_variation_id());
-
-                $order_data['items'][] = array(
+                $order_item_data = array(
                     'name' => $item->get_name(),
                     'quantity' => $item->get_quantity(),
-                    'total' => $item->get_total(),
-                    'category' => $category, // Cleaned category name
+                    'category' => wc_get_product_category_list($product->get_id(), ', ', '', ''),
                     'attributes' => array(
-                        'size' => isset($attributes['attribute_pa_dydziai']) ? $attributes['attribute_pa_dydziai'] : ''
+                        'size' => $size,
+                        'location' => $location
                     )
                 );
+
+                $order_data['items'][] = $order_item_data;
             }
 
-            $order_details[] = $order_data;
+            $response['data'][] = $order_data;
         }
     }
 
-    wp_send_json_success($order_details);
+    $response['success'] = true;
+    wp_send_json($response);
 }
+
+
+
+
 
 // AJAX handler to update order statuses
 add_action('wp_ajax_update_order_statuses', 'update_order_statuses');

@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Woocomerce Order Creator
-Description: Table to add orders to woocomerce
+Plugin Name: Woocommerce Order Creator
+Description: Table to add orders to woocommerce
 Version: 1.2
 Author: Bellatoscana
 */
@@ -77,13 +77,11 @@ function display_order_page_content()
         echo '<option value="' . $location_slug . '">' . $location_name . '</option>';
     }
     echo '</select>';
-    echo '<button type="submit" name="submit_order" class="button-primary">Užsakyti</button>';
     echo '</div>';
     echo '<div>';
     echo '<input type="text" id="searchInput" name="search" placeholder="Ieškoti produkto" oninput="searchTable()" style="margin-bottom: 10px;">';
     echo '</div>';
     echo '</div>';
-
     echo '<table class="wp-list-table widefat fixed striped" id="product_table">';
     echo '<thead><tr><th>ID</th><th>Produktas</th><th>Kategorija</th><th>Dydis</th><th>Kiekis</th><th>Prideti</th></tr></thead>';
     echo '<tbody>';
@@ -93,12 +91,13 @@ function display_order_page_content()
         if ($sizes) {
             $has_pa_dydziai = true;
         }
+
         echo '<tr data-product-id="' . $product->get_id() . '">';
         echo '<td>' . $product->get_id() . '</td>';
         echo '<td>' . $product->get_name() . '</td>';
         echo '<td>' . implode(', ', wp_get_post_terms($product->get_id(), 'product_cat', ['fields' => 'names'])) . '</td>';
         echo '<td>';
-        if ($sizes = wp_get_post_terms($product->get_id(), 'pa_dydziai', ['fields' => 'all'])) {
+        if ($has_pa_dydziai) {
             echo '<select class="product-size" name="size[' . $product->get_id() . '][]">';
             foreach ($sizes as $size) {
                 echo '<option value="' . $size->slug . '">' . $size->name . '</option>';
@@ -122,7 +121,7 @@ function display_order_page_content()
 
     wp_enqueue_script('search', plugins_url('search.js', __FILE__), array(), '1.0', true);
     wp_enqueue_script('add-products', plugins_url('add-product.js', __FILE__), array(), '1.0', true);
-    echo '<script src="' . esc_url(plugins_url('dynamic-pricing.js', __FILE__)) . '"></script>';
+    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array('jquery'), '1.0', true);
     echo '<script type="text/javascript">
     var sizeLocationPrice = ' . json_encode($size_location_price) . ';
     </script>';
@@ -143,21 +142,14 @@ function find_matching_variation_id($product, $size, $location)
 function process_order()
 {
     $selected_location = sanitize_text_field($_POST['selected_location']);
-
     $order = wc_create_order();
-
-    // Get current user ID
-    $current_user = wp_get_current_user();
-    $user_id = $current_user->ID;
-
-    $order_total = 0;
 
     foreach ($_POST['quantity'] as $product_id => $quantities) {
         foreach ($quantities as $index => $quantity) {
             if ($quantity > 0) {
                 $product = wc_get_product($product_id);
-                $size = sanitize_text_field($_POST['size'][$product_id][$index]);
-                $location = $selected_location;
+                $size = isset($_POST['size'][$product_id][$index]) ? sanitize_text_field($_POST['size'][$product_id][$index]) : '';
+                $location = isset($_POST['location'][$product_id][$index]) ? sanitize_text_field($_POST['location'][$product_id][$index]) : $selected_location;
                 $variation_id = find_matching_variation_id($product, $size, $location);
 
                 if ($variation_id) {
@@ -176,18 +168,17 @@ function process_order()
                             'Atsiemimo vieta' => $location
                         ]
                     ]);
-
-                    $order_total += $variation->get_price() * $quantity;
+                } else {
+                    $order->add_product($product, $quantity, [
+                        'meta' => [
+                            'Atsiemimo vieta' => $location
+                        ]
+                    ]);
                 }
             }
         }
     }
 
-    // Add user ID to order meta data
-    $order->update_meta_data('_order_made_by_user_id', $user_id);
-    $order->save_meta_data(); // Save meta data explicitly
-
-    $order->set_total($order_total);
     $order->update_status('wc-processing', 'Order status changed to vykdomas.');
     $order->save();
     wp_redirect(admin_url('admin.php?page=add-order'));

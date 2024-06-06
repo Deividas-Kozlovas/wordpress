@@ -31,6 +31,22 @@ jQuery(document).ready(function($) {
                         newWindowContent += '<div><strong>El. paštas: </strong>' + order.customer_email + '</div>';
                         newWindowContent += '<div><strong>Telefonas: </strong>' + order.customer_phone + '</div>';
 
+                        console.log("Order items:", order.items); // Debugging items data
+                        // Add the unique attribute_pa_atsiemimo-vieta values
+                        let uniqueLocations = [];
+                        order.items.forEach(function(item) {
+                            console.log("Item attributes:", item.attributes); // Debugging attributes data
+                            let location = item.attributes.location;
+                            if (location && !uniqueLocations.includes(location)) {
+                                uniqueLocations.push(location);
+                            }
+                        });
+                        console.log("Unique locations:", uniqueLocations); // Debugging unique locations
+
+                        if (uniqueLocations.length > 0) {
+                            newWindowContent += '<div><strong>Atsiemimo vieta: </strong>' + uniqueLocations.join(', ') + '</div>';
+                        }
+
                         if (order.comments) {
                             newWindowContent += '<div><strong>Komentarai: </strong>' + order.comments + '</div>';
                         }
@@ -38,7 +54,7 @@ jQuery(document).ready(function($) {
                         let categorizedItems = {};
 
                         order.items.forEach(function(item) {
-                            let category = item.category;
+                            let category = item.category || 'Uncategorized';
 
                             if (!categorizedItems[category]) {
                                 categorizedItems[category] = {};

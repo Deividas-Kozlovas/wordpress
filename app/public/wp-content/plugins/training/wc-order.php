@@ -72,12 +72,14 @@ function display_order_page_content()
     echo '<form action="" method="post">';
     echo '<div style="display: flex; align-items: center; justify-content: space-between;">';
     echo '<div>';
+    echo '<input type="text" name="customer_name" placeholder="Vardas/Kompanija" required>';
+    echo '<input type="email" name="customer_email" placeholder="Email" required>';
+    echo '<input type="text" name="customer_phone" placeholder="Telefono nr" required>';
     echo '<select id="selected_location" name="selected_location" required>';
     foreach ($all_locations as $location_slug => $location_name) {
         echo '<option value="' . $location_slug . '">' . $location_name . '</option>';
     }
     echo '</select>';
-    echo '<button type="submit" name="submit_order" class="button-primary">Užsakyti</button>';
     echo '</div>';
     echo '<div>';
     echo '<input type="text" id="searchInput" name="search" placeholder="Ieškoti produkto" oninput="searchTable()" style="margin-bottom: 10px;">';
@@ -85,17 +87,15 @@ function display_order_page_content()
     echo '</div>';
 
     echo '<table class="wp-list-table widefat fixed striped" id="product_table">';
-    echo '<thead><tr><th>ID</th><th>Produktas</th><th>Kategorija</th><th>Dydis</th><th>Kiekis</th><th>Prideti</th></tr></thead>';
+    echo '<thead><tr><th>ID</th><th>Img</th><th>Produktas</th><th>Kaina</th><th>Suma</th><th>Kategorija</th><th>Dydis</th><th>Kiekis</th><th>Prideti</th></tr></thead>';
     echo '<tbody>';
     foreach ($product_data as $product) {
-        $has_pa_dydziai = false;
-        $sizes = wp_get_post_terms($product->get_id(), 'pa_dydziai', ['fields' => 'all']);
-        if ($sizes) {
-            $has_pa_dydziai = true;
-        }
         echo '<tr data-product-id="' . $product->get_id() . '">';
         echo '<td>' . $product->get_id() . '</td>';
+        echo '<td>' . (has_post_thumbnail($product->get_id()) ? get_the_post_thumbnail($product->get_id(), array(50, 50)) : 'No Image') . '</td>';
         echo '<td>' . $product->get_name() . '</td>';
+        echo '<td class="product-base-price">Select options</td>';
+        echo '<td class="product-total-price">-</td>';
         echo '<td>' . implode(', ', wp_get_post_terms($product->get_id(), 'product_cat', ['fields' => 'names'])) . '</td>';
         echo '<td>';
         if ($sizes = wp_get_post_terms($product->get_id(), 'pa_dydziai', ['fields' => 'all'])) {
@@ -107,6 +107,7 @@ function display_order_page_content()
         }
         echo '</td>';
         echo '<td><input type="number" name="quantity[' . $product->get_id() . '][]" min="0" value="0" style="width: 60px;"></td>';
+        echo '<td><input type="number" name="quantity[' . $product->get_id() . '][]" min="0" value="0" style="width: 60px;"></td>';
         if ($has_pa_dydziai) {
             echo '<td><button type="button" class="add-product" data-product-id="' . $product->get_id() . '">+</button></td>';
         } else {
@@ -115,6 +116,13 @@ function display_order_page_content()
         echo '</tr>';
     }
     echo '</tbody>';
+    echo '<tfoot>';
+    echo '<tr>';
+    echo '<td colspan="7" style="text-align: right;">Viso kiekis:</td>';
+    echo '<td id="total-quantity">0</td>';
+    echo '<td id="total-price">0 €</td>';
+    echo '</tr>';
+    echo '</tfoot>';
     echo '</table>';
     echo '<br><button type="submit" name="submit_order" class="button-primary">Užsakyti</button>';
     echo '</form>';
@@ -142,13 +150,17 @@ function find_matching_variation_id($product, $size, $location)
 
 function process_order()
 {
+    $customer_name = sanitize_text_field($_POST['customer_name']);
+    $customer_email = sanitize_email($_POST['customer_email']);
+    $customer_phone = sanitize_text_field($_POST['customer_phone']);
     $selected_location = sanitize_text_field($_POST['selected_location']);
 
     $order = wc_create_order();
-
-    // Get current user ID
-    $current_user = wp_get_current_user();
-    $user_id = $current_user->ID;
+    $order->set_billing_first_name($customer_name);
+    $order->set_billing_email($customer_email);
+    $order->set_billing_phone($customer_phone);
+    $order->set_shipping_first_name($customer_name);
+    $order->set_shipping_phone($customer_phone);
 
     $order_total = 0;
 
@@ -162,6 +174,7 @@ function process_order()
 
                 if ($variation_id) {
                     $variation = new WC_Product_Variation($variation_id);
+                    $variation_price = $variation->get_price();
                     $product_name = $product->get_name();
 
                     $order->add_product($variation, $quantity, [
@@ -170,6 +183,8 @@ function process_order()
                             'attribute_pa_dydziai' => $size,
                             'attribute_pa_atsiemimo-vieta' => $location
                         ],
+                        'subtotal' => $variation_price * $quantity,
+                        'total' => $variation_price * $quantity,
                         'name' => $product_name,
                         'meta' => [
                             'Dydžiai' => $size,
@@ -177,15 +192,11 @@ function process_order()
                         ]
                     ]);
 
-                    $order_total += $variation->get_price() * $quantity;
+                    $order_total += $variation_price * $quantity;
                 }
             }
         }
     }
-
-    // Add user ID to order meta data
-    $order->update_meta_data('_order_made_by_user_id', $user_id);
-    $order->save_meta_data(); // Save meta data explicitly
 
     $order->set_total($order_total);
     $order->update_status('wc-processing', 'Order status changed to vykdomas.');

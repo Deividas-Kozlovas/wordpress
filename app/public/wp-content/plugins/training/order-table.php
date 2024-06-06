@@ -23,7 +23,7 @@ function add_custom_order_columns($columns)
     $columns['order_location'] = __('Atsiemimo vieta', 'textdomain');
     $columns['order_category'] = __('Kategorija', 'textdomain');
     $columns['custom_order_date'] = __('Užsakyta', 'textdomain');
-    $columns['order_origin'] = __('Klientas', 'textdomain');
+    $columns['order_origin'] = __('Užsakovas', 'textdomain');
 
     return $columns;
 }
@@ -217,6 +217,9 @@ function get_role_names()
 // Populate the "Klientas" (Origin) column
 add_action('manage_shop_order_posts_custom_column', 'populate_origin_column', 10, 2);
 
+// Populate the "Klientas" (Origin) column
+add_action('manage_shop_order_posts_custom_column', 'populate_origin_column', 10, 2);
+
 function populate_origin_column($column_name, $post_id)
 {
     if ($column_name === 'order_origin') {
@@ -226,26 +229,49 @@ function populate_origin_column($column_name, $post_id)
         // Get the user ID from the order
         $user_id = $order->get_user_id();
 
-        // Get the user object
-        $user = get_userdata($user_id);
+        // If user ID is not set, retrieve it from the order meta
+        if (!$user_id) {
+            $user_id = $order->get_meta('_order_made_by_user_id');
+        }
 
-        // Check if user exists
-        if ($user) {
-            // Get the user roles
-            $user_roles = $user->roles;
+        // Check if user ID is available
+        if ($user_id) {
+            // Get the user object
+            $user = get_userdata($user_id);
 
-            // Get role names mapping
-            $role_names = get_role_names();
+            // Check if user exists
+            if ($user) {
+                // Get the user roles
+                $user_roles = $user->roles;
 
-            // Map role slugs to role names
-            $user_role_names = array_map(function ($role) use ($role_names) {
-                return $role_names[$role] ?? $role;
-            }, $user_roles);
+                // Define role names mapping
+                $role_names = [
+                    'administrator' => 'Administratorius',
+                    'author' => 'Autorius',
+                    'contributor' => 'Pagalbininkas',
+                    'customer' => 'Pirkėjas',
+                    'editor' => 'Redaktorius',
+                    'kategorija' => 'Category Access',
+                    'shop_manager' => 'Parduotuvės valdytojas',
+                    'subscriber' => 'Prenumeratorius',
+                    'translator' => 'Translator',
+                    'verslo_partneris' => 'Verslo partneris',
+                    'wpseo_editor' => 'SEO Editor',
+                    'wpseo_manager' => 'SEO Manager'
+                ];
 
-            // Display the user roles
-            echo implode(', ', $user_role_names);
+                // Map role slugs to role names
+                $user_role_names = array_map(function ($role) use ($role_names) {
+                    return $role_names[$role] ?? $role;
+                }, $user_roles);
+
+                // Display the user roles
+                echo implode(', ', $user_role_names);
+            } else {
+                echo 'Pirkėjas';
+            }
         } else {
-            echo '-';
+            echo 'Pirkėjas';
         }
     }
 }
