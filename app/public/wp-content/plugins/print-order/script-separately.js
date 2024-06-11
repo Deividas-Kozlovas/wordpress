@@ -25,93 +25,104 @@ jQuery(document).ready(function($) {
                     
                     response.data.forEach(function(order) {
                         newWindowContent += '<div class="order-section">';
+                        newWindowContent += '<div><strong>Vaidmuo: </strong>' + order.user_role + '</div>'; // Add user role here
                         newWindowContent += '<div><strong>Užsakymo ID: </strong>' + order.id + '</div>';
                         newWindowContent += '<div><strong>Data: </strong>' + order.date + '</div>';
-                        newWindowContent += '<div><strong>Vardas: </strong>' + order.customer_name + '</div>';
-                        newWindowContent += '<div><strong>El. paštas: </strong>' + order.customer_email + '</div>';
-                        newWindowContent += '<div><strong>Telefonas: </strong>' + order.customer_phone + '</div>';
-
-                        console.log("Order items:", order.items); // Debugging items data
-                        // Add the unique attribute_pa_atsiemimo-vieta values
-                        let uniqueLocations = [];
-                        order.items.forEach(function(item) {
-                            console.log("Item attributes:", item.attributes); // Debugging attributes data
-                            let location = item.attributes.location;
-                            if (location && !uniqueLocations.includes(location)) {
-                                uniqueLocations.push(location);
-                            }
-                        });
-                        console.log("Unique locations:", uniqueLocations); // Debugging unique locations
-
-                        if (uniqueLocations.length > 0) {
-                            newWindowContent += '<div><strong>Atsiemimo vieta: </strong>' + uniqueLocations.join(', ') + '</div>';
+                        if (order.customer_name && order.customer_name.trim() !== "") {
+                            newWindowContent += '<div><strong>Vardas: </strong>' + order.customer_name + '</div>';
+                        }
+                        if (order.customer_email && order.customer_email.trim() !== "") {
+                            newWindowContent += '<div><strong>El. paštas: </strong>' + order.customer_email + '</div>';
+                        }
+                        if (order.customer_phone && order.customer_phone.trim() !== "") {
+                            newWindowContent += '<div><strong>Telefonas: </strong>' + order.customer_phone + '</div>';
                         }
 
-                        if (order.comments) {
-                            newWindowContent += '<div><strong>Komentarai: </strong>' + order.comments + '</div>';
-                        }
+                        if (Array.isArray(order.items)) {
+                            // Add the unique attribute_pa_atsiemimo-vieta values
+                            let uniqueLocations = [];
+                            order.items.forEach(function(item) {
+                                let location = item.attributes.location;
+                                if (location && !uniqueLocations.includes(location)) {
+                                    uniqueLocations.push(location);
+                                }
+                            });
 
-                        let categorizedItems = {};
-
-                        order.items.forEach(function(item) {
-                            let category = item.category || 'Uncategorized';
-
-                            if (!categorizedItems[category]) {
-                                categorizedItems[category] = {};
+                            if (uniqueLocations.length > 0) {
+                                newWindowContent += '<div><strong>Atsiemimo vieta: </strong>' + uniqueLocations.join(', ') + '</div>';
                             }
-                            if (!categorizedItems[category][item.name]) {
-                                categorizedItems[category][item.name] = {};
+
+                            if (order.comments) {
+                                newWindowContent += '<div><strong>Komentarai: </strong>' + order.comments + '</div>';
                             }
-                            if (!categorizedItems[category][item.name][item.attributes.size]) {
-                                categorizedItems[category][item.name][item.attributes.size] = 0;
-                            }
-                            categorizedItems[category][item.name][item.attributes.size] += item.quantity;
-                        });
 
-                        for (let category in categorizedItems) {
-                            newWindowContent += '<h2>' + category + '</h2>';
-                            newWindowContent += '<table class="csv-order-table">';
-                            newWindowContent += '<thead><tr><th>Prekės</th><th>Kiekis</th></tr></thead>';
-                            newWindowContent += '<tbody>';
+                            let categorizedItems = {};
 
-                            let sizeTotals = {};
+                            order.items.forEach(function(item) {
+                                let category = item.category || 'Uncategorized';
 
-                            for (let item_name in categorizedItems[category]) {
-                                let sizes = categorizedItems[category][item_name];
-                                let sizeQuantity = [];
+                                if (!categorizedItems[category]) {
+                                    categorizedItems[category] = {};
+                                }
+                                if (!categorizedItems[category][item.name]) {
+                                    categorizedItems[category][item.name] = {};
+                                }
+                                let size = item.attributes.size || '';
+                                if (!categorizedItems[category][item.name][size]) {
+                                    categorizedItems[category][item.name][size] = 0;
+                                }
+                                categorizedItems[category][item.name][size] += item.quantity;
+                            });
 
-                                for (let size in sizes) {
-                                    let upperSize = size.toUpperCase();
-                                    if (upperSize && /[A-Z]/.test(upperSize)) { // Check if size is not empty and contains letters
-                                        sizeQuantity.push(sizes[size] + ' ' + upperSize);
-                                        if (!sizeTotals[upperSize]) {
-                                            sizeTotals[upperSize] = 0;
+                            for (let category in categorizedItems) {
+                                newWindowContent += '<h2>' + category + '</h2>';
+                                newWindowContent += '<table class="csv-order-table">';
+                                newWindowContent += '<thead><tr><th>Prekės</th><th>Kiekis</th></tr></thead>';
+                                newWindowContent += '<tbody>';
+
+                                let totalSizeQuantity = {};
+
+                                for (let itemName in categorizedItems[category]) {
+                                    let sizeTotals = [];
+                                    for (let size in categorizedItems[category][itemName]) {
+                                        if (!totalSizeQuantity[size] && size) {
+                                            totalSizeQuantity[size] = 0;
                                         }
-                                        sizeTotals[upperSize] += sizes[size];
-                                    } else {
-                                        sizeQuantity.push(sizes[size]); // Add quantity without size
+                                        if (size) {
+                                            totalSizeQuantity[size] += categorizedItems[category][itemName][size];
+                                        }
+
+                                        if (size) {
+                                            sizeTotals.push(categorizedItems[category][itemName][size] + ' ' + size.toUpperCase());
+                                        } else {
+                                            sizeTotals.push(categorizedItems[category][itemName][size]);
+                                        }
+                                    }
+
+                                    newWindowContent += '<tr>';
+                                    newWindowContent += '<td>' + itemName + '</td>';
+                                    newWindowContent += '<td>' + sizeTotals.join(', ') + '</td>';
+                                    newWindowContent += '</tr>';
+                                }
+
+                                let sizeSum = [];
+                                for (let size in totalSizeQuantity) {
+                                    if (size) {
+                                        sizeSum.push(totalSizeQuantity[size] + ' ' + size.toUpperCase());
                                     }
                                 }
 
-                                newWindowContent += '<tr>';
-                                newWindowContent += '<td>' + item_name + '</td>';
-                                newWindowContent += '<td>' + sizeQuantity.join(', ') + '</td>';
-                                newWindowContent += '</tr>';
-                            }
+                                if (sizeSum.length > 0) {
+                                    newWindowContent += '<tr>';
+                                    newWindowContent += '<td><strong>Dydžių suma</strong></td>';
+                                    newWindowContent += '<td><strong>' + sizeSum.join(', ') + '</strong></td>';
+                                    newWindowContent += '</tr>';
+                                }
 
-                            let totalSizeQuantity = [];
-                            for (let size in sizeTotals) {
-                                totalSizeQuantity.push(sizeTotals[size] + ' ' + size.toUpperCase());
+                                newWindowContent += '</tbody></table>';
                             }
-
-                            if (totalSizeQuantity.length > 0) {
-                                newWindowContent += '<tr>';
-                                newWindowContent += '<td><strong>Dydžių suma</strong></td>';
-                                newWindowContent += '<td><strong>' + totalSizeQuantity.join(', ') + '</strong></td>';
-                                newWindowContent += '</tr>';
-                            }
-
-                            newWindowContent += '</tbody></table>';
+                        } else {
+                            console.log("Order items is not an array:", order.items);
                         }
 
                         newWindowContent += '</div>'; // Close order section

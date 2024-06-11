@@ -1,0 +1,171 @@
+body.custom-blur-background {
+    overflow: hidden;
+}
+
+.custom-blur-background::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+}
+
+.custom-popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+}
+
+.custom-popup-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    max-width: 90%;
+    max-height: 90%;
+    overflow-y: auto;
+    width: 30%; /* Set initial width to 30% */
+    text-align: center;
+    font-family: 'PT Serif', serif;
+    color: #333;
+    box-sizing: border-box;
+}
+
+.custom-popup-content p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.custom-popup-content p strong {
+    font-size: 18px;
+}
+
+.custom-popup-content h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #007BFF;
+}
+
+.custom-popup-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.custom-popup-content td {
+    padding: 10px;
+}
+
+.custom-popup-button {
+    padding: 10px 15px !important;
+    border: none;
+    background: #007BFF;
+    color: white !important; /* Ensure the button text color is white */
+    cursor: pointer;
+    border-radius: 5px;
+    width: 100%;
+    text-align: center !important; /* Center align button text */
+    font-size: 17px !important;
+    transition: background 0.3s ease;
+}
+
+.custom-popup-button:hover {
+    background: #0056b3;
+    color: white !important; /* Ensure the button text color remains white on hover */
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    font-family: 'PT Serif', serif;
+    font-weight: 400;
+    font-size: 25px;
+    font-style: normal;
+    color: #f4ddba;
+    line-height: 30px;
+}
+
+.custom-popup * {
+    scrollbar-color: #c4a271;
+    scrollbar-width: thin;
+}
+
+.custom-popup ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.custom-popup ::-webkit-scrollbar-thumb {
+    background: #c4a271;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+    .custom-popup-content {
+        width: 40%; /* Increase width as viewport becomes smaller */
+    }
+}
+
+@media (max-width: 992px) {
+    .custom-popup-content {
+        width: 50%; /* Increase width further for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .custom-popup-content {
+        padding: 15px 20px;
+        width: 70%; /* Increase width for smaller screens */
+    }
+
+    .custom-popup-content p {
+        font-size: 14px;
+    }
+
+    .custom-popup-content p strong {
+        font-size: 16px;
+    }
+
+    .custom-popup-content h3 {
+        font-size: 18px;
+    }
+
+    .custom-popup-button {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .custom-popup-content {
+        padding: 10px 15px;
+        width: 90%; /* Increase width for the smallest screens */
+    }
+
+    .custom-popup-content p {
+        font-size: 12px;
+    }
+
+    .custom-popup-content p strong {
+        font-size: 14px;
+    }
+
+    .custom-popup-content h3 {
+        font-size: 16px;
+    }
+
+    .custom-popup-button {
+        font-size: 12px;
+    }
+}

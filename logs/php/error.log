@@ -2981,3 +2981,4 @@ Stack trace:
 [06-Jun-2024 14:00:57 UTC] PHP Warning:  Undefined array key 2 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/wc-order-creator/wc-order-creator.php on line 155
 [06-Jun-2024 14:00:57 UTC] PHP Warning:  Undefined array key 3 in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/wc-order-creator/wc-order-creator.php on line 155
 [06-Jun-2024 14:01:02 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321
+[07-Jun-2024 07:30:24 UTC] PHP Warning:  Undefined array key "00" in /home/nomax/Local Sites/bakery/app/public/wp-includes/class-wp-locale.php on line 321

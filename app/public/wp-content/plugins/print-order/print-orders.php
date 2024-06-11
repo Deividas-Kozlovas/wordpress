@@ -1,3 +1,4 @@
+
 <?php
 /*
 Plugin Name: Print from WooCommerce Orders with search
@@ -69,12 +70,24 @@ function add_spauzdinti_buttons($which)
         // User Role dropdown
         echo '<select id="search-origin" class="search-input">';
         echo '<option value="">Užsakovas</option>';
-        global $wp_roles;
-        $role_names = get_role_names();
-        foreach ($wp_roles->roles as $role_key => $role) {
-            $role_name = $role_names[$role_key] ?? $role['name'];
+        $role_names = [
+            'Administratorius',
+            'Autorius',
+            'Pagalbininkas',
+            'Pirkėjas',
+            'Redaktorius',
+            'Category Access',
+            'Parduotuvės valdytojas',
+            'Prenumeratorius',
+            'Translator',
+            'Verslo partneris',
+            'SEO Editor',
+            'SEO Manager'
+        ];
+        foreach ($role_names as $role_name) {
             echo '<option value="' . esc_html($role_name) . '">' . esc_html($role_name) . '</option>';
         }
+
         echo '</select>';
 
         echo '<button type="button" id="search-button" class="button search-button">Paieška</button>';
@@ -95,7 +108,7 @@ function enqueue_spauzdinti_buttons_script($hook_suffix)
         wp_enqueue_style('jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
         wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '1.1', true);
-        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '2.6', true);
+        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '4.6', true);
         wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '4.3', true);
 
         wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.0', 'all');
@@ -155,8 +168,10 @@ function fetch_order_details_bendrai()
     wp_send_json_success($order_details);
 }
 
-/// AJAX handler to fetch order details for individual orders
+// AJAX handler to fetch order details for individual orders
 add_action('wp_ajax_fetch_order_details_separately', 'fetch_order_details_separately');
+add_action('wp_ajax_nopriv_fetch_order_details_separately', 'fetch_order_details_separately');
+
 function fetch_order_details_separately()
 {
     if (!isset($_POST['order_ids']) || !is_array($_POST['order_ids'])) {
@@ -169,6 +184,38 @@ function fetch_order_details_separately()
     foreach ($order_ids as $order_id) {
         $order = wc_get_order($order_id);
         if ($order) {
+            $user_id = $order->get_user_id();
+
+            if (!$user_id) {
+                $user_id = $order->get_meta('_order_made_by_user_id');
+            }
+
+            $user_role = 'Pirkėjas'; // Default role if user is not found
+            if ($user_id) {
+                $user = get_userdata($user_id);
+                if ($user) {
+                    $user_roles = $user->roles;
+                    $role_names = [
+                        'administrator' => 'Administratorius',
+                        'author' => 'Autorius',
+                        'contributor' => 'Pagalbininkas',
+                        'customer' => 'Pirkėjas',
+                        'editor' => 'Redaktorius',
+                        'kategorija' => 'Category Access',
+                        'shop_manager' => 'Parduotuvės valdytojas',
+                        'subscriber' => 'Prenumeratorius',
+                        'translator' => 'Translator',
+                        'verslo_partneris' => 'Verslo partneris',
+                        'wpseo_editor' => 'SEO Editor',
+                        'wpseo_manager' => 'SEO Manager'
+                    ];
+                    $user_role_names = array_map(function ($role) use ($role_names) {
+                        return $role_names[$role] ?? $role;
+                    }, $user_roles);
+                    $user_role = implode(', ', $user_role_names);
+                }
+            }
+
             $order_data = array(
                 'id' => $order->get_id(),
                 'date' => $order->get_date_created()->date('Y-m-d H:i:s'),
@@ -176,18 +223,26 @@ function fetch_order_details_separately()
                 'customer_email' => $order->get_billing_email(),
                 'customer_phone' => $order->get_billing_phone(),
                 'comments' => $order->get_customer_note(),
+                'user_role' => $user_role,
                 'items' => array()
             );
 
             foreach ($order->get_items() as $item_id => $item) {
-                $product = $item->get_product();
+                $product_id = $item->get_product_id();
+                $product = wc_get_product($product_id);
+                $category_names = wp_get_post_terms($product_id, 'product_cat', array('fields' => 'names'));
+                $category = implode(', ', $category_names);
+
+                // Clean the category name
+                $category = str_replace(array(', Verslo partneris', ', Pirkėjas', ', Parduotuvėms', 'Parduotuvėms,'), '', $category);
+
                 $size = $item->get_meta('pa_dydziai', true);
                 $location = $item->get_meta('pa_atsiemimo-vieta', true);
 
                 $order_item_data = array(
                     'name' => $item->get_name(),
                     'quantity' => $item->get_quantity(),
-                    'category' => wc_get_product_category_list($product->get_id(), ', ', '', ''),
+                    'category' => $category,
                     'attributes' => array(
                         'size' => $size,
                         'location' => $location
@@ -204,6 +259,7 @@ function fetch_order_details_separately()
     $response['success'] = true;
     wp_send_json($response);
 }
+
 
 
 
