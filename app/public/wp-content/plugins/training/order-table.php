@@ -24,82 +24,50 @@ function add_custom_order_columns($columns)
     $columns['order_category'] = __('Kategorija', 'textdomain');
     $columns['custom_order_date'] = __('Užsakyta', 'textdomain');
     $columns['order_origin'] = __('Užsakovas', 'textdomain');
+    $columns['order_due_date'] = __('Pagaminti iki', 'textdomain'); // New column
 
     return $columns;
 }
 
 // Populate the "Dydžiai" (Sizes) column
 add_action('manage_shop_order_posts_custom_column', 'populate_size_column', 10, 2);
-
 function populate_size_column($column_name, $post_id)
 {
     if ($column_name === 'order_size') {
-        // Get the order object
         $order = wc_get_order($post_id);
-
-        // Get order items
         $items = $order->get_items();
-
-        // Initialize an empty array for sizes
         $sizes = array();
 
-        // Loop through order items
         foreach ($items as $item_id => $item) {
-            // Check if the item has variation data
             $variation_id = $item->get_variation_id();
             if ($variation_id) {
-                // Get variation data
                 $variation = wc_get_product($variation_id);
-
-                // Get variation attributes
                 $attributes = $variation->get_attributes();
-
-                // Add size to the array and convert to uppercase
                 if (isset($attributes['pa_dydziai'])) {
                     $sizes[] = strtoupper($attributes['pa_dydziai']);
                 }
             }
         }
 
-        // Remove duplicates and format data
         $sizes = array_unique($sizes);
-
-        // Output sizes separated by commas
-        if (!empty($sizes)) {
-            echo implode(', ', $sizes);
-        } else {
-            echo '-';
-        }
+        echo !empty($sizes) ? implode(', ', $sizes) : '-';
     }
 }
 
 // Populate the "Atsiemimo Vieta" (Location) column
 add_action('manage_shop_order_posts_custom_column', 'populate_location_column', 10, 2);
-
 function populate_location_column($column_name, $post_id)
 {
     if ($column_name === 'order_location') {
-        // Get the order object
         $order = wc_get_order($post_id);
-
-        // Get order items
         $items = $order->get_items();
-
-        // Initialize an empty array for locations
         $locations = array();
 
-        // Loop through order items
         foreach ($items as $item_id => $item) {
-            // Check if the item has variation data
             $variation_id = $item->get_variation_id();
             if ($variation_id) {
-                // Get variation data
                 $variation = wc_get_product($variation_id);
-
-                // Get variation attributes
                 $attributes = $variation->get_attributes();
-
-                // Add location to the array
                 if (isset($attributes['pa_atsiemimo-vieta'])) {
                     $location_slug = $attributes['pa_atsiemimo-vieta'];
                     $location_term = get_term_by('slug', $location_slug, 'pa_atsiemimo-vieta');
@@ -110,45 +78,25 @@ function populate_location_column($column_name, $post_id)
             }
         }
 
-        // Remove duplicates and format data
         $locations = array_unique($locations);
-
-        // Output locations separated by commas
-        if (!empty($locations)) {
-            echo implode(', ', $locations);
-        } else {
-            echo '-';
-        }
+        echo !empty($locations) ? implode(', ', $locations) : '-';
     }
 }
 
 // Populate the "Kategorija" (Category) column
 add_action('manage_shop_order_posts_custom_column', 'populate_category_column', 10, 2);
-
 function populate_category_column($column_name, $post_id)
 {
     if ($column_name === 'order_category') {
-        // Get the order object
         $order = wc_get_order($post_id);
-
-        // Get order items
         $items = $order->get_items();
-
-        // Initialize an empty array for categories
         $categories = array();
 
-        // Loop through order items
         foreach ($items as $item_id => $item) {
-            // Get product ID
             $product_id = $item->get_product_id();
-
-            // Get product categories
             $product_categories = get_the_terms($product_id, 'product_cat');
-
-            // Loop through product categories
             if (!empty($product_categories)) {
                 foreach ($product_categories as $category) {
-                    // Check if the category is a subcategory (has a parent)
                     if ($category->parent != 0) {
                         $categories[] = $category->name;
                     }
@@ -156,44 +104,29 @@ function populate_category_column($column_name, $post_id)
             }
         }
 
-        // Remove duplicates and format data
         $categories = array_unique($categories);
-
-        // Output categories separated by commas
-        if (!empty($categories)) {
-            echo implode(', ', $categories);
-        } else {
-            echo '-';
-        }
+        echo !empty($categories) ? implode(', ', $categories) : '-';
     }
 }
 
 // Populate the "Užsakyta" (Date) column
 add_action('manage_shop_order_posts_custom_column', 'populate_date_column', 10, 2);
-
 function populate_date_column($column_name, $post_id)
 {
     if ($column_name === 'custom_order_date') {
-        // Get the order object
         $order = wc_get_order($post_id);
-
-        // Get the order date
         $order_date = $order->get_date_created();
 
-        // Check if the date is available
         if ($order_date) {
-            // Set the locale to Lithuanian
             $locale = 'lt_LT';
             $dateFormatter = new IntlDateFormatter(
                 $locale,
                 IntlDateFormatter::MEDIUM,
                 IntlDateFormatter::NONE,
-                'Europe/Vilnius', // Set the correct timezone if needed
+                'Europe/Vilnius',
                 IntlDateFormatter::GREGORIAN,
                 'MMM d, yyyy, HH:mm'
             );
-
-            // Format the date
             echo $dateFormatter->format($order_date->getTimestamp());
         } else {
             echo '-';
@@ -210,41 +143,25 @@ function get_role_names()
         'author' => 'Autorius',
         'contributor' => 'Prisidedantis autorius',
         'subscriber' => 'Prenumeratorius',
-        // Add other roles as needed
     ];
 }
 
-// Populate the "Klientas" (Origin) column
+// Populate the "Užsakovas" (Origin) column
 add_action('manage_shop_order_posts_custom_column', 'populate_origin_column', 10, 2);
-
-// Populate the "Klientas" (Origin) column
-add_action('manage_shop_order_posts_custom_column', 'populate_origin_column', 10, 2);
-
 function populate_origin_column($column_name, $post_id)
 {
     if ($column_name === 'order_origin') {
-        // Get the order object
         $order = wc_get_order($post_id);
-
-        // Get the user ID from the order
         $user_id = $order->get_user_id();
 
-        // If user ID is not set, retrieve it from the order meta
         if (!$user_id) {
             $user_id = $order->get_meta('_order_made_by_user_id');
         }
 
-        // Check if user ID is available
         if ($user_id) {
-            // Get the user object
             $user = get_userdata($user_id);
-
-            // Check if user exists
             if ($user) {
-                // Get the user roles
                 $user_roles = $user->roles;
-
-                // Define role names mapping
                 $role_names = [
                     'administrator' => 'Administratorius',
                     'author' => 'Autorius',
@@ -260,18 +177,32 @@ function populate_origin_column($column_name, $post_id)
                     'wpseo_manager' => 'SEO Manager'
                 ];
 
-                // Map role slugs to role names
                 $user_role_names = array_map(function ($role) use ($role_names) {
                     return $role_names[$role] ?? $role;
                 }, $user_roles);
 
-                // Display the user roles
                 echo implode(', ', $user_role_names);
             } else {
                 echo 'Pirkėjas';
             }
         } else {
             echo 'Pirkėjas';
+        }
+    }
+}
+
+// Populate the "Pagaminti iki" (Due Date) column
+add_action('manage_shop_order_posts_custom_column', 'populate_due_date_column', 10, 2);
+function populate_due_date_column($column_name, $post_id)
+{
+    if ($column_name === 'order_due_date') {
+        $order = wc_get_order($post_id);
+        $due_date = $order->get_meta('_order_date');
+
+        if ($due_date) {
+            echo date('Y-m-d', strtotime($due_date));
+        } else {
+            echo '-';
         }
     }
 }

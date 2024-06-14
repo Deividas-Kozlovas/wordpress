@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
 
     function displayPopup() {
         var popupContent = '<div class="custom-popup-overlay"><div class="custom-popup-content">';
-        popupContent += '<p>Pristatymą į namus galite užsisakyti per mūsų partnerius BOLT, WOLT ir LASTMILE arba užsisakius produkciją atsiimti mūsų kepyklėlėse:</p>';
+        popupContent += '<p>Pristatymą į namus galite užsisakyti per mūsų partnerius BOLT, WOLT arba užsisakius produkciją atsiimti mūsų kepyklėlėse:</p>';
         popupContent += '<p><strong>Pasirinkite artimiausią kepyklėlę:</strong></p>'; 
 
         $.each(locations, function(city, cityLocations) {
@@ -39,7 +39,7 @@ jQuery(document).ready(function($) {
             var selectedLocation = $(this).text();
             localStorage.setItem('selectedLocation', selectedLocation);
             localStorage.setItem('locationTimestamp', new Date().getTime());
-            
+
             // Clear WooCommerce cart via AJAX
             $.ajax({
                 url: '/wp-admin/admin-ajax.php',
@@ -58,6 +58,18 @@ jQuery(document).ready(function($) {
                     console.log('Error in AJAX request.');
                 }
             });
+
+            // Fetch and handle cart items
+            fetchCartItems(function(cartItems) {
+                // Handle the cart items here
+                console.log('Cart Items:', cartItems); // For example, you can log them to the console
+                // You can process the cart items as needed here
+            });
+
+            // Redirect to home page if on a product page
+            if (window.location.pathname.match(/^\/product\/[^\/]+\/$/)) {
+                window.location.href = '/';
+            }
 
             $('.custom-popup-overlay').fadeOut(function() {
                 $(this).remove();
@@ -85,12 +97,33 @@ jQuery(document).ready(function($) {
 
         if (selectedLocation && timestamp && (currentTime - timestamp < hours24)) {
             setSelectedLocation(selectedLocation);
-            $('#pa_atsiemimo-vieta').prop('disabled', true); // Ensure it remains locked if already set
+            $('#pa_atsiemimo-vieta').prop('disabled', t0056b3rue); // Ensure it remains locked if already set
         } else {
             localStorage.removeItem('selectedLocation');
             localStorage.removeItem('locationTimestamp');
             displayPopup();
         }
+    }
+
+    function fetchCartItems(callback) {
+        $.ajax({
+            url: '/wp-admin/admin-ajax.php',
+            type: 'POST',
+            data: {
+                action: 'get_cart_items'
+            },
+            success: function(response) {
+                if (response.success) {
+                    // Pass the cart items to the callback function
+                    callback(response.data);
+                } else {
+                    console.log('Failed to fetch cart items.');
+                }
+            },
+            error: function() {
+                console.log('Error in AJAX request.');
+            }
+        });
     }
 
     checkAndDisplayPopup();
@@ -103,4 +136,3 @@ jQuery(document).ready(function($) {
         displayPopup();
     });
 });
-//dont go back

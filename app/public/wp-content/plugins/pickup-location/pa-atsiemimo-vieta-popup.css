@@ -55,7 +55,7 @@ body.custom-blur-background {
 .custom-popup-content h3 {
     font-size: 20px;
     margin-bottom: 10px;
-    color: #007BFF;
+    color: #80ced7;
 }
 
 .custom-popup-content table {
@@ -71,7 +71,7 @@ body.custom-blur-background {
 .custom-popup-button {
     padding: 10px 15px !important;
     border: none;
-    background: #007BFF;
+    background: #80ced7;
     color: white !important; /* Ensure the button text color is white */
     cursor: pointer;
     border-radius: 5px;
@@ -82,7 +82,7 @@ body.custom-blur-background {
 }
 
 .custom-popup-button:hover {
-    background: #0056b3;
+    background: #5c9399;
     color: white !important; /* Ensure the button text color remains white on hover */
 }
 

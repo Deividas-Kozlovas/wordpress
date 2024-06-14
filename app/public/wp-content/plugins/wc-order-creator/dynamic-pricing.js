@@ -1,3 +1,5 @@
+// dynamic-pricing.js
+
 document.addEventListener('DOMContentLoaded', function () {
     const locationSelect = document.getElementById('selected_location');
     const table = document.getElementById('product_table');
@@ -63,14 +65,51 @@ document.addEventListener('DOMContentLoaded', function () {
         totalPrice.textContent = totalCost.toFixed(2) + ' €';
     }
 
+    function updateStockStatus() {
+        const rows = table.querySelectorAll('tr[data-product-id]');
+        rows.forEach(row => {
+            const productId = row.getAttribute('data-product-id');
+            const sizeSelect = row.querySelector('.product-size');
+            const stockStatusCell = row.querySelector('.stock-status');
+
+            if (sizeSelect) {
+                const size = sizeSelect.value;
+                const location = locationSelect.value;
+                const isPriceAvailable = sizeLocationPrice[productId] && 
+                                         sizeLocationPrice[productId][size] &&
+                                         sizeLocationPrice[productId][size][location];
+
+                if (stockStatus[productId] && stockStatus[productId][size] && stockStatus[productId][size][location] !== undefined) {
+                    if (stockStatus[productId][size][location] && isPriceAvailable) {
+                        stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
+                    } else {
+                        stockStatusCell.textContent = 'Nebeturime';
+                    }
+                } else {
+                    stockStatusCell.textContent = 'Nebeturime';
+                }
+            } else {
+                const isPriceAvailable = sizeLocationPrice[productId];
+
+                if (stockStatus[productId] && isPriceAvailable) {
+                    stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
+                } else {
+                    stockStatusCell.textContent = 'Nebeturime';
+                }
+            }
+        });
+    }
+
     function updateProductPrice(event) {
         const target = event.target;
-        if (target.classList.contains('product-size') || target.type === 'number' || target.id === 'selected_location') {
+        if (target.classList.contains('product-size') || target.id === 'selected_location') {
             updatePrices();
+            updateStockStatus();
         }
     }
 
     locationSelect.addEventListener('change', updatePrices);
+    locationSelect.addEventListener('change', updateStockStatus);
     table.addEventListener('change', updateProductPrice);
     table.addEventListener('input', updateProductPrice);
 
@@ -81,30 +120,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const productId = target.getAttribute('data-product-id');
             const productRow = target.closest('tr');
-            const clonedRow = productRow.cloneNode(true);
+            const maxClones = parseInt(productRow.getAttribute('data-max-clones'), 10) || 0;
+            let cloneCount = parseInt(productRow.getAttribute('data-clone-count'), 10) || 0;
 
-            // Reset the quantity input to 0
-            const quantityInput = clonedRow.querySelector('input[type=number]');
-            if (quantityInput) {
-                quantityInput.value = 0;
-            }
+            if (cloneCount < maxClones) {
+                const clonedRow = productRow.cloneNode(true);
 
-            // Replace the "+" button with a "-" button
-            const minusButton = document.createElement('button');
-            minusButton.classList.add('remove-product');
-            minusButton.textContent = '-';
-            minusButton.addEventListener('click', function() {
-                clonedRow.remove();
+                // Reset the quantity input to 0
+                const quantityInput = clonedRow.querySelector('input[type=number]');
+                if (quantityInput) {
+                    quantityInput.value = 0;
+                }
+
+                // Replace the "+" button with a "-" button
+                const minusButton = document.createElement('button');
+                minusButton.classList.add('remove-product');
+                minusButton.textContent = '-';
+                minusButton.addEventListener('click', function() {
+                    clonedRow.remove();
+                    productRow.setAttribute('data-clone-count', --cloneCount);
+                    updatePrices();
+                    updateStockStatus();
+                });
+
+                const addButton = clonedRow.querySelector('.add-product');
+                if (addButton) {
+                    addButton.parentNode.replaceChild(minusButton, addButton);
+                }
+
+                productRow.parentNode.insertBefore(clonedRow, productRow.nextSibling);
+                productRow.setAttribute('data-clone-count', ++cloneCount);
                 updatePrices();
-            });
-
-            const addButton = clonedRow.querySelector('.add-product');
-            if (addButton) {
-                addButton.parentNode.replaceChild(minusButton, addButton);
+                updateStockStatus();
+            } else {
+                alert('Daugiau pasirinkimų nėra.');
             }
-
-            productRow.parentNode.insertBefore(clonedRow, productRow.nextSibling);
-            updatePrices();
         }
     });
 
@@ -144,4 +194,5 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     updatePrices();
+    updateStockStatus();
 });
