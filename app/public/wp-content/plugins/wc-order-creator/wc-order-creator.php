@@ -70,12 +70,16 @@ function display_order_page_content()
                     $size_location_price[get_the_ID()][$size][$location] = $price;
                     $stock_status[get_the_ID()][$size][$location] = $variation_obj->is_in_stock();
 
-                    if (!in_array($location, $all_locations, true)) {
-                        $all_locations[] = $location;
+                    if (!array_key_exists($location, $all_locations)) {
+                        $all_locations[$location] = $variation_obj->get_attribute('pa_atsiemimo-vieta');
                     }
                 }
             } else {
-                $stock_status[get_the_ID()] = $product->is_in_stock();
+                $stock_status[get_the_ID()][''] = $product->is_in_stock();
+                foreach ($all_locations as $location_slug => $location_name) {
+                    $price = $product->get_price();
+                    $size_location_price[get_the_ID()][''][$location_slug] = $price;
+                }
             }
         }
     }
@@ -86,7 +90,7 @@ function display_order_page_content()
     echo '<div>';
     echo '<select id="selected_location" name="selected_location" required>';
     foreach ($all_locations as $location_slug => $location_name) {
-        echo '<option value="' . $location_slug . '">' . $location_name . '</option>';
+        echo '<option value="' . esc_attr($location_slug) . '">' . esc_html($location_name) . '</option>';
     }
     echo '</select>';
     echo '<input type="date" id="order_date" name="order_date">';
@@ -143,7 +147,12 @@ function display_order_page_content()
         echo '</td>';
 
         echo '<td class="stock-status">Nebeturime</td>'; // Show directly as "Nebeturime"
-        echo '<td><button type="button" class="add-product" data-product-id="' . $product->get_id() . '">+</button></td>';
+        // Only add "Add" button if 'pa_dydziai' attribute exists
+        if ($has_pa_dydziai) {
+            echo '<td><button type="button" class="add-product" data-product-id="' . $product->get_id() . '">Pridėti</button></td>';
+        } else {
+            echo '<td></td>'; // Empty cell if no 'pa_dydziai'
+        }
         echo '</tr>';
     }
     echo '</tbody>';

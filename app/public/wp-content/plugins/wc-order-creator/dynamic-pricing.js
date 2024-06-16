@@ -1,12 +1,8 @@
-// dynamic-pricing.js
-
 document.addEventListener('DOMContentLoaded', function () {
     const locationSelect = document.getElementById('selected_location');
     const table = document.getElementById('product_table');
-    const totalQuantity = document.getElementById('total-quantity');
-    const totalPrice = document.getElementById('total-price');
 
-    function updatePrices() {
+    function updatePricesAndStockStatus() {
         let totalQty = 0;
         let totalCost = 0;
 
@@ -14,102 +10,95 @@ document.addEventListener('DOMContentLoaded', function () {
             const productId = row.getAttribute('data-product-id');
             const sizeSelect = row.querySelector('.product-size');
             const quantityInputs = row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]');
+            const stockStatusCell = row.querySelector('.stock-status');
             const basePriceCell = row.querySelector('.product-base-price');
             const totalPriceCell = row.querySelector('.product-total-price');
 
-            if (!sizeSelect || !quantityInputs || !basePriceCell || !totalPriceCell) {
-                console.error('Essential elements are missing from the row:', productId);
-                return;
+            const selectedSizeSlug = sizeSelect ? sizeSelect.value : null;
+            const selectedLocationSlug = locationSelect ? locationSelect.value : null;
+
+            let isPriceAvailable = false;
+            let isInStock = false;
+
+            // Check for products with both attributes
+            if (selectedSizeSlug && selectedLocationSlug) {
+                
+                isPriceAvailable = sizeLocationPrice[productId] &&
+                                   sizeLocationPrice[productId][selectedSizeSlug] &&
+                                   sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug];
+                isInStock = stockStatus[productId] &&
+                            stockStatus[productId][selectedSizeSlug] &&
+                            stockStatus[productId][selectedSizeSlug][selectedLocationSlug];
+                } else if (selectedLocationSlug) {
+                            // Accessing the nested objects correctly
+                            isPriceAvailable = sizeLocationPrice[productId][""] &&
+                                               sizeLocationPrice[productId][""][selectedLocationSlug] !== undefined;
+                            isInStock = stockStatus[productId][""] &&
+                                        stockStatus[productId][""][selectedLocationSlug] !== undefined;
+                }
+
+            // Update the stock status and quantity input field only for products with both attributes
+            if (isInStock && isPriceAvailable) {
+                stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
+            } else {
+                stockStatusCell.textContent = 'Nebeturime';
             }
 
-            const selectedSizeSlug = sizeSelect.value;
-            const selectedLocationSlug = locationSelect.value;
-            const basePrice = sizeLocationPrice[productId] &&
-                              sizeLocationPrice[productId][selectedSizeSlug] &&
-                              sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug]
-                              ? parseFloat(sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug])
-                              : 'Unavailable';
+            // Update pricing display if available
+            if (basePriceCell && totalPriceCell) {
+                const basePrice = (selectedSizeSlug && selectedLocationSlug && isPriceAvailable)
+                                ? parseFloat(sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug])
+                                : (selectedLocationSlug && isPriceAvailable)
+                                ? parseFloat(sizeLocationPrice[productId][selectedLocationSlug])
+                                : 'Unavailable';
 
-            if (basePrice !== 'Unavailable') {
-                basePriceCell.textContent = basePrice.toFixed(2) + ' €';
-                let rowTotalQty = 0;
-                let rowTotalPrice = 0;
-                quantityInputs.forEach(quantityInput => {
-                    const quantity = parseInt(quantityInput.value) || 0;
-                    rowTotalQty += quantity;
-                    rowTotalPrice += basePrice * quantity;
-                });
-                totalPriceCell.textContent = rowTotalQty > 0 ? rowTotalPrice.toFixed(2) + ' €' : '0 €';
-                totalQty += rowTotalQty;
-                totalCost += rowTotalPrice;
+                if (basePrice !== 'Unavailable') {
+                    basePriceCell.textContent = basePrice.toFixed(2) + ' €';
+                    let rowTotalQty = 0;
+                    let rowTotalPrice = 0;
+                    quantityInputs.forEach(quantityInput => {
+                        const quantity = parseInt(quantityInput.value) || 0;
+                        rowTotalQty += quantity;
+                        rowTotalPrice += basePrice * quantity;
+                    });
+                    totalPriceCell.textContent = rowTotalQty > 0 ? rowTotalPrice.toFixed(2) + ' €' : '0 €';
+                    totalQty += rowTotalQty;
+                    totalCost += rowTotalPrice;
+                } else {
+                    basePriceCell.textContent = 'Unavailable';
+                    totalPriceCell.textContent = 'Unavailable';
+                }
+            }
 
-                // Update hidden input fields with selected attributes
+            // Update hidden input fields with selected attributes
+            if (sizeSelect) {
                 const sizeInput = document.createElement('input');
                 sizeInput.type = 'hidden';
                 sizeInput.name = 'selected_attributes[' + productId + '][size][]';
                 sizeInput.value = selectedSizeSlug;
                 row.appendChild(sizeInput);
-
-                const locationInput = document.createElement('input');
-                locationInput.type = 'hidden';
-                locationInput.name = 'selected_attributes[' + productId + '][location][]';
-                locationInput.value = selectedLocationSlug;
-                row.appendChild(locationInput);
-            } else {
-                basePriceCell.textContent = 'Unavailable';
-                totalPriceCell.textContent = 'Unavailable';
             }
+
+            const locationInput = document.createElement('input');
+            locationInput.type = 'hidden';
+            locationInput.name = 'selected_attributes[' + productId + '][location][]';
+            locationInput.value = selectedLocationSlug;
+            row.appendChild(locationInput);
         });
 
-        totalQuantity.textContent = totalQty;
-        totalPrice.textContent = totalCost.toFixed(2) + ' €';
-    }
-
-    function updateStockStatus() {
-        const rows = table.querySelectorAll('tr[data-product-id]');
-        rows.forEach(row => {
-            const productId = row.getAttribute('data-product-id');
-            const sizeSelect = row.querySelector('.product-size');
-            const stockStatusCell = row.querySelector('.stock-status');
-
-            if (sizeSelect) {
-                const size = sizeSelect.value;
-                const location = locationSelect.value;
-                const isPriceAvailable = sizeLocationPrice[productId] && 
-                                         sizeLocationPrice[productId][size] &&
-                                         sizeLocationPrice[productId][size][location];
-
-                if (stockStatus[productId] && stockStatus[productId][size] && stockStatus[productId][size][location] !== undefined) {
-                    if (stockStatus[productId][size][location] && isPriceAvailable) {
-                        stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
-                    } else {
-                        stockStatusCell.textContent = 'Nebeturime';
-                    }
-                } else {
-                    stockStatusCell.textContent = 'Nebeturime';
-                }
-            } else {
-                const isPriceAvailable = sizeLocationPrice[productId];
-
-                if (stockStatus[productId] && isPriceAvailable) {
-                    stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
-                } else {
-                    stockStatusCell.textContent = 'Nebeturime';
-                }
-            }
-        });
+        // Total quantities and prices
+        document.getElementById('total-quantity').textContent = totalQty;
+        document.getElementById('total-price').textContent = totalCost.toFixed(2) + ' €';
     }
 
     function updateProductPrice(event) {
         const target = event.target;
         if (target.classList.contains('product-size') || target.id === 'selected_location') {
-            updatePrices();
-            updateStockStatus();
+            updatePricesAndStockStatus();
         }
     }
 
-    locationSelect.addEventListener('change', updatePrices);
-    locationSelect.addEventListener('change', updateStockStatus);
+    locationSelect.addEventListener('change', updatePricesAndStockStatus);
     table.addEventListener('change', updateProductPrice);
     table.addEventListener('input', updateProductPrice);
 
@@ -139,8 +128,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 minusButton.addEventListener('click', function() {
                     clonedRow.remove();
                     productRow.setAttribute('data-clone-count', --cloneCount);
-                    updatePrices();
-                    updateStockStatus();
+                    updatePricesAndStockStatus();
                 });
 
                 const addButton = clonedRow.querySelector('.add-product');
@@ -150,8 +138,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
                 productRow.parentNode.insertBefore(clonedRow, productRow.nextSibling);
                 productRow.setAttribute('data-clone-count', ++cloneCount);
-                updatePrices();
-                updateStockStatus();
+                updatePricesAndStockStatus();
             } else {
                 alert('Daugiau pasirinkimų nėra.');
             }
@@ -166,23 +153,29 @@ document.addEventListener('DOMContentLoaded', function () {
             const sizeSelect = row.querySelector('.product-size');
             const selectedLocationSlug = locationSelect.value;
 
-            if (quantityInputs && sizeSelect) {
+            if (quantityInputs) {
                 quantityInputs.forEach(quantityInput => {
                     const quantity = parseInt(quantityInput.value) || 0;
-                    const selectedSizeSlug = sizeSelect.value;
 
+                    // Append quantity input
                     const quantityField = document.createElement('input');
                     quantityField.type = 'hidden';
                     quantityField.name = 'quantity[' + productId + '][]';
                     quantityField.value = quantity;
                     this.appendChild(quantityField);
 
-                    const sizeField = document.createElement('input');
-                    sizeField.type = 'hidden';
-                    sizeField.name = 'selected_attributes[' + productId + '][size][]';
-                    sizeField.value = selectedSizeSlug;
-                    this.appendChild(sizeField);
+                    if (sizeSelect) {
+                        const selectedSizeSlug = sizeSelect.value;
 
+                        // Append size input
+                        const sizeField = document.createElement('input');
+                        sizeField.type = 'hidden';
+                        sizeField.name = 'selected_attributes[' + productId + '][size][]';
+                        sizeField.value = selectedSizeSlug;
+                        this.appendChild(sizeField);
+                    }
+
+                    // Append location input
                     const locationField = document.createElement('input');
                     locationField.type = 'hidden';
                     locationField.name = 'selected_attributes[' + productId + '][location][]';
@@ -193,6 +186,5 @@ document.addEventListener('DOMContentLoaded', function () {
         }.bind(this));
     });
 
-    updatePrices();
-    updateStockStatus();
+    updatePricesAndStockStatus();
 });
