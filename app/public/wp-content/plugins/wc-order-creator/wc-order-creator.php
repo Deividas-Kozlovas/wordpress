@@ -195,32 +195,45 @@ function process_order()
 
     $order_total = 0;
 
+    // Keep track of processed products to avoid duplicates
+    $processed_products = [];
+
     foreach ($_POST['quantity'] as $product_id => $quantities) {
         foreach ($quantities as $index => $quantity) {
             if ($quantity > 0) {
-                $product = wc_get_product($product_id);
-                $size = sanitize_text_field($_POST['size'][$product_id][$index]);
+                // Create a unique key for the product based on ID, size, and location
+                $size = isset($_POST['selected_attributes'][$product_id]['size'][$index]) ? sanitize_text_field($_POST['selected_attributes'][$product_id]['size'][$index]) : '';
                 $location = $selected_location;
-                $variation_id = find_matching_variation_id($product, $size, $location);
+                $product_key = $product_id . '|' . $size . '|' . $location;
 
-                if ($variation_id) {
-                    $variation = new WC_Product_Variation($variation_id);
-                    $product_name = $product->get_name();
+                // Check if this product has already been processed
+                if (!isset($processed_products[$product_key])) {
+                    $processed_products[$product_key] = true;
 
-                    $order->add_product($variation, $quantity, [
-                        'variation_id' => $variation_id,
-                        'variation' => [
-                            'attribute_pa_dydziai' => $size,
-                            'attribute_pa_atsiemimo-vieta' => $location
-                        ],
-                        'name' => $product_name,
-                        'meta' => [
-                            'Dydžiai' => $size,
-                            'Atsiemimo vieta' => $location
-                        ]
-                    ]);
+                    $product = wc_get_product($product_id);
+                    $variation_id = find_matching_variation_id($product, $size, $location);
 
-                    $order_total += $variation->get_price() * $quantity;
+                    if ($variation_id) {
+                        $variation = new WC_Product_Variation($variation_id);
+                        $product_name = $product->get_name();
+
+                        $product_data = [
+                            'variation_id' => $variation_id,
+                            'variation' => [
+                                'attribute_pa_dydziai' => $size,
+                                'attribute_pa_atsiemimo-vieta' => $location
+                            ],
+                            'name' => $product_name,
+                            'meta' => [
+                                'Dydžiai' => $size,
+                                'Atsiemimo vieta' => $location
+                            ]
+                        ];
+
+                        $order->add_product($variation, $quantity, $product_data);
+
+                        $order_total += $variation->get_price() * $quantity;
+                    }
                 }
             }
         }
@@ -230,12 +243,10 @@ function process_order()
     $order->update_meta_data('_order_made_by_user_id', $user_id);
     $order->save_meta_data(); // Save meta data explicitly
 
-    // Add order comments to order
     if (!empty($order_comments)) {
         $order->set_customer_note($order_comments);
     }
 
-    // Add order date to order meta data
     if (!empty($order_date)) {
         $order->update_meta_data('_order_date', $order_date);
     }
@@ -243,6 +254,7 @@ function process_order()
     $order->set_total($order_total);
     $order->update_status('wc-processing', 'Order status changed to vykdomas.');
     $order->save();
+
     wp_redirect(admin_url('admin.php?page=add-order'));
     exit;
 }

@@ -6,6 +6,16 @@ document.addEventListener('DOMContentLoaded', function () {
         let totalQty = 0;
         let totalCost = 0;
 
+        // Store current quantities
+        const quantities = {};
+        table.querySelectorAll('tr[data-product-id]').forEach(row => {
+            const productId = row.getAttribute('data-product-id');
+            quantities[productId] = [];
+            row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]').forEach((input, index) => {
+                quantities[productId][index] = input.value;
+            });
+        });
+
         table.querySelectorAll('tr[data-product-id]').forEach(row => {
             const productId = row.getAttribute('data-product-id');
             const sizeSelect = row.querySelector('.product-size');
@@ -20,31 +30,26 @@ document.addEventListener('DOMContentLoaded', function () {
             let isPriceAvailable = false;
             let isInStock = false;
 
-            // Check for products with both attributes
             if (selectedSizeSlug && selectedLocationSlug) {
-                
                 isPriceAvailable = sizeLocationPrice[productId] &&
                                    sizeLocationPrice[productId][selectedSizeSlug] &&
                                    sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug];
                 isInStock = stockStatus[productId] &&
                             stockStatus[productId][selectedSizeSlug] &&
                             stockStatus[productId][selectedSizeSlug][selectedLocationSlug];
-                } else if (selectedLocationSlug) {
-                            // Accessing the nested objects correctly
-                            isPriceAvailable = sizeLocationPrice[productId][""] &&
-                                               sizeLocationPrice[productId][""][selectedLocationSlug] !== undefined;
-                            isInStock = stockStatus[productId][""] &&
-                                        stockStatus[productId][""][selectedLocationSlug] !== undefined;
-                }
+            } else if (selectedLocationSlug) {
+                isPriceAvailable = sizeLocationPrice[productId][""] &&
+                                   sizeLocationPrice[productId][""][selectedLocationSlug] !== undefined;
+                isInStock = stockStatus[productId][""] &&
+                            stockStatus[productId][""][selectedLocationSlug] !== undefined;
+            }
 
-            // Update the stock status and quantity input field only for products with both attributes
             if (isInStock && isPriceAvailable) {
                 stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
             } else {
                 stockStatusCell.textContent = 'Nebeturime';
             }
 
-            // Update pricing display if available
             if (basePriceCell && totalPriceCell) {
                 const basePrice = (selectedSizeSlug && selectedLocationSlug && isPriceAvailable)
                                 ? parseFloat(sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug])
@@ -70,23 +75,43 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             }
 
-            // Update hidden input fields with selected attributes
             if (sizeSelect) {
-                const sizeInput = document.createElement('input');
-                sizeInput.type = 'hidden';
-                sizeInput.name = 'selected_attributes[' + productId + '][size][]';
-                sizeInput.value = selectedSizeSlug;
-                row.appendChild(sizeInput);
+                let existingSizeInput = row.querySelector('input[name="selected_attributes[' + productId + '][size][]"]');
+                if (existingSizeInput) {
+                    existingSizeInput.value = selectedSizeSlug;
+                } else {
+                    const sizeInput = document.createElement('input');
+                    sizeInput.type = 'hidden';
+                    sizeInput.name = 'selected_attributes[' + productId + '][size][]';
+                    sizeInput.value = selectedSizeSlug;
+                    row.appendChild(sizeInput);
+                }
             }
 
-            const locationInput = document.createElement('input');
-            locationInput.type = 'hidden';
-            locationInput.name = 'selected_attributes[' + productId + '][location][]';
-            locationInput.value = selectedLocationSlug;
-            row.appendChild(locationInput);
+            let existingLocationInput = row.querySelector('input[name="selected_attributes[' + productId + '][location][]"]');
+            if (existingLocationInput) {
+                existingLocationInput.value = selectedLocationSlug;
+            } else {
+                const locationInput = document.createElement('input');
+                locationInput.type = 'hidden';
+                locationInput.name = 'selected_attributes[' + productId + '][location][]';
+                locationInput.value = selectedLocationSlug;
+                row.appendChild(locationInput);
+            }
         });
 
-        // Total quantities and prices
+        // Restore previous quantities
+        table.querySelectorAll('tr[data-product-id]').forEach(row => {
+            const productId = row.getAttribute('data-product-id');
+            if (quantities[productId]) {
+                row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]').forEach((input, index) => {
+                    if (quantities[productId][index] !== undefined) {
+                        input.value = quantities[productId][index];
+                    }
+                });
+            }
+        });
+
         document.getElementById('total-quantity').textContent = totalQty;
         document.getElementById('total-price').textContent = totalCost.toFixed(2) + ' €';
     }
@@ -115,13 +140,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (cloneCount < maxClones) {
                 const clonedRow = productRow.cloneNode(true);
 
-                // Reset the quantity input to 0
                 const quantityInput = clonedRow.querySelector('input[type=number]');
                 if (quantityInput) {
                     quantityInput.value = 0;
                 }
 
-                // Replace the "+" button with a "-" button
                 const minusButton = document.createElement('button');
                 minusButton.classList.add('remove-product');
                 minusButton.textContent = '-';
@@ -147,17 +170,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     document.querySelector('form').addEventListener('submit', function(event) {
         const addedProducts = table.querySelectorAll('tr[data-product-id]');
+        this.querySelectorAll('input[type=hidden]').forEach(input => input.remove());
+
+        const processedProducts = new Set();
+        let hasDuplicates = false;
+
         addedProducts.forEach(function(row) {
             const productId = row.getAttribute('data-product-id');
             const quantityInputs = row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]');
             const sizeSelect = row.querySelector('.product-size');
             const selectedLocationSlug = locationSelect.value;
 
-            if (quantityInputs) {
-                quantityInputs.forEach(quantityInput => {
-                    const quantity = parseInt(quantityInput.value) || 0;
+            quantityInputs.forEach(quantityInput => {
+                const quantity = parseInt(quantityInput.value) || 0;
+                if (quantity > 0) {
+                    const sizeValue = sizeSelect ? sizeSelect.value : '';
+                    const productKey = `${productId}-${sizeValue}-${selectedLocationSlug}`;
 
-                    // Append quantity input
+                    if (processedProducts.has(productKey)) {
+                        hasDuplicates = true;
+                    } else {
+                        processedProducts.add(productKey);
+                    }
+
                     const quantityField = document.createElement('input');
                     quantityField.type = 'hidden';
                     quantityField.name = 'quantity[' + productId + '][]';
@@ -166,8 +201,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
                     if (sizeSelect) {
                         const selectedSizeSlug = sizeSelect.value;
-
-                        // Append size input
                         const sizeField = document.createElement('input');
                         sizeField.type = 'hidden';
                         sizeField.name = 'selected_attributes[' + productId + '][size][]';
@@ -175,15 +208,21 @@ document.addEventListener('DOMContentLoaded', function () {
                         this.appendChild(sizeField);
                     }
 
-                    // Append location input
                     const locationField = document.createElement('input');
                     locationField.type = 'hidden';
                     locationField.name = 'selected_attributes[' + productId + '][location][]';
                     locationField.value = selectedLocationSlug;
                     this.appendChild(locationField);
-                });
-            }
+                }
+            });
         }.bind(this));
+
+        if (hasDuplicates) {
+            alert("Užsakyme yra produktų su pasikartojančiais dydžiais.");
+            event.preventDefault(); // Prevent form submission
+        } else {
+            this.submit();
+        }
     });
 
     updatePricesAndStockStatus();
