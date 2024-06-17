@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: WooCommerce Orders Tables Customization
-Description: Customize WooCommerce orders tables by adding custom columns.
+Description: Customize WooCommerce orders tables by adding custom columns and display 50 orders per page.
 Version: 1.0
 Author: Bellatoscana
 */
@@ -205,4 +205,12 @@ function populate_due_date_column($column_name, $post_id)
             echo '-';
         }
     }
+}
+
+// Adjust the number of orders displayed per page in the WooCommerce admin
+add_filter('edit_shop_order_per_page', 'bt_custom_wc_edit_orders_per_page', 20);
+function bt_custom_wc_edit_orders_per_page($per_page)
+{
+    $per_page = 50;
+    return $per_page;
 }

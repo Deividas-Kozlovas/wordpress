@@ -161,8 +161,8 @@ function display_order_page_content()
     echo '</form>';
     echo '</div>';
 
-    wp_enqueue_script('search', plugins_url('search.js', __FILE__), array(), '1.1', true);
-    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array(), '1.1', true);
+    wp_enqueue_script('search', plugins_url('search.js', __FILE__), array(), '1.3', true);
+    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array(), '1.3', true);
     echo '<script type="text/javascript">
     var sizeLocationPrice = ' . json_encode($size_location_price) . ';
     var stockStatus = ' . json_encode($stock_status) . ';
