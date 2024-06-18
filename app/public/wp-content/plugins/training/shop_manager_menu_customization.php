@@ -1,8 +1,8 @@
 <?php
 /*
 Plugin Name: Shop Manager Menu Customization
-Description: Customizes the admin menu for the shop_manager role to only show WooCommerce-related items and custom "Produktai" and "Užsakyti" menu items.
-Version: 1.0
+Description: Customizes the admin menu for the shop_manager role to only show WooCommerce orders and custom "Užsakyti" menu items. Redirects shop managers to the orders page upon login and hides specific admin notices.
+Version: 1.2
 Author: Bellatoscana
 */
 
@@ -22,7 +22,7 @@ function customize_shop_manager_menu()
     $menu = [];
     $submenu = [];
 
-    // Add WooCommerce menu items
+    // Add WooCommerce menu item for orders only
     if (current_user_can('manage_woocommerce')) {
         add_menu_page(
             __('WooCommerce', 'woocommerce'),
@@ -33,13 +33,8 @@ function customize_shop_manager_menu()
             'dashicons-cart',
             55
         );
-        // Add WooCommerce submenu items
+        // Add WooCommerce orders submenu item
         $submenu['woocommerce'][] = array(__('Orders', 'woocommerce'), 'manage_woocommerce', 'edit.php?post_type=shop_order');
-        $submenu['woocommerce'][] = array(__('Coupons', 'woocommerce'), 'manage_woocommerce', 'edit.php?post_type=shop_coupon');
-        $submenu['woocommerce'][] = array(__('Reports', 'woocommerce'), 'view_woocommerce_reports', 'admin.php?page=wc-reports');
-        $submenu['woocommerce'][] = array(__('Settings', 'woocommerce'), 'manage_woocommerce', 'admin.php?page=wc-settings');
-        $submenu['woocommerce'][] = array(__('Status', 'woocommerce'), 'manage_woocommerce', 'admin.php?page=wc-status');
-        $submenu['woocommerce'][] = array(__('Extensions', 'woocommerce'), 'manage_woocommerce', 'admin.php?page=wc-addons');
     }
 
     // Add custom "Užsakyti" menu item
@@ -52,23 +47,6 @@ function customize_shop_manager_menu()
         'dashicons-admin-generic',
         56
     );
-
-    // Add "Produktai" menu item with submenus
-    add_menu_page(
-        __('Produktai', 'woocommerce'),
-        __('Produktai', 'woocommerce'),
-        'edit_products',
-        'edit.php?post_type=product',
-        '',
-        'dashicons-archive',
-        57
-    );
-    $submenu['edit.php?post_type=product'][] = array(__('Visi produktai', 'woocommerce'), 'edit_products', 'edit.php?post_type=product');
-    $submenu['edit.php?post_type=product'][] = array(__('Pridėti naują', 'woocommerce'), 'edit_products', 'post-new.php?post_type=product');
-    $submenu['edit.php?post_type=product'][] = array(__('Kategorijos', 'woocommerce'), 'manage_product_terms', 'edit-tags.php?taxonomy=product_cat&post_type=product');
-    $submenu['edit.php?post_type=product'][] = array(__('Žymos', 'woocommerce'), 'manage_product_terms', 'edit-tags.php?taxonomy=product_tag&post_type=product');
-    $submenu['edit.php?post_type=product'][] = array(__('Požymiai', 'woocommerce'), 'edit_products', 'edit.php?post_type=product&page=product_attributes');
-    $submenu['edit.php?post_type=product'][] = array(__('Atsiliepimai', 'woocommerce'), 'edit_products', 'edit.php?post_type=product&page=product-reviews');
 }
 
 // Custom callback function for "Užsakyti" menu item
@@ -78,6 +56,35 @@ function custom_add_order_page()
     echo '<h1>Užsakyti</h1>';
     echo '<p>Custom page content for creating orders.</p>';
     echo '</div>';
+}
+
+// Redirect shop managers to the orders page upon login
+add_filter('login_redirect', 'redirect_shop_manager_after_login', 10, 3);
+
+function redirect_shop_manager_after_login($redirect_to, $request, $user)
+{
+    if (isset($user->roles) && is_array($user->roles) && in_array('shop_manager', $user->roles)) {
+        return admin_url('edit.php?post_type=shop_order');
+    }
+    return $redirect_to;
+}
+
+// Hide specific admin notices
+add_action('admin_notices', 'hide_specific_admin_notices', 100);
+
+function hide_specific_admin_notices()
+{
+?>
+    <style>
+        .notice,
+        .update-nag,
+        .updated,
+        .error,
+        .is-dismissible {
+            display: none !important;
+        }
+    </style>
+<?php
 }
 
 // Hook to check capabilities on plugin activation

@@ -1,0 +1,43 @@
+#special_order_container {
+    margin:20px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+#special_order_checkbox {
+    margin-right: 10px;
+}
+
+.vu_input-checkbox{
+    background-color: #80ced7 !important;
+}
+
+#special_order_container label {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+#special_order_fields {
+    margin-top: 10px;
+    display: none;
+}
+
+#special_order_fields p {
+    margin-bottom: 10px;
+}
+
+#special_order_fields label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: normal;
+}
+
+#special_order_fields input[type="text"],
+#special_order_fields input[type="file"] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}

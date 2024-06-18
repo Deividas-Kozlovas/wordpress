@@ -61,9 +61,7 @@ jQuery(document).ready(function($) {
 
             // Fetch and handle cart items
             fetchCartItems(function(cartItems) {
-                // Handle the cart items here
-                console.log('Cart Items:', cartItems); // For example, you can log them to the console
-                // You can process the cart items as needed here
+                console.log('Cart Items:', cartItems);
             });
 
             // Redirect to home page if on a product page
@@ -97,7 +95,7 @@ jQuery(document).ready(function($) {
 
         if (selectedLocation && timestamp && (currentTime - timestamp < hours24)) {
             setSelectedLocation(selectedLocation);
-            $('#pa_atsiemimo-vieta').prop('disabled', t0056b3rue); // Ensure it remains locked if already set
+            $('#pa_atsiemimo-vieta').prop('disabled', true); // Ensure it remains locked if already set
         } else {
             localStorage.removeItem('selectedLocation');
             localStorage.removeItem('locationTimestamp');
@@ -114,7 +112,6 @@ jQuery(document).ready(function($) {
             },
             success: function(response) {
                 if (response.success) {
-                    // Pass the cart items to the callback function
                     callback(response.data);
                 } else {
                     console.log('Failed to fetch cart items.');
