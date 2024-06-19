@@ -1,45 +1,17 @@
-[18-Jun-2024 17:24:06 UTC] Order not found: 7657
-[18-Jun-2024 17:26:09 UTC] Order not found: 7656
-[18-Jun-2024 17:27:10 UTC] No file URLs found for order item: 639
-[18-Jun-2024 17:27:10 UTC] No file URLs found for order item: 640
-[18-Jun-2024 17:27:10 UTC] No file URLs found for order item: 641
-[18-Jun-2024 17:27:21 UTC] No file URLs found for order item: 637
-[18-Jun-2024 17:27:21 UTC] No file URLs found for order item: 638
-[18-Jun-2024 17:28:26 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-2.jpg
-[18-Jun-2024 17:28:26 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-2.jpg
-[18-Jun-2024 17:28:26 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
-[18-Jun-2024 17:28:26 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
-[18-Jun-2024 17:28:26 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:28:26 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:28:26 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:28:26 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:32:35 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:32:35 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:32:35 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:32:35 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:33:10 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:33:10 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:33:10 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:33:10 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:33:10 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:33:10 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:33:10 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:33:10 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:33:37 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:33:37 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:33:37 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:33:37 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:33:37 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:33:37 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:33:37 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:33:37 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:34:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:34:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-4.jpg
-[18-Jun-2024 17:34:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:34:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7-2.jpg
-[18-Jun-2024 17:34:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:34:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
-[18-Jun-2024 17:34:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:34:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
-[18-Jun-2024 17:38:46 UTC] PHP Fatal error:  Cannot redeclare delete_special_order_images_on_cart_item_remove() (previously declared in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/special-order-plugin/special-order-plugin.php:165) in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/special-order-plugin/special-order-plugin.php on line 226
-[18-Jun-2024 17:40:47 UTC] PHP Fatal error:  Cannot redeclare delete_special_order_images_on_cart_item_remove() (previously declared in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/special-order-plugin/special-order-plugin.php:165) in /home/nomax/Local Sites/bakery/app/public/wp-content/plugins/special-order-plugin/special-order-plugin.php on line 226
+[19-Jun-2024 14:23:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-1.jpg
+[19-Jun-2024 14:23:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/Photocupcakes2-1.jpg
+[19-Jun-2024 14:23:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
+[19-Jun-2024 14:23:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
+[19-Jun-2024 14:23:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
+[19-Jun-2024 14:23:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
+[19-Jun-2024 14:23:08 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
+[19-Jun-2024 14:23:08 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
+[19-Jun-2024 14:43:06 UTC] Hook fired for order ID: 7680
+[19-Jun-2024 14:43:06 UTC] Order found: 7680
+[19-Jun-2024 14:43:06 UTC] File URLs found for order item: 683
+[19-Jun-2024 14:43:06 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
+[19-Jun-2024 14:43:06 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
+[19-Jun-2024 14:43:06 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
+[19-Jun-2024 14:43:06 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake4.jpg
+[19-Jun-2024 14:43:06 UTC] Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg
+[19-Jun-2024 14:43:06 UTC] Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/440876727_414718531451805_5176099992578202730_n.jpg

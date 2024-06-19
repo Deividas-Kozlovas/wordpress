@@ -25,11 +25,11 @@ function add_special_order_checkbox()
         </label>
         <div id="special_order_fields" style="display: none;">
             <p>
-                <label for="special_order_text">Papildoma informacija</label>z
+                <label for="special_order_text">Papildoma informacija</label>
                 <input type="text" id="special_order_text" name="special_order_text" class="form-control">
             </p>
             <p>
-                <label for="special_order_files">Pridėti nuotraukas (maks. 2MB kiekviena, iki 7)</label>
+                <label for="special_order_files">Pridėti maks 7 nuotraukas po 2MB kiekviena</label>
                 <input type="file" id="special_order_files" name="special_order_files[]" class="form-control" accept="image/*" multiple>
             </p>
         </div>
@@ -87,7 +87,7 @@ function display_special_order_fields($item_data, $cart_item)
     if (isset($cart_item['special_order_checkbox']) && $cart_item['special_order_checkbox']) {
         $item_data[] = array(
             'name' => __('Specialus uzsakymas', 'woocommerce'),
-            'value' => __('Taip', 'woocommerce'),
+            'value' => 'Taip',
         );
         if (isset($cart_item['special_order_text'])) {
             $item_data[] = array(
@@ -96,12 +96,13 @@ function display_special_order_fields($item_data, $cart_item)
             );
         }
         if (isset($cart_item['special_order_files'])) {
-            foreach ($cart_item['special_order_files'] as $file_url) {
-                $item_data[] = array(
-                    'name' => __('Pridėta nuotrauka', 'woocommerce'),
-                    'value' => '<a href="' . esc_url($file_url) . '" target="_blank">' . basename($file_url) . '</a>',
-                );
-            }
+            $file_links = array_map(function ($file_url) {
+                return '<a href="' . esc_url($file_url) . '" target="_blank">' . basename($file_url) . '</a>';
+            }, $cart_item['special_order_files']);
+            $item_data[] = array(
+                'name' => __('Pridėtos nuotraukos', 'woocommerce'),
+                'value' => implode(', ', $file_links),
+            );
         }
     }
     return $item_data;
@@ -112,23 +113,31 @@ add_action('woocommerce_checkout_create_order_line_item', 'save_special_order_fi
 function save_special_order_fields_to_order($item, $cart_item_key, $values, $order)
 {
     if (isset($values['special_order_checkbox'])) {
-        $item->add_meta_data(__('Specialus uzsakymas', 'woocommerce'), __('Taip', 'woocommerce'));
+        $item->add_meta_data(__('Specialus uzsakymas', 'woocommerce'), 'Taip');
         if (isset($values['special_order_text'])) {
             $item->add_meta_data(__('Papildoma informacija', 'woocommerce'), $values['special_order_text']);
         }
         if (isset($values['special_order_files'])) {
-            $item->add_meta_data('_special_order_files', $values['special_order_files']);
+            $file_links = array_map(function ($file_url) {
+                return '<a href="' . esc_url($file_url) . '" target="_blank">' . basename($file_url) . '</a>';
+            }, $values['special_order_files']);
+            $item->add_meta_data(__('Pridėtos nuotraukos', 'woocommerce'), implode(', ', $file_links));
         }
     }
 }
 
 // Delete special order image files before order is permanently deleted
-add_action('woocommerce_before_delete_order', 'delete_special_order_images', 10, 1);
+add_action('before_delete_post', 'delete_special_order_images', 10, 1);
 
-function delete_special_order_images($order_id)
+function delete_special_order_images($post_id)
 {
+    // Check if the post being deleted is an order
+    if (get_post_type($post_id) !== 'shop_order') {
+        return;
+    }
+
     // Get the order object
-    $order = wc_get_order($order_id);
+    $order = wc_get_order($post_id);
     if ($order) {
         // Iterate through each order item
         foreach ($order->get_items() as $item_id => $item) {
@@ -138,23 +147,12 @@ function delete_special_order_images($order_id)
                 foreach ((array) $file_urls as $file_url) {
                     // Convert URL to server file path
                     $file_path = str_replace(wp_upload_dir()['baseurl'], wp_upload_dir()['basedir'], $file_url);
-                    error_log('Attempting to delete file: ' . $file_path); // Debug log
                     if (file_exists($file_path)) {
-                        if (unlink($file_path)) {
-                            error_log('Deleted file: ' . $file_path); // Debug log
-                        } else {
-                            error_log('Failed to delete file: ' . $file_path); // Debug log
-                        }
-                    } else {
-                        error_log('File not found: ' . $file_path); // Debug log
+                        unlink($file_path);
                     }
                 }
-            } else {
-                error_log('No file URLs found for order item: ' . $item_id); // Debug log
             }
         }
-    } else {
-        error_log('Order not found: ' . $order_id); // Debug log
     }
 }
 
@@ -173,22 +171,11 @@ function delete_special_order_images_on_cart_item_remove($cart_item_key)
             foreach ($cart_item['special_order_files'] as $file_url) {
                 // Convert URL to server file path
                 $file_path = str_replace(wp_upload_dir()['baseurl'], wp_upload_dir()['basedir'], $file_url);
-                error_log('Attempting to delete file: ' . $file_path); // Debug log
                 if (file_exists($file_path)) {
-                    if (unlink($file_path)) {
-                        error_log('Deleted file: ' . $file_path); // Debug log
-                    } else {
-                        error_log('Failed to delete file: ' . $file_path); // Debug log
-                    }
-                } else {
-                    error_log('File not found: ' . $file_path); // Debug log
+                    unlink($file_path);
                 }
             }
-        } else {
-            error_log('No special order files found in cart item: ' . $cart_item_key); // Debug log
         }
-    } else {
-        error_log('Cart item not found: ' . $cart_item_key); // Debug log
     }
 }
 
@@ -203,19 +190,10 @@ function delete_special_order_images_on_cart_emptied()
             foreach ($cart_item['special_order_files'] as $file_url) {
                 // Convert URL to server file path
                 $file_path = str_replace(wp_upload_dir()['baseurl'], wp_upload_dir()['basedir'], $file_url);
-                error_log('Attempting to delete file: ' . $file_path); // Debug log
                 if (file_exists($file_path)) {
-                    if (unlink($file_path)) {
-                        error_log('Deleted file: ' . $file_path); // Debug log
-                    } else {
-                        error_log('Failed to delete file: ' . $file_path); // Debug log
-                    }
-                } else {
-                    error_log('File not found: ' . $file_path); // Debug log
+                    unlink($file_path);
                 }
             }
-        } else {
-            error_log('No special order files found in cart item: ' . $cart_item_key); // Debug log
         }
     }
 }
