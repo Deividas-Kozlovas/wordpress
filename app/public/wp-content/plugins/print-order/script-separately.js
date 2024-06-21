@@ -21,7 +21,7 @@ jQuery(document).ready(function($) {
                 if (response.success) {
                     console.log("Response data:", response.data); // Debugging full response data
 
-                    let newWindowContent = '<html><head><title>Print Orders</title><style>body { font-family: Arial, sans-serif; padding: 20px; } table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } th, td { border: 1px solid #000; padding: 8px; text-align: left; } th { background-color: #f2f2f2; } .order-section { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #000; }</style></head><body>';
+                    let newWindowContent = '<html><head><title>Print Orders</title><style>body { font-family: Arial, sans-serif; padding: 20px; } table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } th, td { border: 1px solid #000; padding: 8px; text-align: left; } th { background-color: #f2f2f2; } .order-section { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #000; } img { display: inline; -webkit-user-select: none; margin: 5px; cursor: zoom-in; background-color: hsl(0, 0%, 90%); transition: background-color 300ms; }</style></head><body>';
                     
                     response.data.forEach(function(order) {
                         newWindowContent += '<div class="order-section">';
@@ -121,6 +121,26 @@ jQuery(document).ready(function($) {
 
                                 newWindowContent += '</tbody></table>';
                             }
+
+                            // Append special order details after the table
+                            order.items.forEach(function(item) {
+                                if (item.special_order_text || item.special_order_files) {
+                                    newWindowContent += '<div><strong>Specialus užsakymas: ID ' + item.name + '</strong></div>';
+                                    if (item.special_order_text) {
+                                        newWindowContent += '<div><strong>Papildoma informacija: </strong>' + item.special_order_text + '</div>';
+                                    }
+                                    if (item.special_order_files) {
+                                        newWindowContent += '<div><strong>Pridėtos nuotraukos: </strong><br>';
+                                        // Ensure special_order_files is an array
+                                        let fileLinks = Array.isArray(item.special_order_files) ? item.special_order_files : item.special_order_files.split(', ');
+                                        fileLinks.forEach(function(fileUrl) {
+                                            let cleanFileUrl = fileUrl.replace(/<a href="([^"]+)"[^>]*>[^<]+<\/a>/, '$1').trim();
+                                            newWindowContent += '<img style="display: inline; -webkit-user-select: none; margin: 5px; cursor: zoom-in; background-color: hsl(0, 0%, 90%); transition: background-color 300ms;" src="' + cleanFileUrl + '" width="200" height="200" alt="Pridėta nuotrauka">';
+                                        });
+                                        newWindowContent += '</div>';
+                                    }
+                                }
+                            });
                         } else {
                             console.log("Order items is not an array:", order.items);
                         }

@@ -108,7 +108,7 @@ function enqueue_spauzdinti_buttons_script($hook_suffix)
         wp_enqueue_style('jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
         wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '1.1', true);
-        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '4.6', true);
+        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '7.1', true);
         wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '4.3', true);
 
         wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.0', 'all');
@@ -239,6 +239,9 @@ function fetch_order_details_separately()
                 $size = $item->get_meta('pa_dydziai', true);
                 $location = $item->get_meta('pa_atsiemimo-vieta', true);
 
+                $special_order_text = $item->get_meta(__('Papildoma informacija', 'woocommerce'), true);
+                $special_order_files = $item->get_meta(__('Pridėtos nuotraukos', 'woocommerce'), true);
+
                 $order_item_data = array(
                     'name' => $item->get_name(),
                     'quantity' => $item->get_quantity(),
@@ -246,7 +249,9 @@ function fetch_order_details_separately()
                     'attributes' => array(
                         'size' => $size,
                         'location' => $location
-                    )
+                    ),
+                    'special_order_text' => $special_order_text,
+                    'special_order_files' => $special_order_files
                 );
 
                 $order_data['items'][] = $order_item_data;
@@ -259,6 +264,7 @@ function fetch_order_details_separately()
     $response['success'] = true;
     wp_send_json($response);
 }
+
 
 
 

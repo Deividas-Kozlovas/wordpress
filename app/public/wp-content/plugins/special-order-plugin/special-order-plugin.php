@@ -1,7 +1,7 @@
 <?php
 /*
 Plugin Name: Special Order Plugin
-Description: Adds a "Specialus uzsakymas" checkbox to the product page with additional fields for up to 7 images.
+Description: Adds a "Specialus užsakymas" checkbox to the product page with additional fields for up to 7 images.
 Version: 1.3
 Author: Bellatoscana
 */
@@ -21,7 +21,7 @@ function add_special_order_checkbox()
 ?>
     <div id="special_order_container">
         <label for="special_order_checkbox">
-            <input type="checkbox" id="special_order_checkbox" name="special_order_checkbox"> Specialus uzsakymas
+            <input type="checkbox" id="special_order_checkbox" name="special_order_checkbox"> Specialus užsakymas
         </label>
         <div id="special_order_fields" style="display: none;">
             <p>
@@ -86,7 +86,7 @@ function display_special_order_fields($item_data, $cart_item)
 {
     if (isset($cart_item['special_order_checkbox']) && $cart_item['special_order_checkbox']) {
         $item_data[] = array(
-            'name' => __('Specialus uzsakymas', 'woocommerce'),
+            'name' => __('Specialus užsakymas', 'woocommerce'),
             'value' => 'Taip',
         );
         if (isset($cart_item['special_order_text'])) {
@@ -113,7 +113,7 @@ add_action('woocommerce_checkout_create_order_line_item', 'save_special_order_fi
 function save_special_order_fields_to_order($item, $cart_item_key, $values, $order)
 {
     if (isset($values['special_order_checkbox'])) {
-        $item->add_meta_data(__('Specialus uzsakymas', 'woocommerce'), 'Taip');
+        $item->add_meta_data(__('Specialus užsakymas', 'woocommerce'), 'Taip');
         if (isset($values['special_order_text'])) {
             $item->add_meta_data(__('Papildoma informacija', 'woocommerce'), $values['special_order_text']);
         }

@@ -83,7 +83,6 @@ function populate_location_column($column_name, $post_id)
     }
 }
 
-// Populate the "Kategorija" (Category) column
 add_action('manage_shop_order_posts_custom_column', 'populate_category_column', 10, 2);
 function populate_category_column($column_name, $post_id)
 {
@@ -97,7 +96,7 @@ function populate_category_column($column_name, $post_id)
             $product_categories = get_the_terms($product_id, 'product_cat');
             if (!empty($product_categories)) {
                 foreach ($product_categories as $category) {
-                    if ($category->parent != 0) {
+                    if ($category->name !== 'Parduotuvėms') {
                         $categories[] = $category->name;
                     }
                 }
@@ -108,6 +107,7 @@ function populate_category_column($column_name, $post_id)
         echo !empty($categories) ? implode(', ', $categories) : '-';
     }
 }
+
 
 // Populate the "Užsakyta" (Date) column
 add_action('manage_shop_order_posts_custom_column', 'populate_date_column', 10, 2);
