@@ -28,6 +28,9 @@ jQuery(document).ready(function($) {
                         newWindowContent += '<div><strong>Vaidmuo: </strong>' + order.user_role + '</div>'; // Add user role here
                         newWindowContent += '<div><strong>Užsakymo ID: </strong>' + order.id + '</div>';
                         newWindowContent += '<div><strong>Data: </strong>' + order.date + '</div>';
+                        if (order.order_date_meta) {
+                            newWindowContent += '<div><strong>Pagaminti iki: </strong>' + order.order_date_meta + '</div>';
+                        }
                         if (order.customer_name && order.customer_name.trim() !== "") {
                             newWindowContent += '<div><strong>Vardas: </strong>' + order.customer_name + '</div>';
                         }
@@ -135,7 +138,7 @@ jQuery(document).ready(function($) {
                                         let fileLinks = Array.isArray(item.special_order_files) ? item.special_order_files : item.special_order_files.split(', ');
                                         fileLinks.forEach(function(fileUrl) {
                                             let cleanFileUrl = fileUrl.replace(/<a href="([^"]+)"[^>]*>[^<]+<\/a>/, '$1').trim();
-                                            newWindowContent += '<img style="display: inline; -webkit-user-select: none; margin: 5px; cursor: zoom-in; background-color: hsl(0, 0%, 90%); transition: background-color 300ms;" src="' + cleanFileUrl + '" width="200" height="200" alt="Pridėta nuotrauka">';
+                                            newWindowContent += '<a href="' + cleanFileUrl + '" target="_blank"><img class="zoomable-image" style="display: inline; -webkit-user-select: none; margin: 5px; cursor: zoom-in; background-color: hsl(0, 0%, 90%); transition: background-color 300ms;" src="' + cleanFileUrl + '" width="200" height="200" alt="Pridėta nuotrauka"></a>';
                                         });
                                         newWindowContent += '</div>';
                                     }
