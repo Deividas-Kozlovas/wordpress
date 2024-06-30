@@ -6,23 +6,11 @@ document.addEventListener('DOMContentLoaded', function () {
         let totalQty = 0;
         let totalCost = 0;
 
-        // Store current quantities
-        const quantities = {};
-        table.querySelectorAll('tr[data-product-id]').forEach(row => {
-            const productId = row.getAttribute('data-product-id');
-            quantities[productId] = [];
-            row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]').forEach((input, index) => {
-                quantities[productId][index] = input.value;
-            });
-        });
-
         table.querySelectorAll('tr[data-product-id]').forEach(row => {
             const productId = row.getAttribute('data-product-id');
             const sizeSelect = row.querySelector('.product-size');
             const quantityInputs = row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]');
             const stockStatusCell = row.querySelector('.stock-status');
-            const basePriceCell = row.querySelector('.product-base-price');
-            const totalPriceCell = row.querySelector('.product-total-price');
 
             const selectedSizeSlug = sizeSelect ? sizeSelect.value : null;
             const selectedLocationSlug = locationSelect ? locationSelect.value : null;
@@ -50,66 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 stockStatusCell.textContent = 'Nebeturime';
             }
 
-            if (basePriceCell && totalPriceCell) {
-                const basePrice = (selectedSizeSlug && selectedLocationSlug && isPriceAvailable)
-                                ? parseFloat(sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug])
-                                : (selectedLocationSlug && isPriceAvailable)
-                                ? parseFloat(sizeLocationPrice[productId][selectedLocationSlug])
-                                : 'Unavailable';
-
-                if (basePrice !== 'Unavailable') {
-                    basePriceCell.textContent = basePrice.toFixed(2) + ' €';
-                    let rowTotalQty = 0;
-                    let rowTotalPrice = 0;
-                    quantityInputs.forEach(quantityInput => {
-                        const quantity = parseInt(quantityInput.value) || 0;
-                        rowTotalQty += quantity;
-                        rowTotalPrice += basePrice * quantity;
-                    });
-                    totalPriceCell.textContent = rowTotalQty > 0 ? rowTotalPrice.toFixed(2) + ' €' : '0 €';
-                    totalQty += rowTotalQty;
-                    totalCost += rowTotalPrice;
-                } else {
-                    basePriceCell.textContent = 'Unavailable';
-                    totalPriceCell.textContent = 'Unavailable';
-                }
-            }
-
-            if (sizeSelect) {
-                let existingSizeInput = row.querySelector('input[name="selected_attributes[' + productId + '][size][]"]');
-                if (existingSizeInput) {
-                    existingSizeInput.value = selectedSizeSlug;
-                } else {
-                    const sizeInput = document.createElement('input');
-                    sizeInput.type = 'hidden';
-                    sizeInput.name = 'selected_attributes[' + productId + '][size][]';
-                    sizeInput.value = selectedSizeSlug;
-                    row.appendChild(sizeInput);
-                }
-            }
-
-            let existingLocationInput = row.querySelector('input[name="selected_attributes[' + productId + '][location][]"]');
-            if (existingLocationInput) {
-                existingLocationInput.value = selectedLocationSlug;
-            } else {
-                const locationInput = document.createElement('input');
-                locationInput.type = 'hidden';
-                locationInput.name = 'selected_attributes[' + productId + '][location][]';
-                locationInput.value = selectedLocationSlug;
-                row.appendChild(locationInput);
-            }
-        });
-
-        // Restore previous quantities
-        table.querySelectorAll('tr[data-product-id]').forEach(row => {
-            const productId = row.getAttribute('data-product-id');
-            if (quantities[productId]) {
-                row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]').forEach((input, index) => {
-                    if (quantities[productId][index] !== undefined) {
-                        input.value = quantities[productId][index];
-                    }
-                });
-            }
+            quantityInputs.forEach(quantityInput => {
+                const quantity = parseInt(quantityInput.value) || 0;
+                totalQty += quantity;
+                totalCost += (isPriceAvailable ? sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug] * quantity : 0);
+            });
         });
 
         document.getElementById('total-quantity').textContent = totalQty;
@@ -140,11 +73,13 @@ document.addEventListener('DOMContentLoaded', function () {
             if (cloneCount < maxClones) {
                 const clonedRow = productRow.cloneNode(true);
 
+                // Reset the quantity input in the cloned row
                 const quantityInput = clonedRow.querySelector('input[type=number]');
                 if (quantityInput) {
                     quantityInput.value = 0;
                 }
 
+                // Replace the add button with a remove button in the cloned row
                 const minusButton = document.createElement('button');
                 minusButton.classList.add('remove-product');
                 minusButton.textContent = '-';

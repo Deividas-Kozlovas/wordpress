@@ -146,7 +146,7 @@ function display_order_page_content()
         }
         echo '</td>';
 
-        echo '<td class="stock-status">Nebeturime</td>'; // Show directly as "Nebeturime"
+        echo '<td class="stock-status"><input type="number" name="quantity[' . $product->get_id() . '][]" min="0" value="0" style="width: 60px;"></td>';
         // Only add "Add" button if 'pa_dydziai' attribute exists
         if ($has_pa_dydziai) {
             echo '<td><button type="button" class="add-product" data-product-id="' . $product->get_id() . '">Pridėti</button></td>';
@@ -162,7 +162,7 @@ function display_order_page_content()
     echo '</div>';
 
     wp_enqueue_script('search', plugins_url('search.js', __FILE__), array(), '1.3', true);
-    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array(), '1.3', true);
+    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array(), '3.1', true);
     echo '<script type="text/javascript">
     var sizeLocationPrice = ' . json_encode($size_location_price) . ';
     var stockStatus = ' . json_encode($stock_status) . ';
