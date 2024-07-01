@@ -12,28 +12,24 @@ document.addEventListener('DOMContentLoaded', function () {
             const quantityInputs = row.querySelectorAll('input[type="number"][name^="quantity[' + productId + ']"]');
             const stockStatusCell = row.querySelector('.stock-status');
 
-            const selectedSizeSlug = sizeSelect ? sizeSelect.value : null;
-            const selectedLocationSlug = locationSelect ? locationSelect.value : null;
+            const selectedSizeSlug = sizeSelect ? sizeSelect.value : '';
+            const selectedLocationSlug = locationSelect ? locationSelect.value : '';
 
             let isPriceAvailable = false;
             let isInStock = false;
 
-            if (selectedSizeSlug && selectedLocationSlug) {
-                isPriceAvailable = sizeLocationPrice[productId] &&
-                                   sizeLocationPrice[productId][selectedSizeSlug] &&
-                                   sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug];
-                isInStock = stockStatus[productId] &&
-                            stockStatus[productId][selectedSizeSlug] &&
-                            stockStatus[productId][selectedSizeSlug][selectedLocationSlug];
-            } else if (selectedLocationSlug) {
-                isPriceAvailable = sizeLocationPrice[productId][""] &&
-                                   sizeLocationPrice[productId][""][selectedLocationSlug] !== undefined;
-                isInStock = stockStatus[productId][""] &&
-                            stockStatus[productId][""][selectedLocationSlug] !== undefined;
+            if (sizeLocationPrice[productId] && sizeLocationPrice[productId][selectedSizeSlug]) {
+                isPriceAvailable = sizeLocationPrice[productId][selectedSizeSlug][selectedLocationSlug] !== undefined;
+                isInStock = stockStatus[productId][selectedSizeSlug][selectedLocationSlug] !== undefined;
+            } else if (sizeLocationPrice[productId]) {
+                isPriceAvailable = sizeLocationPrice[productId][''][selectedLocationSlug] !== undefined;
+                isInStock = stockStatus[productId][''][selectedLocationSlug] !== undefined;
             }
 
             if (isInStock && isPriceAvailable) {
-                stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
+                if (!stockStatusCell.querySelector('input[type="number"]')) {
+                    stockStatusCell.innerHTML = '<input type="number" name="quantity[' + productId + '][]" min="0" value="0" style="width: 60px;">';
+                }
             } else {
                 stockStatusCell.textContent = 'Nebeturime';
             }
@@ -67,8 +63,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
             const productId = target.getAttribute('data-product-id');
             const productRow = target.closest('tr');
-            const maxClones = parseInt(productRow.getAttribute('data-max-clones'), 10) || 0;
             let cloneCount = parseInt(productRow.getAttribute('data-clone-count'), 10) || 0;
+            const maxClones = parseInt(productRow.getAttribute('data-max-clones'), 10) || 0;
 
             if (cloneCount < maxClones) {
                 const clonedRow = productRow.cloneNode(true);
@@ -77,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const quantityInput = clonedRow.querySelector('input[type=number]');
                 if (quantityInput) {
                     quantityInput.value = 0;
+                    quantityInput.setAttribute('data-original-value', 0);
                 }
 
                 // Replace the add button with a remove button in the cloned row
@@ -85,7 +82,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 minusButton.textContent = '-';
                 minusButton.addEventListener('click', function() {
                     clonedRow.remove();
-                    productRow.setAttribute('data-clone-count', --cloneCount);
+                    cloneCount--;
+                    productRow.setAttribute('data-clone-count', cloneCount);
                     updatePricesAndStockStatus();
                 });
 
@@ -95,11 +93,25 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
 
                 productRow.parentNode.insertBefore(clonedRow, productRow.nextSibling);
-                productRow.setAttribute('data-clone-count', ++cloneCount);
+                cloneCount++;
+                productRow.setAttribute('data-clone-count', cloneCount);
+
                 updatePricesAndStockStatus();
             } else {
                 alert('Daugiau pasirinkimų nėra.');
             }
+        } else if (target.classList.contains('remove-product')) {
+            event.preventDefault();
+
+            const productRow = target.closest('tr');
+            productRow.remove();
+
+            const originalRow = table.querySelector(`tr[data-product-id="${productRow.getAttribute('data-product-id')}"]`);
+            let cloneCount = parseInt(originalRow.getAttribute('data-clone-count'), 10) || 0;
+            cloneCount--;
+            originalRow.setAttribute('data-clone-count', cloneCount);
+
+            updatePricesAndStockStatus();
         }
     });
 

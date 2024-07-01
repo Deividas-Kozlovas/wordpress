@@ -162,7 +162,7 @@ function display_order_page_content()
     echo '</div>';
 
     wp_enqueue_script('search', plugins_url('search.js', __FILE__), array(), '1.3', true);
-    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array(), '3.1', true);
+    wp_enqueue_script('dynamic-pricing', plugins_url('dynamic-pricing.js', __FILE__), array(), '3.5', true);
     echo '<script type="text/javascript">
     var sizeLocationPrice = ' . json_encode($size_location_price) . ';
     var stockStatus = ' . json_encode($stock_status) . ';
@@ -251,7 +251,7 @@ function process_order()
         $order->update_meta_data('_order_date', $order_date);
     }
 
-    $order->set_total($order_total);
+    // $order->set_total($order_total);
     $order->update_status('wc-processing', 'Order status changed to vykdomas.');
     $order->save();
 
