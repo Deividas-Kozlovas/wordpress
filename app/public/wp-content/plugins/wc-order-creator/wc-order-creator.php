@@ -167,7 +167,22 @@ function display_order_page_content()
     var sizeLocationPrice = ' . json_encode($size_location_price) . ';
     var stockStatus = ' . json_encode($stock_status) . ';
     </script>';
+
+    // JavaScript for displaying alerts based on order status
+    echo '<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const orderStatus = urlParams.get("order_status");
+
+        if (orderStatus === "success") {
+            alert("Užsakymas priimtas");
+        } else if (orderStatus === "error") {
+            alert("Įvyko klaida darant užsakymą, bandykite dar kartą vėliau.");
+        }
+    });
+    </script>';
 }
+
 
 function find_matching_variation_id($product, $size, $location)
 {
@@ -189,9 +204,12 @@ function process_order()
 
     $order = wc_create_order();
 
-    // Get current user ID
+    // Get current user info
     $current_user = wp_get_current_user();
     $user_id = $current_user->ID;
+    $user_name = $current_user->display_name;
+    $user_email = $current_user->user_email;
+    $user_roles = $current_user->roles; // Fetch user roles
 
     $order_total = 0;
 
@@ -239,7 +257,18 @@ function process_order()
         }
     }
 
-    // Add user ID to order meta data
+    // Save customer details to WooCommerce billing fields
+    $order->set_billing_first_name($current_user->first_name);
+    $order->set_billing_last_name($current_user->last_name);
+    $order->set_billing_email($user_email);
+
+    // Save the user's phone number if available (use the default WooCommerce field)
+    if (!empty($current_user->billing_phone)) {
+        $order->set_billing_phone($current_user->billing_phone);
+    }
+
+    // Save user roles and user ID in order meta data
+    $order->update_meta_data('_user_roles', implode(', ', $user_roles));
     $order->update_meta_data('_order_made_by_user_id', $user_id);
     $order->save_meta_data(); // Save meta data explicitly
 
@@ -251,10 +280,11 @@ function process_order()
         $order->update_meta_data('_order_date', $order_date);
     }
 
-    // $order->set_total($order_total);
+    // Update the order status and save it
     $order->update_status('wc-processing', 'Order status changed to vykdomas.');
     $order->save();
 
-    wp_redirect(admin_url('admin.php?page=add-order'));
+    // Redirect with success status
+    wp_redirect(admin_url('admin.php?page=add-order&order_status=success'));
     exit;
 }

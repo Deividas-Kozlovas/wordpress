@@ -3,7 +3,7 @@
 /*
 Plugin Name: Print from WooCommerce Orders with search
 Description: Print selected orders from WooCommerce separately or collectively and change their status to "gaminama", Orders search.
-Version: 1.0
+Version: 1.1
 Author: Bellatoscana
 */
 
@@ -107,7 +107,7 @@ function enqueue_spauzdinti_buttons_script($hook_suffix)
         wp_enqueue_script('jquery-ui-datepicker');
         wp_enqueue_style('jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
-        wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '2.5', true);
+        wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '2.7', true);
         wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '7.4', true);
         wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '4.3', true);
 

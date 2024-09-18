@@ -1,9 +1,0 @@
-2024-06-19T16:54:02+00:00 DEBUG delete_special_order_images hook fired for order ID: 7681
-2024-06-19T16:54:02+00:00 DEBUG Order found for ID: 7681
-2024-06-19T16:54:02+00:00 DEBUG Processing item ID: 684
-2024-06-19T16:54:02+00:00 DEBUG File URLs found for item ID: 684 - URLs: Array
-(
-    [0] => http://bakery.local/wp-content/uploads/2024/06/PhotoCake7.jpg
-)
-2024-06-19T16:54:02+00:00 DEBUG Attempting to delete file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg
-2024-06-19T16:54:02+00:00 DEBUG Deleted file: /home/nomax/Local Sites/bakery/app/public/wp-content/uploads/2024/06/PhotoCake7.jpg

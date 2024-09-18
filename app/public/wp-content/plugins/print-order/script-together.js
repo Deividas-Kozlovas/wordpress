@@ -143,12 +143,12 @@ jQuery(document).ready(function($) {
                             totalSizeQuantity.push(sizeTotals[size] + ' ' + size.toUpperCase());
                         }
 
-                        if (totalSizeQuantity.length > 0) {
-                            normalOrdersContent += '<tr>';
-                            normalOrdersContent += '<td><strong>Dydžių suma</strong></td>';
-                            normalOrdersContent += '<td><strong>' + totalSizeQuantity.join(', ') + '</strong></td>';
-                            normalOrdersContent += '</tr>';
-                        }
+                        // if (totalSizeQuantity.length > 0) {
+                        //     normalOrdersContent += '<tr>';
+                        //     normalOrdersContent += '<td><strong>Dydžių suma</strong></td>';
+                        //     normalOrdersContent += '<td><strong>' + totalSizeQuantity.join(', ') + '</strong></td>';
+                        //     normalOrdersContent += '</tr>';
+                        // }
 
                         normalOrdersContent += '</tbody></table>';
                     }
