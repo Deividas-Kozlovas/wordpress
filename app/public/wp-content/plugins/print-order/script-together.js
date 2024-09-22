@@ -22,7 +22,21 @@ jQuery(document).ready(function($) {
                     let categorizedOrders = {}; 
                     let orderDates = [];
                     let specialOrdersContent = '';
-                    let normalOrdersContent = '<html><head><title>Print Orders</title><style>body { font-family: Arial, sans-serif; padding: 20px; } table { width: 100%; border-collapse: collapse; margin-bottom: 20px; } th, td { border: 1px solid #000; padding: 8px; text-align: left; } th { background-color: #f2f2f2; } .order-section { margin-bottom: 40px; padding-bottom: 20px; border-bottom: 2px solid #000; }</style></head><body>';
+                    let normalOrdersContent = `
+                        <html>
+                        <head>
+                            <title>Print Orders</title>
+                            <style>
+                                body { font-family: Arial, sans-serif; padding: 20px; }
+                                table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+                                th, td { border: 1px solid #000; padding: 4px; text-align: left; line-height: 1; }
+                                th { background-color: #f2f2f2; }
+                                .order-section { margin-bottom: 0; padding-bottom: 0; border-bottom: 2px solid #000; }
+                                h2 { margin: 5px 0 0 0; }
+                                img { display: inline; -webkit-user-select: none; margin: 5px; cursor: zoom-in; background-color: hsl(0, 0%, 90%); transition: background-color 300ms; }
+                            </style>
+                        </head>
+                        <body>`;
 
                     response.data.forEach(function(order) {
                         orderDates.push(order.date); // Collect order dates
@@ -105,7 +119,11 @@ jQuery(document).ready(function($) {
                         });
                     });
 
-                    for (let category in categorizedOrders) {
+                    // Sort categories alphabetically using localeCompare for correct alphabetical sorting
+                    let sortedCategories = Object.keys(categorizedOrders).sort((a, b) => a.localeCompare(b, 'lt', { sensitivity: 'base' }));
+
+                    // Render the sorted categories and their items
+                    sortedCategories.forEach(function(category) {
                         normalOrdersContent += '<h2>' + category + '</h2>';
                         normalOrdersContent += '<table class="csv-order-table">';
                         normalOrdersContent += '<thead><tr><th>Prekės</th><th>Kiekis</th></tr></thead>';
@@ -113,7 +131,10 @@ jQuery(document).ready(function($) {
 
                         let sizeTotals = {};
 
-                        for (let item_name in categorizedOrders[category]) {
+                        // Sort product names alphabetically using localeCompare
+                        let sortedProductNames = Object.keys(categorizedOrders[category]).sort((a, b) => a.localeCompare(b, 'lt', { sensitivity: 'base' }));
+
+                        sortedProductNames.forEach(function(item_name) {
                             let sizes = categorizedOrders[category][item_name];
                             let sizeQuantity = [];
                             let totalQuantity = 0;
@@ -121,7 +142,7 @@ jQuery(document).ready(function($) {
                             for (let size in sizes) {
                                 let upperSize = size.toUpperCase();
                                 totalQuantity += sizes[size];
-                                if (upperSize && /[A-Z]/.test(upperSize)) { // Check if size is not empty and contains letters
+                                if (upperSize && /[A-Z]/.test(upperSize)) {
                                     sizeQuantity.push(sizes[size] + ' ' + upperSize);
                                     if (!sizeTotals[upperSize]) {
                                         sizeTotals[upperSize] = 0;
@@ -136,22 +157,15 @@ jQuery(document).ready(function($) {
                             normalOrdersContent += '<td>' + item_name + '</td>';
                             normalOrdersContent += '<td>' + sizeQuantity.join(', ') + '</td>';
                             normalOrdersContent += '</tr>';
-                        }
+                        });
 
                         let totalSizeQuantity = [];
                         for (let size in sizeTotals) {
                             totalSizeQuantity.push(sizeTotals[size] + ' ' + size.toUpperCase());
                         }
 
-                        // if (totalSizeQuantity.length > 0) {
-                        //     normalOrdersContent += '<tr>';
-                        //     normalOrdersContent += '<td><strong>Dydžių suma</strong></td>';
-                        //     normalOrdersContent += '<td><strong>' + totalSizeQuantity.join(', ') + '</strong></td>';
-                        //     normalOrdersContent += '</tr>';
-                        // }
-
                         normalOrdersContent += '</tbody></table>';
-                    }
+                    });
 
                     normalOrdersContent += specialOrdersContent;
                     normalOrdersContent += '</body></html>';
