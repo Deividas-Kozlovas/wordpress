@@ -107,8 +107,8 @@ function enqueue_spauzdinti_buttons_script($hook_suffix)
         wp_enqueue_script('jquery-ui-datepicker');
         wp_enqueue_style('jquery-ui-css', '//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
 
-        wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '3.3', true);
-        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '7.9', true);
+        wp_enqueue_script('custom-script-together', plugin_dir_url(__FILE__) . 'script-together.js', array('jquery'), '4.0', true);
+        wp_enqueue_script('custom-script-separately', plugin_dir_url(__FILE__) . 'script-separately.js', array('jquery'), '9.4', true);
         wp_enqueue_script('custom-script-search', plugin_dir_url(__FILE__) . 'script-search.js', array('jquery', 'jquery-ui-datepicker'), '4.3', true);
 
         wp_enqueue_style('custom-style', plugin_dir_url(__FILE__) . 'style.css', array(), '1.0', 'all');

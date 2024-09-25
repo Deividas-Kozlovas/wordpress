@@ -128,44 +128,48 @@ jQuery(document).ready(function($) {
                         normalOrdersContent += '<table class="csv-order-table">';
                         normalOrdersContent += '<thead><tr><th>Prekės</th><th>Kiekis</th></tr></thead>';
                         normalOrdersContent += '<tbody>';
-
+                    
                         let sizeTotals = {};
-
+                    
                         // Sort product names alphabetically using localeCompare
                         let sortedProductNames = Object.keys(categorizedOrders[category]).sort((a, b) => a.localeCompare(b, 'lt', { sensitivity: 'base' }));
-
+                    
                         sortedProductNames.forEach(function(item_name) {
                             let sizes = categorizedOrders[category][item_name];
                             let sizeQuantity = [];
                             let totalQuantity = 0;
-
+                    
                             for (let size in sizes) {
-                                let upperSize = size.toUpperCase();
-                                totalQuantity += sizes[size];
-                                if (upperSize && /[A-Z]/.test(upperSize)) {
-                                    sizeQuantity.push(sizes[size] + ' ' + upperSize);
-                                    if (!sizeTotals[upperSize]) {
-                                        sizeTotals[upperSize] = 0;
-                                    }
-                                    sizeTotals[upperSize] += sizes[size];
-                                } else {
-                                    sizeQuantity.push(sizes[size]); // Add quantity without size
+                                let quantity = sizes[size];
+                                totalQuantity += quantity; // Add to the total quantity
+                                
+                                // Check if size is numeric or contains hyphen
+                                if (/^\d+(-\d+)?$/.test(size)) {
+                                    // Numeric size (like 0-5)
+                                    sizeQuantity.push(quantity + ' x ' + size); // Format as '1 x 0-5'
+                                } else if (size.match(/[A-Z]/)) {
+                                    // Alphabetic size (like S)
+                                    sizeQuantity.push(quantity + ' x ' + size); // Format as '1 x S'
                                 }
                             }
-
+                    
+                            // Add the row to the normal orders content
                             normalOrdersContent += '<tr>';
                             normalOrdersContent += '<td>' + item_name + '</td>';
-                            normalOrdersContent += '<td>' + sizeQuantity.join(', ') + '</td>';
+                            
+                            // If there are sizes, display them; otherwise, display total quantity
+                            if (sizeQuantity.length > 0) {
+                                normalOrdersContent += '<td>' + sizeQuantity.join(', ') + '</td>';
+                            } else {
+                                normalOrdersContent += '<td>' + totalQuantity + '</td>'; // No size info, just total quantity
+                            }
+                    
                             normalOrdersContent += '</tr>';
                         });
-
-                        let totalSizeQuantity = [];
-                        for (let size in sizeTotals) {
-                            totalSizeQuantity.push(sizeTotals[size] + ' ' + size.toUpperCase());
-                        }
-
+                    
                         normalOrdersContent += '</tbody></table>';
                     });
+                    
 
                     normalOrdersContent += specialOrdersContent;
                     normalOrdersContent += '</body></html>';

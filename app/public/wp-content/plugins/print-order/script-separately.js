@@ -102,25 +102,45 @@ jQuery(document).ready(function($) {
 
                                 let sortedProductNames = Object.keys(categorizedItems[category]).sort((a, b) => a.localeCompare(b, 'lt', { sensitivity: 'base' }));
 
-                                sortedProductNames.forEach(function(itemName) {
-                                    let sizeTotals = [];
-                                    for (let size in categorizedItems[category][itemName]) {
-                                        if (!totalSizeQuantity[size] && size) {
-                                            totalSizeQuantity[size] = 0;
-                                        }
-                                        if (size) {
-                                            totalSizeQuantity[size] += categorizedItems[category][itemName][size];
-                                            sizeTotals.push(categorizedItems[category][itemName][size] + ' ' + size.toUpperCase());
-                                        } else {
-                                            sizeTotals.push(categorizedItems[category][itemName][size]);
-                                        }
-                                    }
+                        // Iterate through sorted product names for each category
+                        sortedProductNames.forEach(function(itemName) {
+                            let sizeTotals = [];
+                            let totalQuantity = 0; // Track total quantity of the product
+                            let hasSize = false; // Flag to check if the item has sizes
 
-                                    newWindowContent += '<tr>';
-                                    newWindowContent += '<td>' + itemName + '</td>';
-                                    newWindowContent += '<td>' + sizeTotals.join(', ') + '</td>';
-                                    newWindowContent += '</tr>';
-                                });
+                            for (let size in categorizedItems[category][itemName]) {
+                                // Get the quantity for this specific size
+                                let quantity = categorizedItems[category][itemName][size] || 0; // Default to 0 if undefined
+                                
+                                if (quantity > 0) {
+                                    // If quantity is greater than 0, we proceed
+                                    totalQuantity += quantity; // Add to total quantity
+                                    
+                                    if (size) {
+                                        hasSize = true; // Set flag to true if there is a valid size
+                                        // Check if the quantity is a number and add to size totals
+                                        if (typeof quantity === 'number') {
+                                            sizeTotals.push(quantity + ' x ' + size.toUpperCase());
+                                        }
+                                    } 
+                                }
+                            }
+
+                            // Prepare the row output
+                            newWindowContent += '<tr>';
+                            newWindowContent += '<td>' + itemName + '</td>';
+
+                            // If there are size totals, show them; otherwise, show the total quantity
+                            if (hasSize) {
+                                newWindowContent += '<td>' + sizeTotals.join(', ') + '</td>'; // Show size totals if available
+                            } else if (totalQuantity > 0) {
+                                newWindowContent += '<td>' + totalQuantity + '</td>'; // Show total quantity if no sizes
+                            } else {
+                                newWindowContent += '<td>No sizes available</td>'; // Indicate no sizes just show total quantity of that product
+                            }
+
+                            newWindowContent += '</tr>';
+                        });
 
                                 let sizeSum = [];
                                 for (let size in totalSizeQuantity) {
