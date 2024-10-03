@@ -102,45 +102,57 @@ jQuery(document).ready(function($) {
 
                                 let sortedProductNames = Object.keys(categorizedItems[category]).sort((a, b) => a.localeCompare(b, 'lt', { sensitivity: 'base' }));
 
-                        // Iterate through sorted product names for each category
-                        sortedProductNames.forEach(function(itemName) {
-                            let sizeTotals = [];
-                            let totalQuantity = 0; // Track total quantity of the product
-                            let hasSize = false; // Flag to check if the item has sizes
+                                // Iterate through sorted product names for each category
+                                sortedProductNames.forEach(function(itemName) {
+                                    let sizeTotals = [];
+                                    let totalQuantity = 0; // Track total quantity of the product
+                                    let hasSize = false; // Flag to check if the item has sizes
 
-                            for (let size in categorizedItems[category][itemName]) {
-                                // Get the quantity for this specific size
-                                let quantity = categorizedItems[category][itemName][size] || 0; // Default to 0 if undefined
-                                
-                                if (quantity > 0) {
-                                    // If quantity is greater than 0, we proceed
-                                    totalQuantity += quantity; // Add to total quantity
-                                    
-                                    if (size) {
-                                        hasSize = true; // Set flag to true if there is a valid size
-                                        // Check if the quantity is a number and add to size totals
-                                        if (typeof quantity === 'number') {
-                                            sizeTotals.push(quantity + ' x ' + size.toUpperCase());
+                                    for (let size in categorizedItems[category][itemName]) {
+                                        // Get the quantity for this specific size
+                                        let quantity = categorizedItems[category][itemName][size] || 0; // Default to 0 if undefined
+                                        
+                                        if (quantity > 0) {
+                                            // If quantity is greater than 0, we proceed
+                                            totalQuantity += quantity; // Add to total quantity
+                                            
+                                            if (size) {
+                                                hasSize = true; // Set flag to true if there is a valid size
+                                                
+                                                // Check if the quantity is a number and add to size totals
+                                                if (typeof quantity === 'number') {
+                                                    // Convert size to uppercase for consistency
+                                                    let sizeUpper = size.toUpperCase();
+                                                    
+                                                    // Check if the size is in the format of "X-Y" where X and Y are digits
+                                                    const sizePattern = /^\d-\d$/; // Matches patterns like "0-5", "1-0", "1-5"
+                                                    if (sizePattern.test(sizeUpper)) {
+                                                        // Split the size string at the hyphen, then join with a dot
+                                                        sizeUpper = sizeUpper.replace('-', '.');
+                                                    }
+
+                                                    // Add the processed size to the sizeTotals array
+                                                    sizeTotals.push(quantity + ' x ' + sizeUpper);
+                                                }
+                                            } 
                                         }
-                                    } 
-                                }
-                            }
+                                    }
 
-                            // Prepare the row output
-                            newWindowContent += '<tr>';
-                            newWindowContent += '<td>' + itemName + '</td>';
+                                    // Prepare the row output
+                                    newWindowContent += '<tr>';
+                                    newWindowContent += '<td>' + itemName + '</td>';
 
-                            // If there are size totals, show them; otherwise, show the total quantity
-                            if (hasSize) {
-                                newWindowContent += '<td>' + sizeTotals.join(', ') + '</td>'; // Show size totals if available
-                            } else if (totalQuantity > 0) {
-                                newWindowContent += '<td>' + totalQuantity + '</td>'; // Show total quantity if no sizes
-                            } else {
-                                newWindowContent += '<td>No sizes available</td>'; // Indicate no sizes just show total quantity of that product
-                            }
+                                    // If there are size totals, show them; otherwise, show the total quantity
+                                    if (hasSize) {
+                                        newWindowContent += '<td>' + sizeTotals.join(', ') + '</td>'; // Show size totals if available
+                                    } else if (totalQuantity > 0) {
+                                        newWindowContent += '<td>' + totalQuantity + '</td>'; // Show total quantity if no sizes
+                                    } else {
+                                        newWindowContent += '<td>No sizes available</td>'; // Indicate no sizes just show total quantity of that product
+                                    }
 
-                            newWindowContent += '</tr>';
-                        });
+                                    newWindowContent += '</tr>';
+                                });
 
                                 let sizeSum = [];
                                 for (let size in totalSizeQuantity) {
@@ -171,7 +183,7 @@ jQuery(document).ready(function($) {
                                         let fileLinks = Array.isArray(item.special_order_files) ? item.special_order_files : item.special_order_files.split(', ');
                                         fileLinks.forEach(function(fileUrl) {
                                             let cleanFileUrl = fileUrl.replace(/<a href="([^"]+)"[^>]*>[^<]+<\/a>/, '$1').trim();
-                                            newWindowContent += '<a href="' + cleanFileUrl + '" target="_blank"><img class="zoomable-image" style="display: inline; -webkit-user-select: none; margin: 5px; cursor: zoom-in; background-color: hsl(0, 0%, 90%); transition: background-color 300ms;" src="' + cleanFileUrl + '" width="200" height="200" alt="Pridėta nuotrauka"></a>';
+                                            newWindowContent += '<a href="' + cleanFileUrl + '" target="_blank"><img class="zoomable-image" style="width: 100px;" src="' + cleanFileUrl + '" /></a>';
                                         });
                                         newWindowContent += '</div>';
                                     }

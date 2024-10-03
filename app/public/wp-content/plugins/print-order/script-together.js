@@ -25,7 +25,7 @@ jQuery(document).ready(function($) {
                     let normalOrdersContent = `
                         <html>
                         <head>
-                            <title>Print Orders</title>
+                            <title>Orders Overview</title>
                             <style>
                                 body { font-family: Arial, sans-serif; padding: 20px; }
                                 table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
@@ -145,8 +145,9 @@ jQuery(document).ready(function($) {
                                 
                                 // Check if size is numeric or contains hyphen
                                 if (/^\d+(-\d+)?$/.test(size)) {
-                                    // Numeric size (like 0-5)
-                                    sizeQuantity.push(quantity + ' x ' + size); // Format as '1 x 0-5'
+                                    // Convert size from '0-5' to '0.5'
+                                    let convertedSize = size.replace('-', '.');
+                                    sizeQuantity.push(quantity + ' x ' + convertedSize); // Format as '1 x 0.5'
                                 } else if (size.match(/[A-Z]/)) {
                                     // Alphabetic size (like S)
                                     sizeQuantity.push(quantity + ' x ' + size); // Format as '1 x S'
@@ -170,7 +171,6 @@ jQuery(document).ready(function($) {
                         normalOrdersContent += '</tbody></table>';
                     });
                     
-
                     normalOrdersContent += specialOrdersContent;
                     normalOrdersContent += '</body></html>';
 
